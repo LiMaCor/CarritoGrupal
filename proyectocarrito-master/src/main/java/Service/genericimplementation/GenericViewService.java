@@ -65,7 +65,7 @@ public abstract class GenericViewService implements ViewServiceInterface {
             try {
                 oPooledConnection = AppConfigurationHelper.getSourceConnection();
                 oConnection = oPooledConnection.newConnection();
-                ViewDaoInterface oDao = MappingDaoHelper.getDao(ob, oConnection, (UsuarioSpecificBeanImplementation) oRequest.getSession().getAttribute("userBean"), null);
+                ViewDaoInterface oDao = MappingDaoHelper.getDao(ob, oConnection, (UsuarioSpecificBeanImplementation) oRequest.getSession().getAttribute("user"), null);
                 aloBean = oDao.getPage(rpp, np, hmOrder, alFilter, AppConfigurationHelper.getJsonMsgDepth());
                 Gson oGson = AppConfigurationHelper.getGson();
                 String strJson = oGson.toJson(aloBean);

@@ -31,6 +31,9 @@ package Helper;
 import Bean.specificimplementation.TipousuarioSpecificBeanImplementation;
 import Bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import Bean.publicinterface.GenericBeanInterface;
+import Bean.specificimplementation.LineapedidoSpecificBeanImplementation;
+import Bean.specificimplementation.PedidoSpecificBeanImplementation;
+import Bean.specificimplementation.ProductoSpecificBeanImplementation;
 
 /**
  *
@@ -47,6 +50,15 @@ public class MappingBeanHelper {
                 break;
             case "tipousuario":
                 oBean = new TipousuarioSpecificBeanImplementation();
+                break;
+            case "producto":
+                oBean = new ProductoSpecificBeanImplementation();
+                break;
+            case "pedido":
+                oBean = new PedidoSpecificBeanImplementation();
+                break;                
+            case "linea_pedido":
+                oBean = new LineapedidoSpecificBeanImplementation();
                 break;
             default:
 

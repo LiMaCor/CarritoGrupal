@@ -29,6 +29,9 @@
 package Helper;
 
 import Bean.ReplyBean;
+import Service.specificimplementation.LineapedidoSpecificServiceImplementation;
+import Service.specificimplementation.PedidoSpecificServiceImplementation;
+import Service.specificimplementation.ProductoSpecificServiceImplementation;
 import Service.specificimplementation.TipousuarioSpecificServiceImplementation;
 import Service.specificimplementation.UsuarioSpecificServiceImplementation;
 import javax.servlet.http.HttpServletRequest;
@@ -101,6 +104,72 @@ public class MappingServiceHelper {
                         break;
                     case "getcount":
                         oReplyBean = oTipousuarioService.getCount();
+                        break;
+                    default:
+                        oReplyBean = new ReplyBean(500, EncodingUtilHelper.quotate("Operation not found : Please contact your administrator"));
+                        break;
+                }
+            case "producto":
+                ProductoSpecificServiceImplementation oProductoService = new ProductoSpecificServiceImplementation(oRequest);
+                switch (op) {
+                    case "get":
+                        oReplyBean = oProductoService.get();
+                        break;
+                    case "set":
+                        oReplyBean = oProductoService.set();
+                        break;
+                    case "remove":
+                        oReplyBean = oProductoService.remove();
+                        break;
+                    case "getpage":
+                        oReplyBean = oProductoService.getPage();
+                        break;
+                    case "getcount":
+                        oReplyBean = oProductoService.getCount();
+                        break;
+                    default:
+                        oReplyBean = new ReplyBean(500, EncodingUtilHelper.quotate("Operation not found : Please contact your administrator"));
+                        break;
+                }
+            case "pedido":
+                PedidoSpecificServiceImplementation oPedidoService = new PedidoSpecificServiceImplementation(oRequest);
+                switch (op) {
+                    case "get":
+                        oReplyBean = oPedidoService.get();
+                        break;
+                    case "set":
+                        oReplyBean = oPedidoService.set();
+                        break;
+                    case "remove":
+                        oReplyBean = oPedidoService.remove();
+                        break;
+                    case "getpage":
+                        oReplyBean = oPedidoService.getPage();
+                        break;
+                    case "getcount":
+                        oReplyBean = oPedidoService.getCount();
+                        break;
+                    default:
+                        oReplyBean = new ReplyBean(500, EncodingUtilHelper.quotate("Operation not found : Please contact your administrator"));
+                        break;
+                }
+            case "linea_pedido":
+                LineapedidoSpecificServiceImplementation oLineapedidoService = new LineapedidoSpecificServiceImplementation(oRequest);
+                switch (op) {
+                    case "get":
+                        oReplyBean = oLineapedidoService.get();
+                        break;
+                    case "set":
+                        oReplyBean = oLineapedidoService.set();
+                        break;
+                    case "remove":
+                        oReplyBean = oLineapedidoService.remove();
+                        break;
+                    case "getpage":
+                        oReplyBean = oLineapedidoService.getPage();
+                        break;
+                    case "getcount":
+                        oReplyBean = oLineapedidoService.getCount();
                         break;
                     default:
                         oReplyBean = new ReplyBean(500, EncodingUtilHelper.quotate("Operation not found : Please contact your administrator"));
