@@ -74,7 +74,7 @@ public class CarritoSpecificServiceImplementation implements TableServiceCarrito
                 oConnection = oPooledConnection.newConnection();
                 ProductoSpecificBeanImplementation oBean = new ProductoSpecificBeanImplementation(id);
                 ProductoSpecificDaoImplementation oDao = new ProductoSpecificDaoImplementation(oConnection, (UsuarioSpecificBeanImplementation) oRequest.getSession().getAttribute("user"), null);
-                oBean = oDao.get(oBean, AppConfigurationHelper.getJsonMsgDepth());
+                //oBean = oDao.get(oBean, AppConfigurationHelper.getJsonMsgDepth());
                 oCarritoBean = new CarritoBean(cantidad, oBean);
                 CarritoBean oCarrito = find(alCarrito, oCarritoBean.getoProducto().getId());
                 if (oCarrito == null) {
@@ -172,53 +172,53 @@ public class CarritoSpecificServiceImplementation implements TableServiceCarrito
 
     @Override
     public ReplyBean buy() throws Exception {
-        if (this.checkPermission("buy")) {
-            ArrayList<CarritoBean> alCarrito = (ArrayList) oRequest.getSession().getAttribute("carrito");
-            ReplyBean oReplyBean = null;
-            Connection oConnection = null;
-            ConnectionInterface oPooledConnection = null;
-            Date fecha = new Date(2017 / 10 /27); //Date.valueOf(oRequest.getParameter("fecha"));
-            try {
-                oPooledConnection = AppConfigurationHelper.getSourceConnection();
-                oConnection = oPooledConnection.newConnection();
-                UsuarioSpecificBeanImplementation oUsuarioBean = (UsuarioSpecificBeanImplementation) oRequest.getSession().getAttribute("user");
-                Integer alCarritoSize = alCarrito.size();
-                PedidoSpecificBeanImplementation oPedidoBean = new PedidoSpecificBeanImplementation(fecha, oUsuarioBean.getId());
-                PedidoSpecificDaoImplementation oPedidoDao = new PedidoSpecificDaoImplementation(oConnection);
-                oPedidoBean.setId(oPedidoDao.set(oPedidoBean));
-                //oPedidoDao.set(oPedidoBean);
-                ProductoSpecificBeanImplementation oProductoBean = null;
-                ProductoDao oProductoDao = new ProductoDao(oConnection);
-                LineadepedidoDao oLineadepedidoDao = new LineadepedidoDao(oConnection);
-                for (int i = 0; i < alCarritoSize; i++) {
-                    oProductoBean = alCarrito.get(i).getoProducto();
-                    Integer newCantidad = alCarrito.get(i).getCantidad();
-                    LineadepedidoBean oLineadepedidoBean = new LineadepedidoBean();
-                    oLineadepedidoBean.setCantidad(newCantidad);
-                    oLineadepedidoBean.setId_pedido(oPedidoBean.getId());
-                    oLineadepedidoBean.setId_producto(oProductoBean.getId());
-                    oLineadepedidoBean.setId(oLineadepedidoDao.set(oLineadepedidoBean));
-                    //oLineadepedidoDao.set(oLineadepedidoBean);
-                    oProductoBean.setExistencias(oProductoBean.getExistencias() - newCantidad);
-                    oProductoDao.set(oProductoBean);
-                }
-                alCarrito.clear();
-            } catch (Exception ex) {
-                String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName();
-                Log4jStatic.errorLog(msg, ex);
-                throw new Exception(msg, ex);
-            } finally {
-                if (oConnection != null) {
-                    oConnection.close();
-                }
-                if (AppConfigurationHelper.getSourceConnection() != null) {
-                    AppConfigurationHelper.getSourceConnection().disposeConnection();
-                }
-            }
-            return oReplyBean = new ReplyBean(200, "Compra realizada correctamente");
-        } else {
+//        if (this.checkPermission("buy")) {
+//            ArrayList<CarritoBean> alCarrito = (ArrayList) oRequest.getSession().getAttribute("carrito");
+//            ReplyBean oReplyBean = null;
+//            Connection oConnection = null;
+//            ConnectionInterface oPooledConnection = null;
+//            Date fecha = new Date(2017 / 10 /27); //Date.valueOf(oRequest.getParameter("fecha"));
+//            try {
+//                oPooledConnection = AppConfigurationHelper.getSourceConnection();
+//                oConnection = oPooledConnection.newConnection();
+//                UsuarioSpecificBeanImplementation oUsuarioBean = (UsuarioSpecificBeanImplementation) oRequest.getSession().getAttribute("user");
+//                Integer alCarritoSize = alCarrito.size();
+//                PedidoSpecificBeanImplementation oPedidoBean = new PedidoSpecificBeanImplementation(fecha, oUsuarioBean.getId());
+//                PedidoSpecificDaoImplementation oPedidoDao = new PedidoSpecificDaoImplementation(oConnection);
+//                oPedidoBean.setId(oPedidoDao.set(oPedidoBean));
+//                //oPedidoDao.set(oPedidoBean);
+//                ProductoSpecificBeanImplementation oProductoBean = null;
+//                ProductoDao oProductoDao = new ProductoDao(oConnection);
+//                LineadepedidoDao oLineadepedidoDao = new LineadepedidoDao(oConnection);
+//                for (int i = 0; i < alCarritoSize; i++) {
+//                    oProductoBean = alCarrito.get(i).getoProducto();
+//                    Integer newCantidad = alCarrito.get(i).getCantidad();
+//                    LineadepedidoBean oLineadepedidoBean = new LineadepedidoBean();
+//                    oLineadepedidoBean.setCantidad(newCantidad);
+//                    oLineadepedidoBean.setId_pedido(oPedidoBean.getId());
+//                    oLineadepedidoBean.setId_producto(oProductoBean.getId());
+//                    oLineadepedidoBean.setId(oLineadepedidoDao.set(oLineadepedidoBean));
+//                    //oLineadepedidoDao.set(oLineadepedidoBean);
+//                    oProductoBean.setExistencias(oProductoBean.getExistencias() - newCantidad);
+//                    oProductoDao.set(oProductoBean);
+//                }
+//                alCarrito.clear();
+//            } catch (Exception ex) {
+//                String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName();
+//                Log4jStatic.errorLog(msg, ex);
+//                throw new Exception(msg, ex);
+//            } finally {
+//                if (oConnection != null) {
+//                    oConnection.close();
+//                }
+//                if (AppConfigurationHelper.getSourceConnection() != null) {
+//                    AppConfigurationHelper.getSourceConnection().disposeConnection();
+//                }
+//            }
+//            return oReplyBean = new ReplyBean(200, "Compra realizada correctamente");
+//        } else {
             return new ReplyBean(401, "Unauthorized operation");
-        }
+//        }
     }
 
     @Override
@@ -240,7 +240,7 @@ public class CarritoSpecificServiceImplementation implements TableServiceCarrito
 
             } catch (Exception ex) {
                 String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName();
-                Log4jStatic.errorLog(msg, ex);
+                Log4jConfigurationHelper.errorLog(msg, ex);
                 throw new Exception(msg, ex);
             } finally {
                 if (oConnection != null) {

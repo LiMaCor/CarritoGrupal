@@ -44,7 +44,7 @@ public abstract class GenericTableService extends GenericViewService implements 
                 oPooledConnection = AppConfigurationHelper.getSourceConnection();
                 oConnection = oPooledConnection.newConnection();
 
-                TableDaoInterface oDao = (TableDaoInterface) MappingDaoHelper.getDao(ob, oConnection, (UsuarioSpecificBeanImplementation) oRequest.getSession().getAttribute("userBean"), null);
+                TableDaoInterface oDao = (TableDaoInterface) MappingDaoHelper.getDao(ob, oConnection, (UsuarioSpecificBeanImplementation) oRequest.getSession().getAttribute("user"), null);
 
                 TableGenericBeanImplementation oBean = (TableGenericBeanImplementation) oDao.get(id, AppConfigurationHelper.getJsonMsgDepth());
                 Gson oGson = AppConfigurationHelper.getGson();
@@ -88,7 +88,7 @@ public abstract class GenericTableService extends GenericViewService implements 
             try {
                 oPooledConnection = AppConfigurationHelper.getSourceConnection();
                 oConnection = oPooledConnection.newConnection();
-                TableDaoInterface oDao = (TableDaoInterface) MappingDaoHelper.getDao(ob, oConnection, (UsuarioSpecificBeanImplementation) oRequest.getSession().getAttribute("userBean"), null);
+                TableDaoInterface oDao = (TableDaoInterface) MappingDaoHelper.getDao(ob, oConnection, (UsuarioSpecificBeanImplementation) oRequest.getSession().getAttribute("user"), null);
                 iResult = oDao.set(oBean);
                 String strJson = oGson.toJson(iResult);
                 oReplyBean = new ReplyBean(200, strJson);
@@ -125,7 +125,7 @@ public abstract class GenericTableService extends GenericViewService implements 
                 oPooledConnection = AppConfigurationHelper.getSourceConnection();
                 oConnection = oPooledConnection.newConnection();
 
-                TableDaoInterface oDao = (TableDaoInterface) MappingDaoHelper.getDao(ob, oConnection, (UsuarioSpecificBeanImplementation) oRequest.getSession().getAttribute("userBean"), null);
+                TableDaoInterface oDao = (TableDaoInterface) MappingDaoHelper.getDao(ob, oConnection, (UsuarioSpecificBeanImplementation) oRequest.getSession().getAttribute("user"), null);
 
                 iResult = oDao.remove(id);
                 Gson oGson = AppConfigurationHelper.getGson();

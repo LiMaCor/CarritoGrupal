@@ -41,7 +41,7 @@ public class UsuarioSpecificServiceImplementation extends GenericTableService {
             try {
                 oPooledConnection = AppConfigurationHelper.getSourceConnection();
                 oConnection = oPooledConnection.newConnection();
-                UsuarioSpecificDaoImplementation oDao = new UsuarioSpecificDaoImplementation(oConnection, (UsuarioSpecificBeanImplementation) oRequest.getSession().getAttribute("userBean"), null);
+                UsuarioSpecificDaoImplementation oDao = new UsuarioSpecificDaoImplementation(oConnection, (UsuarioSpecificBeanImplementation) oRequest.getSession().getAttribute("user"), null);
                 oUsuarioBean = oDao.getFromLoginAndPass(oUsuarioBean);
                 HttpSession oSession = oRequest.getSession();
                 oSession.setAttribute("user", oUsuarioBean);
@@ -117,7 +117,7 @@ public class UsuarioSpecificServiceImplementation extends GenericTableService {
                 oPooledConnection = AppConfigurationHelper.getSourceConnection();
                 oConnection = oPooledConnection.newConnection();
                 oConnection.setAutoCommit(false);
-                UsuarioSpecificDaoImplementation oUserDao = new UsuarioSpecificDaoImplementation(oConnection, (UsuarioSpecificBeanImplementation) oRequest.getSession().getAttribute("userBean"), null);
+                UsuarioSpecificDaoImplementation oUserDao = new UsuarioSpecificDaoImplementation(oConnection, (UsuarioSpecificBeanImplementation) oRequest.getSession().getAttribute("user"), null);
                 UsuarioSpecificBeanImplementation oSessionUsuarioBean = (UsuarioSpecificBeanImplementation) oRequest.getSession().getAttribute("user");
                 if (oSessionUsuarioBean.getPass().equalsIgnoreCase(oldPass)) {
                     oSessionUsuarioBean.setPass(newPass);
