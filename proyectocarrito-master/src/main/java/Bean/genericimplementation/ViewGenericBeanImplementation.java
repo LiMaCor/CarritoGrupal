@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Bean.genericimplementation;
 
 import Bean.publicinterface.GenericBeanInterface;
@@ -13,8 +8,9 @@ import java.sql.SQLException;
 
 /**
  *
- * @author Kysuke
+ * @author Julián
  */
+
 public abstract class ViewGenericBeanImplementation implements GenericBeanInterface {
 
     public ViewGenericBeanImplementation() {

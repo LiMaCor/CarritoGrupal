@@ -1,14 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Dao.genericimplementation;
 
 /**
  *
- * @author Kysuke
+ * @author Julián
  */
+
 import Bean.genericimplementation.TableGenericBeanImplementation;
 import Bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import Helper.Log4jConfigurationHelper;
