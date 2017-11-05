@@ -9,6 +9,7 @@ package Service.specificimplementation;
  *
  * @author Kysuke
  */
+import Bean.CarritoBean;
 import Service.genericimplementation.GenericTableService;
 import com.google.gson.Gson;
 import Bean.ReplyBean;
@@ -19,6 +20,7 @@ import Helper.AppConfigurationHelper;
 import Helper.EncodingUtilHelper;
 import Helper.Log4jConfigurationHelper;
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
@@ -43,8 +45,10 @@ public class UsuarioSpecificServiceImplementation extends GenericTableService {
                 oConnection = oPooledConnection.newConnection();
                 UsuarioSpecificDaoImplementation oDao = new UsuarioSpecificDaoImplementation(oConnection, (UsuarioSpecificBeanImplementation) oRequest.getSession().getAttribute("user"), null);
                 oUsuarioBean = oDao.getFromLoginAndPass(oUsuarioBean);
+                ArrayList<CarritoBean> alCarrito = new ArrayList<CarritoBean>();
                 HttpSession oSession = oRequest.getSession();
                 oSession.setAttribute("user", oUsuarioBean);
+                oSession.setAttribute("carrito", alCarrito);
                 Gson oGson = AppConfigurationHelper.getGson();
                 String strJson = oGson.toJson(oUsuarioBean);
                 oReplyBean = new ReplyBean(200, strJson);

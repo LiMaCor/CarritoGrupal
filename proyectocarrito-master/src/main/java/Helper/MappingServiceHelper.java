@@ -180,14 +180,19 @@ public class MappingServiceHelper {
                 CarritoSpecificServiceImplementation oCarritoService = new CarritoSpecificServiceImplementation(oRequest);
                 switch (op) {
                     case "list":
+                        oReplyBean = oCarritoService.list();
                         break;
                     case "add":
+                        oReplyBean = oCarritoService.add();
                         break;
                     case "buy":
+                        oReplyBean = oCarritoService.buy();
                         break;
                     case "remove":
+                        oReplyBean = oCarritoService.remove();
                         break;
                     case "empty":
+                        oReplyBean = oCarritoService.empty();
                         break;
                     default:
                         oReplyBean = new ReplyBean(500, EncodingUtilHelper.quotate("Operation not found : Please contact your administrator"));

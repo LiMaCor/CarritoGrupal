@@ -12,7 +12,7 @@ import java.sql.SQLException;
  * @author Julián
  */
 
-public abstract class TableGenericBeanImplementation implements GenericBeanInterface {
+public abstract class TableGenericBeanImplementation extends ViewGenericBeanImplementation implements GenericBeanInterface {
 
     @Expose
     protected Integer id;

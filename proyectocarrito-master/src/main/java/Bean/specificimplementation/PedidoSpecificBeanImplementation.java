@@ -32,6 +32,11 @@ public class PedidoSpecificBeanImplementation extends TableGenericBeanImplementa
     public PedidoSpecificBeanImplementation() {
 
     }
+    
+    public PedidoSpecificBeanImplementation(Integer id, Date dateFecha) {
+        this.id = id;
+        this.fecha = dateFecha;
+    }
 
     public PedidoSpecificBeanImplementation(Integer id) {
         this.id = id;
