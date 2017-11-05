@@ -8,11 +8,12 @@ package Bean.specificimplementation;
 import Bean.genericimplementation.TableGenericBeanImplementation;
 import Bean.publicinterface.GenericBeanInterface;
 import Dao.specificimplementation.UsuarioSpecificDaoImplementation;
+import Helper.EncodingUtilHelper;
 import com.google.gson.annotations.Expose;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Date;
+import java.sql.Date;
 
 /**
  *
@@ -33,8 +34,8 @@ public class PedidoSpecificBeanImplementation extends TableGenericBeanImplementa
 
     }
     
-    public PedidoSpecificBeanImplementation(Integer id, Date dateFecha) {
-        this.id = id;
+    public PedidoSpecificBeanImplementation(Integer id_usuario, Date dateFecha) {
+        this.id_usuario = id_usuario;
         this.fecha = dateFecha;
     }
 
@@ -96,7 +97,7 @@ public class PedidoSpecificBeanImplementation extends TableGenericBeanImplementa
     public String getValues() {
         String strColumns = "";
         strColumns += id + ",";
-        strColumns += fecha + ",";
+        strColumns += EncodingUtilHelper.stringifyAndQuotate(fecha) + ",";
         strColumns += iva + ",";
         strColumns += id_usuario;
         return strColumns;
@@ -105,7 +106,7 @@ public class PedidoSpecificBeanImplementation extends TableGenericBeanImplementa
     @Override
     public String toPairs() {
         String strPairs = "";
-        strPairs += "fecha=" + fecha + ",";
+        strPairs += "fecha=" + EncodingUtilHelper.stringifyAndQuotate(fecha) + ",";
         strPairs += "iva=" + iva + ",";
         strPairs += "id_usuario=" + id_usuario;
         return strPairs;
