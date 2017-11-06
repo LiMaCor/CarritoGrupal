@@ -1,0 +1,9 @@
+Registros por página: <br>
+<ul class="pagination">
+    <li class="active" ng-if="crpp.rpp == 10"><a class="rpp_link" id="rpp10a">10</a></li>
+    <li ng-if="crpp.rpp != 10"><a class="rpp_link" id="rpp10b" ng-click="crpp.repaginate(10)">10</a></li>            
+    <li class="active" ng-if="crpp.rpp == 50"><a class="rpp_link" id="rpp50a">50</a></li>
+    <li ng-if="crpp.rpp != 50"><a class="rpp_link" id="rpp50b" ng-click="crpp.repaginate(50)">50</a></li>
+    <li class="active" ng-if="crpp.rpp == 100"><a class="rpp_link" id="rpp100a">100</a></li>
+    <li ng-if="crpp.rpp != 100"><a class="rpp_link" id="rpp100b" ng-click="crpp.repaginate(100)">100</a></li>
+</ul>

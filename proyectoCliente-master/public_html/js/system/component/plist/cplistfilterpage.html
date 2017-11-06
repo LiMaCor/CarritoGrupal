@@ -1,0 +1,174 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="alert alert-success" role="alert">
+                <h4>Debug:</h4>
+                {{cf.bean|json}}<br>
+                {{cf.filter_array|json}}<br>
+                {{cf.strFilter|json}}
+            </div>
+            <form class="form-horizontal" id="outerForm">
+                <div ng-repeat="f in cf.fields" id="datos">
+
+                    <div class="form-group" ng-if="f.type.startsWith('varchar')" id="{{f.name}}-group">
+                        <label class="control-label col-sm-1" for="input_{{f.name}}">{{f.longname}}</label>
+                        <div class="col-sm-2">
+                            <select id="select_{{f.name}}" class="form-control" name="filteroperator" ng-model="cf.bean['opt_' + f.name]">
+                                <option style="display:none">selecciona una operacion</option>
+                                <option value="like" ng-selected="true">contiene</option>
+                                <option value="nlik">no contiene</option>
+                                <option value="star">empieza por</option>
+                                <option value="nsta">no empieza por</option>
+                                <option value="ends">acaba con</option>
+                                <option value="nend">no acaba con</option>
+                                <option value="equa">es igual a</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" id="input_{{f.name}}" ng-model="cf.bean['text_' + f.name]" />
+                        </div>
+                    </div>
+                    <div class="form-group" ng-if="f.type.startsWith('longtext')" id="{{f.name}}-group">
+                        <label class="control-label col-sm-1" for="input_{{f.name}}">{{f.longname}}</label>
+                        <div class="col-sm-2">
+                            <select id="select_{{f.name}}" class="form-control" name="filteroperator" ng-model="cf.bean['opt_' + f.name]">
+                                <option style="display:none">selecciona una operacion</option>
+                                <option value="like" ng-selected="true">contiene</option>
+                                <option value="nlik">no contiene</option>
+                                <option value="star">empieza por</option>
+                                <option value="nsta">no empieza por</option>
+                                <option value="ends">acaba con</option>
+                                <option value="nend">no acaba con</option>
+                                <option value="equa">es igual a</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" id="input_{{f.name}}" ng-model="cf.bean['longtext_' + f.name]" />
+                        </div>
+                    </div>
+                    <div class="form-group" ng-if="f.type.startsWith('datetime')" id="{{f.name}}-group">
+                        <label class="control-label col-sm-1">{{f.longname}}</label>
+                        <label class="control-label col-sm-1">Desde...</label>
+                        <div class="control col-sm-2">
+                            <date-time-picker
+                                name="f.name"
+                                form="outerForm"
+                                required="0"
+                                model="cf.bean['fini_' + f.name]">
+                            </date-time-picker>
+                        </div>
+                        <label class="control-label col-sm-1">Hasta...</label>
+                        <div class="control col-sm-2">
+                            <date-time-picker
+                                name="f.name"
+                                form="outerForm"
+                                required="0"
+                                model="cf.bean['fend_' + f.name]">
+                            </date-time-picker>
+                        </div>
+                    </div>                   
+                    <div class="form-group" ng-if="f.name.startsWith('id_')" id="{{f.name}}-group">
+                        <label class="control-label col-sm-1">{{f.longname}}</label>
+                        <div class="control col-sm-5">
+                            <dropdown 
+                                ide="cf.bean[f.name].id"
+                                tablereference="f.reference">
+                            </dropdown>
+                        </div>
+                    </div>
+                    <div ng-if="f.type.startsWith('tinyint')" class="form-group"  id="{{f.name}}-group">
+                        <label class="control-label col-sm-1">{{f.longname}}</label>
+                        <div class="control col-sm-5">
+                            <boolean 
+                                model="cf.bean['bool_' + f.name]"
+                                name="f.name">                                
+                            </boolean>
+                        </div>
+                    </div>
+
+                    <div class="form-group" ng-if="f.type.startsWith('double')" id="{{f.name}}-group">
+                        <label class="control-label col-sm-1" for="input_{{f.name}}">{{f.longname}}</label>
+                        <div class="col-sm-2">
+                            <select id="select_{{f.name}}" 
+                                    class="form-control" 
+                                    name="filteroperator" 
+                                    ng-model="cf.bean['opt_' + f.name]">
+                                <option style="display:none">selecciona una operacion</option>
+                                <option value="equa">es igual a</option>
+                                <option value="nequ">es distinto de</option>
+                                <option value="lowe">es menor que</option>
+                                <option value="lequ">es menor o igual que</option>
+                                <option value="grea">es mayor que</option>
+                                <option value="gequ">es mayor o igual que</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" id="input_{{f.name}}" ng-model="cf.bean['double_' + f.name]" />
+                        </div>
+                    </div>
+                    
+                    
+                    
+                    <div class="form-group" ng-if="f.type.startsWith('int') && !f.name.startsWith('id_')" id="{{f.name}}-group">
+                        <label class="control-label col-sm-1" for="input_{{f.name}}">{{f.longname}}</label>
+                        <div class="col-sm-2">
+                            <select id="select_{{f.name}}" 
+                                    class="form-control" 
+                                    name="filteroperator" 
+                                    ng-model="cf.bean['opt_' + f.name]">
+                                <option style="display:none">selecciona una operacion</option>
+                                <option value="equa">es igual a</option>
+                                <option value="nequ">es distinto de</option>
+                                <option value="lowe">es menor que</option>
+                                <option value="lequ">es menor o igual que</option>
+                                <option value="grea">es mayor que</option>
+                                <option value="gequ">es mayor o igual que</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" id="input_{{f.name}}" ng-model="cf.bean['int_' + f.name]" />
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+                <div class="form-group"> 
+                    <div class="col-sm-offset-1 col-sm-10">
+                        <button class="btn btn-default"  ng-click="cf.dofilter()">Filtrar</button>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<!--
+<form class="navbar-form navbar-right" role="form" action="Controller" method="post" id="filterForm">
+    <select id="selectFilter" class="form-control" name="filter" style="width: 160px" ng-model="cf.filter">
+        <option style="display:none">selecciona un campo</option>
+        <option ng-repeat="field in cf.fields"  value="{{field.name}}">{{field.longname}}</option>
+    </select>
+    <select id="selectFilteroperator" class="form-control" name="filteroperator" width="80" style="width: 200px" ng-model="cf.filteroperator">
+        <option style="display:none">selecciona una operacion</option>
+        <option value="like" ng-selected="true">contiene</option>
+        <option value="nlik">no contiene</option>
+        <option value="star">empieza por</option>
+        <option value="nsta">no empieza por</option>
+        <option value="ends">acaba con</option>
+        <option value="nend">no acaba con</option>
+        <option value="equa">es igual a</option>
+        <option value="nequ">es distinto de</option>
+        <option value="lowe">es menor que</option>
+        <option value="lequ">es menor o igual que</option>
+        <option value="grea">es mayor que</option>
+        <option value="gequ">es mayor o igual que</option>
+    </select>
+    <input id="inputFiltervalue" class="form-control" name="filtervalue" type="text" size="20" maxlength="50" value="" width="100" style="width: 140px" placeholder="Valor" ng-model="cf.filtervalue">
+    <input type="button" class="btn" id="btnFiltrar" name="btnFiltrar" value="Filtrar" ng-click="cf.dofilter()" />
+</form>
+-->
+

@@ -1,0 +1,6 @@
+<select class="col-sm-2 form-control"  
+        required="dd.required" 
+        ng-model="dd.ide">
+    <option ng-repeat="s in dd.selections"               
+            ng-value="s.id">{{s['name']| clipString}}</option>    
+</select>

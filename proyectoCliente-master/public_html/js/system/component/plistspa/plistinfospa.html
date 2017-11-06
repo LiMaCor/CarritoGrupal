@@ -1,0 +1,16 @@
+<div ng-controller="plistInfospaController">
+    <p>Mostrando una consulta de {{registers}} registros.</p>
+    <p ng-if="orderParams == null">Contenido no ordenado</p>
+    <p ng-if="orderParams != null">Contenido ordenado: {{orderParams}}
+        <a ng-click="doresetorder()" id="linkQuitarOrden">(Quitar orden)</a>
+    </p>
+    <p ng-if="filterParams == null">Contenido no filtrado en servidor</p>
+    <p ng-if="filterParams != null">Contenido filtrado: {{filterParams}}
+        <a ng-click="doresetfilter()" id="linkQuitarFiltro">(Quitar filtro)</a>                                                       
+    </p>
+    <p ng-if="searchText.length == 0">Contenido no filtrado en cliente</p>
+    <p ng-if="searchText.length > 0">Contenido filtrado en cliente 
+        <a ng-click="resetClientfilter()" id="linkQuitarFiltro">(Quitar filtro)</a>
+    </p>
+    <p></p>
+</div>
