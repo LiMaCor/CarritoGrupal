@@ -110,6 +110,7 @@ public class MappingServiceHelper {
                         oReplyBean = new ReplyBean(500, EncodingUtilHelper.quotate("Operation not found : Please contact your administrator"));
                         break;
                 }
+                break;
             case "producto":
                 ProductoSpecificServiceImplementation oProductoService = new ProductoSpecificServiceImplementation(oRequest);
                 switch (op) {
@@ -132,6 +133,7 @@ public class MappingServiceHelper {
                         oReplyBean = new ReplyBean(500, EncodingUtilHelper.quotate("Operation not found : Please contact your administrator"));
                         break;
                 }
+                break;
             case "pedido":
                 PedidoSpecificServiceImplementation oPedidoService = new PedidoSpecificServiceImplementation(oRequest);
                 switch (op) {
@@ -154,6 +156,7 @@ public class MappingServiceHelper {
                         oReplyBean = new ReplyBean(500, EncodingUtilHelper.quotate("Operation not found : Please contact your administrator"));
                         break;
                 }
+                break;
             case "linea_pedido":
                 LineapedidoSpecificServiceImplementation oLineapedidoService = new LineapedidoSpecificServiceImplementation(oRequest);
                 switch (op) {
@@ -176,6 +179,7 @@ public class MappingServiceHelper {
                         oReplyBean = new ReplyBean(500, EncodingUtilHelper.quotate("Operation not found : Please contact your administrator"));
                         break;
                 }
+                break;
             case "carrito":
                 CarritoSpecificServiceImplementation oCarritoService = new CarritoSpecificServiceImplementation(oRequest);
                 switch (op) {
