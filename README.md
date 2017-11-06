@@ -2,4 +2,5 @@
 
 Group work of a shopping cart with a server and client sides
 
-+ proyectocarrito-master: Server side of the shopping cart
++ proyectoServidor-master: Server side of the shopping cart
++ proyectoCliente-master: Client side of the shopping cart
