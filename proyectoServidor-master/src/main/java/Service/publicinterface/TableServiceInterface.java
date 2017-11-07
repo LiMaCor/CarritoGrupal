@@ -1,15 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Service.publicinterface;
 
 /**
  *
- * @author Kysuke
+ * @author Julián
  */
+
 import Bean.ReplyBean;
+
+/**
+ * Interfaz que estabece los métodos Dao, que obtienen, establecen/actualizan o
+ * eliminan datos de la base de datos.
+ */
 
 public interface TableServiceInterface {
 

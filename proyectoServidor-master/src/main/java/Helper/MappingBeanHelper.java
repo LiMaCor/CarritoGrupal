@@ -26,6 +26,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package Helper;
 
 import Bean.specificimplementation.TipousuarioSpecificBeanImplementation;
@@ -39,6 +40,7 @@ import Bean.specificimplementation.ProductoSpecificBeanImplementation;
  *
  * @author raznara
  */
+
 public class MappingBeanHelper {
 
     public static GenericBeanInterface getBean(String ob) {

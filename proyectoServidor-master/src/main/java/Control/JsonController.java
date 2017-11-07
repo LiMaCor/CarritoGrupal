@@ -26,6 +26,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package Control;
 
 import Bean.ReplyBean;
@@ -112,7 +113,7 @@ public class JsonController extends HttpServlet {
                         out.println(ex);
                         ex.printStackTrace(out);
                     } else {
-                        oReplyBean = new ReplyBean(500, "generic-carrito-server error. Please, contact your administrator.");
+                        oReplyBean = new ReplyBean(500, "Server Error. Please, contact your administrator.");
                     }
                     Log4jConfigurationHelper.errorLog(this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName(), ex);
                     oReplyBean = new ReplyBean(500, "Object or Operation not found : Please contact your administrator");

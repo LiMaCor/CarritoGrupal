@@ -1,14 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Service.genericimplementation;
 
-/**
- *
- * @author Kysuke
- */
 import Service.publicinterface.TableServiceInterface;
 import com.google.gson.Gson;
 import Bean.genericimplementation.TableGenericBeanImplementation;
@@ -24,15 +15,24 @@ import javax.servlet.http.HttpServletRequest;
 import Helper.EncodingUtilHelper;
 import Dao.publicinterface.TableDaoInterface;
 
+/**
+ *
+ * @author Julián
+ */
+
 public abstract class GenericTableService extends GenericViewService implements TableServiceInterface {
 
     public GenericTableService(HttpServletRequest request) {
         super(request);
     }
 
-    /*
-    * http://127.0.0.1:8081/generic-carrito-server/json?ob=xxxxxx&op=get&id=n
+    /**
+     * Método get(): Obtiene datos, a través de la capa Dao, procedentes de la
+     * base de datos.
+     * @return ReplyBean
+     * @throws Exception 
      */
+    
     @Override
     public ReplyBean get() throws Exception {
         if (this.checkPermission("get")) {
@@ -68,9 +68,12 @@ public abstract class GenericTableService extends GenericViewService implements 
         }
     }
 
-    /*
-    * http://127.0.0.1:8081/generic-carrito-server/json?ob=xxxxxx&op=set (datos aparte)
+    /**
+     * Método set(): Establece datos en la base de datos, a través de la capa Dao.
+     * @return ReplyBean
+     * @throws Exception 
      */
+    
     @Override
     public ReplyBean set() throws Exception {
         if (this.checkPermission("set")) {
@@ -110,9 +113,13 @@ public abstract class GenericTableService extends GenericViewService implements 
         }
     }
 
-    /*
-    * http://127.0.0.1:8081/generic-carrito-server/json?ob=xxxxxxx&op=remove&id=1
+    /**
+     * Método remove(): Elimina un registro de la base de datos, a través de la
+     * capa Dao.
+     * @return ReplyBean
+     * @throws Exception 
      */
+    
     @Override
     public ReplyBean remove() throws Exception {
         if (this.checkPermission("remove")) {

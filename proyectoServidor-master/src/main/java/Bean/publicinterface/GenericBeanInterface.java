@@ -10,6 +10,11 @@ import java.sql.SQLException;
  * @author Julián
  */
 
+/**
+ * Interfa genérica que tiene los métodos sin implementar para obtener las
+ * columnas y valores de estas centralizados.
+ */
+
 public interface GenericBeanInterface {
 
     public String getColumns();

@@ -1,10 +1,5 @@
 package Dao.genericimplementation;
 
-/**
- *
- * @author Julián
- */
-
 import Bean.genericimplementation.ViewGenericBeanImplementation;
 import Bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import Helper.FilterBeanHelper;
@@ -18,6 +13,11 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import Bean.publicinterface.GenericBeanInterface;
 import Dao.publicinterface.ViewDaoInterface;
+
+/**
+ *
+ * @author Julián
+ */
 
 public abstract class ViewGenericDaoImplementation implements ViewDaoInterface<ViewGenericBeanImplementation> {
 

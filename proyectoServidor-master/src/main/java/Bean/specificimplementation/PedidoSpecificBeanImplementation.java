@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Bean.specificimplementation;
 
 import Bean.genericimplementation.TableGenericBeanImplementation;
@@ -17,8 +12,9 @@ import java.sql.Date;
 
 /**
  *
- * @author Kysuke
+ * @author Julián
  */
+
 public class PedidoSpecificBeanImplementation extends TableGenericBeanImplementation {
 
     @Expose
@@ -83,6 +79,12 @@ public class PedidoSpecificBeanImplementation extends TableGenericBeanImplementa
         this.obj_usuario = obj_usuario;
     }
 
+    /**
+     * Método getColumns(): Obtiene las columnas de la tabla correspondiente al
+     * propio Bean.
+     * @return String
+     */
+    
     @Override
     public String getColumns() {
         String strColumns = "";
@@ -93,6 +95,12 @@ public class PedidoSpecificBeanImplementation extends TableGenericBeanImplementa
         return strColumns;
     }
 
+    /**
+     * Método getValues(): Obtiene los valores de los registros correspondientes
+     * al propio Bean.
+     * @return String
+     */
+    
     @Override
     public String getValues() {
         String strColumns = "";
@@ -103,6 +111,12 @@ public class PedidoSpecificBeanImplementation extends TableGenericBeanImplementa
         return strColumns;
     }
 
+    /**
+     * Método toPairs(): Relaciona los valores declarados en las propiedades del
+     * propio Bean.
+     * @return String
+     */
+    
     @Override
     public String toPairs() {
         String strPairs = "";
@@ -112,6 +126,18 @@ public class PedidoSpecificBeanImplementation extends TableGenericBeanImplementa
         return strPairs;
     }
 
+    /**
+     * Método fill(): Establece valores a todos los atributos del Bean para
+     * crearlo.
+     * @param oResultSet
+     * @param oConnection
+     * @param oPuserBean_security
+     * @param expand
+     * @return GenericBeanInterface
+     * @throws SQLException
+     * @throws Exception 
+     */
+    
     @Override
     public GenericBeanInterface fill(ResultSet oResultSet, Connection oConnection, UsuarioSpecificBeanImplementation oPuserBean_security, Integer expand) throws SQLException, Exception {
         this.setId(oResultSet.getInt("id"));

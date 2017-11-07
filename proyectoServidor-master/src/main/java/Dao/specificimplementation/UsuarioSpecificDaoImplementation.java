@@ -1,14 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Dao.specificimplementation;
 
-/**
- *
- * @author Kysuke
- */
 import Dao.genericimplementation.TableGenericDaoImplementation;
 import Bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import Helper.AppConfigurationHelper;
@@ -17,12 +8,25 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+/**
+ *
+ * @author Julián
+ */
+
 public class UsuarioSpecificDaoImplementation extends TableGenericDaoImplementation {
 
     public UsuarioSpecificDaoImplementation(Connection oPooledConnection, UsuarioSpecificBeanImplementation oPuserBean_security, String strWhere) {
         super("usuario", oPooledConnection, oPuserBean_security, strWhere);
     }
 
+    /**
+     * Método getFromLoginAndPass(): Obtiene los datos referentes al inicio de
+     * sesión de un usuario, de la base de datos.
+     * @param oUsuarioBean
+     * @return UsuarioSpecificBeanImplementation
+     * @throws Exception 
+     */
+    
     public UsuarioSpecificBeanImplementation getFromLoginAndPass(UsuarioSpecificBeanImplementation oUsuarioBean) throws Exception {
         PreparedStatement oPreparedStatement = null;
         ResultSet oResultSet = null;

@@ -26,6 +26,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package Control;
 
 import javax.servlet.http.HttpServlet;
@@ -41,9 +42,9 @@ public class Log4jInit extends HttpServlet {
 
         if (file != null) {
             PropertyConfigurator.configure(prefix + file);
-            System.out.println("Log4J Logging started: " + prefix + file);
+            System.out.println("Log4J logging started: " + prefix + file);
         } else {
-            System.out.println("Log4J Is not configured for your Application: " + prefix + file);
+            System.out.println("Log4J is not configured for your Application: " + prefix + file);
         }
     }
 

@@ -1,10 +1,5 @@
 package Dao.genericimplementation;
 
-/**
- *
- * @author Julián
- */
-
 import Bean.genericimplementation.TableGenericBeanImplementation;
 import Bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import Helper.Log4jConfigurationHelper;
@@ -14,6 +9,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import Dao.publicinterface.TableDaoInterface;
+
+/**
+ *
+ * @author Julián
+ */
 
 public abstract class TableGenericDaoImplementation extends ViewGenericDaoImplementation implements TableDaoInterface<TableGenericBeanImplementation> {
 

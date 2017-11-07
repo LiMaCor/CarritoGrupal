@@ -9,6 +9,11 @@ import Helper.FilterBeanHelper;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
+/**
+ * Interfaz de los métodos Dao que obtienen registros de la base de datos.
+ * @param <GenericViewBean> 
+ */
+
 public interface ViewDaoInterface<GenericViewBean> {
 
     public Long getCount(ArrayList<FilterBeanHelper> alFilter) throws Exception;

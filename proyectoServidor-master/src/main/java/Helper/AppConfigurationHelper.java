@@ -26,17 +26,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package Helper;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import Connection.BoneCPConnection;
-import Connection.C3POConnection;
 import Connection.ConnectionInterface;
-import Connection.DBCPConnection;
-import Connection.DriverManagerConnection;
 import Connection.HikariConnection;
-import Connection.ViburConnection;
 
 public class AppConfigurationHelper {
 

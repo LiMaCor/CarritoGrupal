@@ -1,14 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Service.genericimplementation;
 
-/**
- *
- * @author Kysuke
- */
 import Service.publicinterface.ViewServiceInterface;
 import com.google.gson.Gson;
 import Bean.genericimplementation.ViewGenericBeanImplementation;
@@ -26,6 +17,11 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import javax.servlet.http.HttpServletRequest;
 import Dao.publicinterface.ViewDaoInterface;
+
+/**
+ *
+ * @author Julián
+ */
 
 public abstract class GenericViewService implements ViewServiceInterface {
 
@@ -46,9 +42,13 @@ public abstract class GenericViewService implements ViewServiceInterface {
         }
     }
 
-    /*
-    * http://127.0.0.1:8081/generic-carrito-server/json?ob=xxxxxx&op=getpage&np=1&rpp=10
+    /**
+     * Método getPage(): Obtiene la página de registros procedentes de la base
+     * de datos.
+     * @return ReplyBean
+     * @throws Exception 
      */
+    
     @Override
     public ReplyBean getPage() throws Exception {
         if (this.checkPermission("getpage")) {
@@ -88,9 +88,12 @@ public abstract class GenericViewService implements ViewServiceInterface {
         }
     }
 
-    /*
-    * http://127.0.0.1:8081/generic-carrito-server/json?ob=xxxxxxxx&op=getcount
+    /**
+     * Método getCount(): Obtiene el número total de registros de una tabla
+     * @return ReplyBean
+     * @throws Exception 
      */
+    
     @Override
     public ReplyBean getCount() throws Exception {
         if (this.checkPermission("getcount")) {

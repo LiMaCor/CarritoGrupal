@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Bean.specificimplementation;
 
 import Bean.genericimplementation.TableGenericBeanImplementation;
@@ -16,8 +11,9 @@ import java.sql.SQLException;
 
 /**
  *
- * @author Kysuke
+ * @author Julián
  */
+
 public class LineapedidoSpecificBeanImplementation extends TableGenericBeanImplementation {
 
     @Expose
@@ -25,7 +21,6 @@ public class LineapedidoSpecificBeanImplementation extends TableGenericBeanImple
     @Expose
     private Integer id_pedido;
     @Expose
-    //en la bd esta como varchar
     private Integer cantidad;
     @Expose(deserialize = false)
     private PedidoSpecificBeanImplementation obj_pedido = null;
@@ -88,6 +83,12 @@ public class LineapedidoSpecificBeanImplementation extends TableGenericBeanImple
         this.obj_producto = obj_producto;
     }
 
+    /**
+     * Método getColumns(): Obtiene las columnas de la tabla correspondiente al
+     * propio Bean.
+     * @return String
+     */
+    
     @Override
     public String getColumns() {
         String strColumns = "";
@@ -98,6 +99,12 @@ public class LineapedidoSpecificBeanImplementation extends TableGenericBeanImple
         return strColumns;
     }
 
+    /**
+     * Método getValues(): Obtiene los valores de los registros correspondientes
+     * al propio Bean.
+     * @return String
+     */
+    
     @Override
     public String getValues() {
         String strColumns = "";
@@ -108,6 +115,12 @@ public class LineapedidoSpecificBeanImplementation extends TableGenericBeanImple
         return strColumns;
     }
 
+    /**
+     * Método toPairs(): Relaciona los valores declarados en las propiedades del
+     * propio Bean.
+     * @return String
+     */
+    
     @Override
     public String toPairs() {
         String strPairs = "";
@@ -117,6 +130,18 @@ public class LineapedidoSpecificBeanImplementation extends TableGenericBeanImple
         return strPairs;
     }
 
+    /**
+     * Método fill(): Establece valores a todos los atributos del Bean para
+     * crearlo.
+     * @param oResultSet
+     * @param oConnection
+     * @param oPuserBean_security
+     * @param expand
+     * @return GenericBeanInterface
+     * @throws SQLException
+     * @throws Exception 
+     */
+    
     @Override
     public GenericBeanInterface fill(ResultSet oResultSet, Connection oConnection, UsuarioSpecificBeanImplementation oPuserBean_security, Integer expand) throws SQLException, Exception {
         this.setId(oResultSet.getInt("id"));
@@ -124,12 +149,12 @@ public class LineapedidoSpecificBeanImplementation extends TableGenericBeanImple
         this.setId_pedido(oResultSet.getInt("id_pedido"));
         this.setId_producto(oResultSet.getInt("id_producto"));
         if (expand > 0) {
-            //expansion producto
+            // Expansion de producto
             ProductoSpecificBeanImplementation oProductoBean = new ProductoSpecificBeanImplementation();
             ProductoSpecificDaoImplementation oProductoDao = new ProductoSpecificDaoImplementation(oConnection, oPuserBean_security, null);
             oProductoBean = (ProductoSpecificBeanImplementation) oProductoDao.get(oResultSet.getInt("id_producto"), expand - 1);
             this.setObj_producto(oProductoBean);
-            //exapansion pedido
+            // Expansion de pedido
             PedidoSpecificBeanImplementation oPedidoBean = new PedidoSpecificBeanImplementation();
             PedidoSpecificDaoImplementation oPedidoDao = new PedidoSpecificDaoImplementation(oConnection, oPuserBean_security, null);
             oPedidoBean = (PedidoSpecificBeanImplementation) oPedidoDao.get(oResultSet.getInt("id_pedido"), expand - 1);
