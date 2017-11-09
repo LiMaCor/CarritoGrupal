@@ -16,7 +16,7 @@ import Service.publicinterface.TableServiceCarritoInterface;
 import Service.publicinterface.ViewServiceCarritoInterface;
 import com.google.gson.Gson;
 import java.sql.Connection;
-import java.sql.Date;
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Iterator;
@@ -158,7 +158,7 @@ public class CarritoSpecificServiceImplementation implements TableServiceCarrito
             ReplyBean oReplyBean = null;
             Connection oConnection = null;
             ConnectionInterface oPooledConnection = null;
-            Date fecha= (Date) Calendar.getInstance().getTime(); //Date.valueOf(oRequest.getParameter("fecha"));
+            Date fecha = (Date) Calendar.getInstance().getTime(); //Date.valueOf(oRequest.getParameter("fecha"));
             try {
                 oPooledConnection = AppConfigurationHelper.getSourceConnection();
                 oConnection = oPooledConnection.newConnection();
