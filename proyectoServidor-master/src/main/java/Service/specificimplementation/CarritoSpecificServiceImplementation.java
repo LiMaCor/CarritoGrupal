@@ -18,6 +18,7 @@ import com.google.gson.Gson;
 import java.sql.Connection;
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Iterator;
 import javax.servlet.http.HttpServletRequest;
 
@@ -157,10 +158,11 @@ public class CarritoSpecificServiceImplementation implements TableServiceCarrito
             ReplyBean oReplyBean = null;
             Connection oConnection = null;
             ConnectionInterface oPooledConnection = null;
-            Date fecha = new Date(2017 / 10 / 27); //Date.valueOf(oRequest.getParameter("fecha"));
+            Date fecha= (Date) Calendar.getInstance().getTime(); //Date.valueOf(oRequest.getParameter("fecha"));
             try {
                 oPooledConnection = AppConfigurationHelper.getSourceConnection();
                 oConnection = oPooledConnection.newConnection();
+                oConnection.setAutoCommit(false);
                 UsuarioSpecificBeanImplementation oUsuarioBean = (UsuarioSpecificBeanImplementation) oRequest.getSession().getAttribute("user");
                 Integer alCarritoSize = alCarrito.size();
                 PedidoSpecificBeanImplementation oPedidoBean = new PedidoSpecificBeanImplementation(oUsuarioBean.getId(), fecha);
@@ -181,7 +183,9 @@ public class CarritoSpecificServiceImplementation implements TableServiceCarrito
                     oProductoDao.set(oProductoBean);
                 }
                 alCarrito.clear();
+                oConnection.commit();
             } catch (Exception ex) {
+                oConnection.rollback();
                 String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName();
                 Log4jConfigurationHelper.errorLog(msg, ex);
                 throw new Exception(msg, ex);

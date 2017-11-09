@@ -32,7 +32,7 @@ package Helper;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
-import java.sql.Date;
+import java.util.Date;
 import java.text.SimpleDateFormat;
 
 public class EncodingUtilHelper {

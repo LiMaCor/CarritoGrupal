@@ -87,6 +87,18 @@ public class JsonController extends HttpServlet {
                     oPooledConnection = AppConfigurationHelper.getSourceConnection();
                     oConnection = oPooledConnection.newConnection();
                     out.print("<h3>Database Connection OK</h3>");
+                    out.print("<a href='http://localhost:8081/proyectoServidorGenerico/json?ob=usuario&op=login&user=pablo&pass=26079e41910bcde04be636fbeecc9045379882b5ad3fe7f70b762436c6d98055'>Login</a></br>");
+                    out.print("<a href='http://localhost:8081/proyectoServidorGenerico/json?ob=usuario&op=getsessionstatus'>Check Session</a></br>");
+                    out.print("<a href='http://localhost:8081/proyectoServidorGenerico/json?ob=producto&op=getpage&np=1&rpp=3'>Productos paginados</a></br>");
+                    out.print("<a href='http://localhost:8081/proyectoServidorGenerico/json?ob=pedido&op=getpage&np=1&rpp=10'>Mostrar los pedidos</a></br>");
+                    out.print("<a href='http://localhost:8081/proyectoServidorGenerico/json?ob=carrito&op=add&id=1&cantidad=5'>Add Carrito prod 1 cant 5</a></br>");
+                    out.print("<a href='http://localhost:8081/proyectoServidorGenerico/json?ob=carrito&op=add&id=2&cantidad=6'>Add Carrito prod 2 cant 6</a></br>");
+                    out.print("<a href='http://localhost:8081/proyectoServidorGenerico/json?ob=carrito&op=buy'>Comprar</a></br>");
+                    out.print("<a href='http://localhost:8081/proyectoServidorGenerico/json?ob=carrito&op=list'>Listar Carrito</a></br>");
+                    out.print("<a href='http://localhost:8081/proyectoServidorGenerico/json?ob=carrito&op=empty'>Vaciar Carrito</a></br>");
+                    out.print("<a href='http://localhost:8081/proyectoServidorGenerico/json?ob=pedido&op=get&id=3'>Comprobar pedido</a></br>");
+                    out.print("<a href='http://localhost:8081/proyectoServidorGenerico/json?ob=linea_pedido&op=getpagexpedido&id=1&np=1&rpp=10'>Comprobar linea de pedido</a></br>");
+                    out.print("<a href='http://localhost:8081/proyectoServidorGenerico/json?ob=usuario&op=logout'>Desconectar</a></br>");
                 } catch (Exception ex) {
                     out.print("<h3>Database Conexión KO</h3>");
                 } finally {
