@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import Bean.publicinterface.GenericBeanInterface;
+import java.util.Date;
 
 /**
  * 
@@ -28,6 +29,8 @@ public class UsuarioSpecificBeanImplementation extends TableGenericBeanImplement
     private String login;
     @Expose(serialize = false)
     private String pass;
+    @Expose
+    private Date fecha_nacimiento;
     @Expose
     private String email;
 
@@ -124,6 +127,14 @@ public class UsuarioSpecificBeanImplementation extends TableGenericBeanImplement
         this.obj_tipousuario = obj_tipousuario;
     }
 
+    public Date getFecha_nacimiento() {
+        return fecha_nacimiento;
+    }
+
+    public void setFecha_nacimiento(Date fecha_nacimiento) {
+        this.fecha_nacimiento = fecha_nacimiento;
+    }
+
     /**
      * Método getColumns(): Obtiene las columnas de la tabla correspondiente al
      * propio Bean.
@@ -140,6 +151,7 @@ public class UsuarioSpecificBeanImplementation extends TableGenericBeanImplement
         strColumns += "segundo_apellido,";
         strColumns += "login,";
         strColumns += "pass,";
+        strColumns += "fecha_nacimiento";
         strColumns += "email,";
         strColumns += "id_tipousuario";
 
@@ -162,6 +174,7 @@ public class UsuarioSpecificBeanImplementation extends TableGenericBeanImplement
         strColumns += EncodingUtilHelper.quotate(segundo_apellido) + ",";
         strColumns += EncodingUtilHelper.quotate(login) + ",";
         strColumns += EncodingUtilHelper.quotate(pass) + ",";
+        strColumns += EncodingUtilHelper.stringifyAndQuotate(fecha_nacimiento) + ",";
         strColumns += EncodingUtilHelper.quotate(email) + ",";
         strColumns += id_tipousuario;
         return strColumns;
@@ -182,6 +195,7 @@ public class UsuarioSpecificBeanImplementation extends TableGenericBeanImplement
         strPairs += "segundo_apellido=" + EncodingUtilHelper.quotate(segundo_apellido) + ",";
         strPairs += "login=" + EncodingUtilHelper.quotate(login) + ",";
         strPairs += "pass=" + EncodingUtilHelper.quotate(pass) + ",";
+        strPairs += "fecha_nacimiento=" + EncodingUtilHelper.stringifyAndQuotate(fecha_nacimiento) + ",";
         strPairs += "email=" + EncodingUtilHelper.quotate(email) + ",";
         strPairs += "id_tipousuario=" + id_tipousuario;
         return strPairs;
@@ -202,11 +216,13 @@ public class UsuarioSpecificBeanImplementation extends TableGenericBeanImplement
     @Override
     public GenericBeanInterface fill(ResultSet oResultSet, Connection oConnection, UsuarioSpecificBeanImplementation oPuserBean_security, Integer expand) throws SQLException, Exception {
         this.setId(oResultSet.getInt("id"));
+        this.setDni(oResultSet.getString("dni"));
         this.setNombre(oResultSet.getString("nombre"));
         this.setPrimer_apellido(oResultSet.getString("primer_apellido"));
         this.setSegundo_apellido(oResultSet.getString("segundo_apellido"));
         this.setLogin(oResultSet.getString("login"));
         this.setPass(oResultSet.getString("pass"));
+        this.setFecha_nacimiento(oResultSet.getDate("fecha_nacimiento"));
         this.setEmail(oResultSet.getString("email"));
         this.setId_tipousuario(oResultSet.getInt("id_tipousuario"));
         if (expand > 0) {
