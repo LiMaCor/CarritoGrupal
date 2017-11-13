@@ -1,0 +1,8 @@
+<tr ng-controller="plistheaderController">      
+    <th ng-repeat="field in metaprops" ng-if="field.tablevisible" class="text-center" style="border-color:#ddd;">                                            
+        <label>{{field.shortname}}</label><br/>
+        <a ng-if="field.tablevisible" ng-click="doorder(field.name, 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
+        <a ng-if="field.tablevisible" ng-click="doorder(field.name, 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
+    </th>
+    <th  class="text-center">Acciones</th>
+</tr>

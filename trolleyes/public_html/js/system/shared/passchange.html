@@ -1,0 +1,82 @@
+<!--
+/*
+ * Copyright (c) 2017 by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com)
+ *
+ * TROLLEYES helps you to learn how to develop easily AJAX web applications
+ *
+ * Sources at https://github.com/rafaelaznar/trolleyes
+ *
+ * TROLLEYES is distributed under the MIT License (MIT)
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+-->
+<menu></menu>
+<div id="wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <header ob="''" title="'Formulario de cambio de password'"></header>
+                    </div>
+                    <div class="panel-body" ng-cloak>
+                        <div class="row-fluid">
+                            <div class="col-md-3 col-md-offset-4">
+                                <div class="alert alert-success" role="alert" ng-if="debugging">
+                                    <h4>Debug:</h4>
+                                    old: {{old|json}} new: {{new |json}}
+                                </div> 
+                                <br />
+                                <div ng-show="!status">
+                                    <form name="oform"  ng-submit="change()" role="form">
+                                        <div class="form-group" ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required }">
+                                            <label for="old">Password actual</label>                                            
+                                            <input  type="password" name="old" id="old" class="form-control" ng-model="old" required/>
+                                            <span ng-if="form.old.$dirty && form.old.$error.required" class="help-block">Debes introducir el password</span>
+                                        </div>
+                                        <div class="form-group" ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }">
+                                            <label for="new">Nuevo Password</label>
+                                            <input type="password" name="new" id="new" class="form-control" ng-model="new" required/>
+                                            <span ng-if="form.new.$dirty && form.new.$error.required" class="help-block">Debes introducir un password</span>
+                                        </div>
+                                        <div class="form-actions">
+                                            <button  ng-disabled="form.$invalid" class="btn btn-primary" ng-click="passchange()">Cambiar</button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div ng-if="status">
+                                    <div class="alert alert-success" ng-if="response.status == 200">
+                                        <h2>{{status}}</h2>
+                                        <a ng-href="home">Continuar</a>                                        
+                                    </div>
+                                    <div class="alert alert-danger" ng-if="response.status != 200">
+                                        <h2>ERROR: {{status}}</h2>                                                                                
+                                    </div>
+                                </div>
+                                <br />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer" style="font-family: Questrial, serif;" ng-include="'js/system/include/footer.html'"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

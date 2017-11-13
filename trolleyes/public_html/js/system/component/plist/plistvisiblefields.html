@@ -1,0 +1,3 @@
+<p>Campos visibles:</p>
+<label ng-controller="plistvisiblefieldsController" ng-repeat="field in fields track by $index" ng-checked="field.visible"><input type="checkbox" ng-model="field.visible">{{field.longname}}&nbsp;</label>
+

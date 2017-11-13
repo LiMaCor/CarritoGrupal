@@ -1,0 +1,11 @@
+<input type="text"
+       ng-model="dtp.model"
+       class="form-control"
+       ng-change="dtp.change()"
+       ng-required="dtp.required"
+       placeholder="dd/mm/aaaa HH:mm"
+       name="{{dtp.name}}"
+       datetimepicker
+       />
+<small>{{dtp.model|fechaConHoraFormateadaSinHora}}</small>
+

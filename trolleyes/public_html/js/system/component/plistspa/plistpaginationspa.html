@@ -1,0 +1,26 @@
+Paginación: <br>                                                    
+<ul class="pagination" ng-controller="plistPaginationspaController">
+
+    <li><a class="pagination_link" ng-if="numpage > 1" ng-attr-id="{{numpage - 1}}" ng-click="gotopage(numpage - 1)">prev</a></li>
+    <li><a class="pagination_link" id="1" ng-click="gotopage(1)" ng-if="numpage > neighbourhood + 1">1</a></li>
+
+    <li class="pagination_link disabled"><a ng-if="numpage > neighbourhood - -2">ooo</a></li>
+
+    <li ng-repeat="i in getRangeArray(evaluateMax(1, numpage - neighbourhood), (numpage - 1))">
+        <a class="pagination_link" ng-attr-id="{{i}}" ng-click="gotopage(i)">{{i}}</a>
+    </li>
+
+    <li class="active" ng-if="(numpage >= 1) && (numpage <= pages)">
+        <a class="pagination_link" ng-attr-id="{{numpage}}" ng-click="gotopage(numpage)">{{numpage}}</a>
+    </li>
+
+    <li ng-repeat="j in getRangeArray(numpage - -1, evaluateMin(numpage - -neighbourhood, pages))">
+        <a class="pagination_link" ng-attr-id="{{j}}" ng-click="gotopage(j)">{{j}}</a>
+    </li>
+
+    <li class="pagination_link disabled"><a ng-if="numpage < (pages - (neighbourhood - -1))">ooo</a></li>
+
+    <li><a class="pagination_link" ng-if="numpage < pages - neighbourhood" ng-attr-id="{{pages}}" ng-click="gotopage(pages)">{{pages}}</a></li>
+    <li><a class="pagination_link" ng-if="numpage < pages" ng-attr-id="{{numpage - -1}}" ng-click="gotopage(numpage - -1)">next</a></li>
+
+</ul>

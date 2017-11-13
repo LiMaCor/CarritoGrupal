@@ -1,0 +1,8 @@
+<button type="button" class="btn btn-success" ng-click="gr.mostrarGrafica()">Mostrar Gráfica</button><br/><br/>
+<div class="chart-container" ng-if="gr.graficaOn">
+    <canvas id="line" class="chart chart-line" chart-data="gr.data"
+            chart-labels="gr.labels" chart-series="gr.series" chart-options="gr.options"
+            chart-dataset-override="gr.datasetOverride" chart-click="gr.onClick">
+    </canvas>
+</div>
+

@@ -1,0 +1,9 @@
+Registros por página: <br>
+<ul class="pagination" ng-controller="plistrppspaController">
+    <li class="active" ng-if="rpp == 10"><a class="rpp_link" id="10" ng-click="showRPPSelection(10)">10</a></li>
+    <li ng-if="rpp != 10"><a class="rpp_link" id="10" ng-click="showRPPSelection(10)">10</a></li>            
+    <li class="active" ng-if="rpp == 50"><a class="rpp_link" id="10" ng-click="showRPPSelection(50)">50</a></li>
+    <li ng-if="rpp != 50"><a class="rpp_link" id="10" ng-click="showRPPSelection(50)">50</a></li>
+    <li class="active" ng-if="rpp == 100"><a class="rpp_link" id="10" ng-click="showRPPSelection(100)">100</a></li>
+    <li ng-if="rpp != 100"><a class="rpp_link" id="10" ng-click="showRPPSelection(100)">100</a></li>
+</ul>

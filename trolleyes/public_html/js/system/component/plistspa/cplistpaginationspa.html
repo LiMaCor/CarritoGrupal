@@ -1,0 +1,25 @@
+<ul class="pagination">
+
+    <li><a class="pagination_link" ng-if="pf.numpage > 1" ng-attr-id="{{pf.numpage - 1}}" ng-click="pf.gotopage(pf.numpage - 1)">prev</a></li>
+    <li><a class="pagination_link" id="1" ng-click="pf.gotopage(1)" ng-if="pf.numpage > pf.neighbourhood + 1">1</a></li>
+
+    <li class="pagination_link disabled"><a ng-if="pf.numpage > pf.neighbourhood - -2">ooo</a></li>
+
+    <li ng-repeat="i in pf.getRangeArray(pf.evaluateMax(1, pf.numpage - pf.neighbourhood), (pf.numpage - 1))">
+        <a class="pagination_link" ng-attr-id="{{i}}" ng-click="pf.gotopage(i)">{{i}}</a>
+    </li>
+
+    <li class="active" ng-if="(pf.numpage >= 1) && (pf.numpage <= pf.pages)">
+        <a class="pagination_link" ng-attr-id="{{pf.numpage}}" ng-click="pf.gotopage(pf.numpage)">{{pf.numpage}}</a>
+    </li>
+
+    <li ng-repeat="j in pf.getRangeArray(pf.numpage - -1, pf.evaluateMin(pf.numpage - -pf.neighbourhood, pf.pages))">
+        <a class="pagination_link" ng-attr-id="{{j}}" ng-click="pf.gotopage(j)">{{j}}</a>
+    </li>
+
+    <li class="pagination_link disabled"><a ng-if="pf.numpage < (pf.pages - (pf.neighbourhood - -1))">ooo</a></li>
+
+    <li><a class="pagination_link" ng-if="pf.numpage < pf.pages - pf.neighbourhood" ng-attr-id="{{pf.pages}}" ng-click="pf.gotopage(pf.pages)">{{pf.pages}}</a></li>
+    <li><a class="pagination_link" ng-if="pf.numpage < pf.pages" ng-attr-id="{{pf.numpage - -1}}" ng-click="pf.gotopage(pf.numpage - -1)">next</a></li>
+
+</ul>

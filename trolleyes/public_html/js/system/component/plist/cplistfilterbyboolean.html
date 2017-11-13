@@ -1,0 +1,16 @@
+<form class="navbar-form navbar-right" role="form" action="Controller" method="post" id="filterForm" name="filterForm">
+    <select id="selectFilter" class="form-control" name="filter" style="width: 160px" ng-model="filterbyboolean.field">
+        <option style="display:none">selecciona un campo</option>
+        <option ng-repeat="field in filterbyboolean.fields"  value="{{field.name}}">{{field.longname}}</option>
+    </select>
+    <select id="selectFilterOperator" class="form-control" name="filteroperator" width="80" style="width: 200px" ng-model="filterbyboolean.operator">
+        <option style="display:none">selecciona una operacion</option>
+        <option value="bequa"  ng-selected="true">es igual a</option>
+    </select>
+ <select id="selectFilteValue" class="form-control" name="filtervalue" width="80" style="width: 200px" ng-model="filterbyboolean.value">
+        <option style="display:none">selecciona una operacion</option>
+        <option value="TRUE"  ng-selected="true">Verdadero</option>
+        <option value="FALSE">Falso</option>
+    </select>
+    <input type="button" class="btn" id="btnFiltrar" name="btnFiltrar" value="Filtrar" ng-click="filterbyboolean.dofilter()" />
+</form>

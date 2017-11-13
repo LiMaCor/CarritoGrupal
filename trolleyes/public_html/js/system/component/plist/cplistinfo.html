@@ -1,0 +1,14 @@
+<p>Mostrando una consulta de {{pli.registers}} registros.</p>
+<p ng-if="!pli.orderparams">Contenido no ordenado</p>
+<p ng-if="pli.orderparams">Contenido ordenado: {{pli.orderparams}}
+    <a ng-click="pli.doresetorder()" id="linkQuitarOrden">(Quitar orden)</a>
+</p>
+<p ng-if="!pli.filterparams">Contenido no filtrado en servidor</p>
+<p ng-if="pli.filterparams">Contenido filtrado: {{pli.filterparams}}
+    <a ng-click="pli.doresetfilter()" id="linkQuitarFiltro">(Quitar filtro)</a>                                                       
+</p>
+<p ng-if="pli.searchText.length == 0">Contenido no filtrado en cliente</p>
+<p ng-if="pli.searchText.length > 0">Contenido filtrado en cliente 
+    <a ng-click="pli.resetClientfilter()" id="linkQuitarFiltro">(Quitar filtro)</a>
+</p>
+<p></p>

@@ -1,0 +1,76 @@
+<!--
+/*
+ * Copyright (c) 2017 by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com)
+ *
+ * TROLLEYES helps you to learn how to develop easily AJAX web applications
+ *
+ * Sources at https://github.com/rafaelaznar/trolleyes
+ *
+ * TROLLEYES is distributed under the MIT License (MIT)
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+-->
+<menu></menu>
+<div id="wrapper" ng-cloak>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <header ob="''" title="'Perfil de usuario'"></header>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row-fluid">
+                            <div class="col-md-6 col-md-offset-3">
+                                <table class="table table-striped table-condensed">
+                                    <tbody>
+                                        <tr>
+                                            <td>Nombre de usuario</td>
+                                            <td>{{session_info.login}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Nombre completo</td>
+                                            <td>{{session_info.nombre + ' ' + session_info.primer_apellido + ' ' + session_info.segundo_apellido}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Correo electrónico</td>
+                                            <td>{{session_info.email}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Tipo de usuario</td>
+                                            <td>{{session_info.obj_tipousuario.descripcion}}</td>
+                                        </tr>                                        
+                                    </tbody>
+                                </table>
+                                <div class="control-group text-right">
+                                    <div class="controls">
+                                        <a class="btn btn-default" ng-click="back()">Volver</a>
+                                        <a class="btn btn-default" href="home">Cerrar</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer" style="font-family: Questrial, serif;" ng-include="'js/system/include/footer.html'"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

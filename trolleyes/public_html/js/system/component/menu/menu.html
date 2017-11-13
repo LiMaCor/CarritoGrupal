@@ -1,0 +1,144 @@
+<!--
+/*
+ * Copyright (c) 2017 by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com)
+ *
+ * TROLLEYES helps you to learn how to develop easily AJAX web applications
+ *
+ * Sources at https://github.com/rafaelaznar/trolleyes
+ *
+ * TROLLEYES is distributed under the MIT License (MIT)
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+-->
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class='navbar-brand' rel="home" href='home' title="Electric troley with eyes">
+                <img style="max-width:100px;" src="images/trolleyes30.png" />
+            </a>
+        </div>
+     
+        <div id="navbar" class="navbar-collapse collapse" >
+            <ul class="nav navbar-nav" id="appMenu">
+                <li ng-class="{ 'active': mn.isActive('/home')}"><a href="home">Home</a></li>
+
+                <!-- Administración ------------------------------------------- -->
+                <li class="dropdown" ng-if="mn.session_info.obj_tipousuario.id == 1" ng-class="{ 'active': mn.isActive('/usuario') || mn.isActive('/pedido') || mn.isActive('/tipousuario') }" >
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="fa fa-icon-list-alt"></i>Administrador<span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li class="dropdown-header">Usuarios</li>
+                        <li ng-class="{ 'active': mn.isActive('/usuario/1/plist')}"><a href="usuario/1/plist"> <i ng-class="mn.object_info.getIcon('usuario')"></i> {{mn.object_info.getName("usuario")}}</a></li>
+                        <li ng-class="{ 'active': mn.isActive('/tipousuario/1/plist/')}"><a href="tipousuario/1/plist"> <i ng-class="mn.object_info.getIcon('tipousuario')"></i> {{mn.object_info.getName("tipousuario")}}</a></li>
+                        <li ng-class="{ 'active': mn.isActive('/pedido/1/view/')}"><a href="pedido/1/view/1"> <i ng-class="mn.object_info.getIcon('pedido')"></i> {{mn.object_info.getName("pedido")}}</a></li>
+                    </ul>
+                </li>
+                <!-- Coordinación ------------------------------------------- -->
+                <li class="dropdown" ng-if="mn.session_info.obj_tipousuario.id == 2">
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="fa fa-icon-list-alt"></i>Coordinador<span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li class="dropdown-header">Medico</li>
+                        <li ng-class="{ active: isActive('/generic/especialidad/plist')}"><a href="generic/especialidad/plist"> <i class="fa fa-address-book-o"></i> Especialidad</a></li>
+                        <li ng-class="{ active: isActive('/generic/categoriaprofesional/plist')}"><a href="generic/categoriaprofesional/plist"> <i class="fa fa-address-book-o"></i> Categoria Profesional</a></li>                   
+                        <li class="dropdown-header">Centro sanitario</li>
+                        <li ng-class="{ active: isActive('/generic/servicio/plist')}"><a href="generic/servicio/plist"> <i class="fa fa-address-book-o"></i> Servicio</a></li>
+                        <li ng-class="{ active: isActive('/generic/tiposervicio/plist')}"><a href="generic/tiposervicio/plist"> <i class="fa fa-address-book-o"></i> Tipo de servicio</a></li>
+                        <li ng-class="{ active: isActive('/generic/tipodependencia/plist')}"><a href="generic/tipodependencia/plist"> <i class="fa fa-address-book-o"></i> Tipo de dependencia</a></li>
+                        <li class="dropdown-header">Episodio</li>
+                        <li ng-class="{ active: isActive('/generic/tipoepisodio/plist')}"><a href="generic/tipoepisodio/plist"> <i class="fa fa-address-book-o"></i> Tipo de episodio</a></li>
+                        <li ng-class="{ active: isActive('/generic/modalidadepisodio/plist')}"><a href="generic/modalidadepisodio/plist"> <i class="fa fa-address-book-o"></i> Modalidad del episodio</a></li>
+                        <li ng-class="{ active: isActive('/generic/circunstanciasalta/plist')}"><a href="generic/circunstanciasalta/plist"> <i class="fa fa-address-book-o"></i> Circunstancias de alta</a></li>
+                        <li ng-class="{ active: isActive('/generic/destinoalta/plist')}"><a href="generic/destinoalta/plist"> <i class="fa fa-address-book-o"></i> Destino de alta</a></li>
+
+                    </ul>
+                </li>
+
+
+
+                <!-- Profesor ------------------------------------------- -->
+                <li class="dropdown" ng-if="mn.session_info.obj_tipousuario.id == 3">
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="fa fa-icon-list-alt"></i>Profesor<span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li class="dropdown-header">Gestión académica</li>                    
+                        <li ng-class="{ active: isActive('/gruposdeprofesoresconsusalumnos/3/plist')}"><a href="gruposdeprofesoresconsusalumnos/3/plist"> <i class="fa fa-address-book-o"></i> Mis Grupos y Alumnos</a></li>                
+                        <li class="dropdown-header">Centro sanitario</li>
+                        <li ng-class="{ active: isActive('/dependencia/3/plist')}"><a href="dependencia/3/plist"> <i class="fa fa-address-book-o"></i> Mis Dependencias</a></li>                      
+                        <li class="dropdown-header">Gestión sanitaria</li>
+                        <li ng-class="{ active: isActive('/medico/3/plist')}"><a href="medico/3/plist"> <i class="fa fa-address-book-o"></i> Mis Médicos</a></li>                                    
+                    </ul>
+                </li>
+
+
+
+                <!-- Alumno ------------------------------------------- -->
+                <li class="dropdown" ng-if="mn.session_info.obj_tipousuario.id == 4">
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="fa fa-icon-list-alt"></i>Alumno<span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li class="dropdown-header">Gestión sanitaria</li>
+                        <li ng-class="{ active: isActive('/paciente/4/plist')}"><a href="paciente/4/plist"> <i class="fa fa-address-book-o"></i> Paciente</a></li>
+                    </ul>
+                </li>
+
+
+
+                <!-- Invitado ------------------------------------------- -->
+                <li class="dropdown"  ng-if="mn.session_info.obj_tipousuario.id == 5">
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="fa fa-icon-list-alt"></i>Visitante<span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li class="dropdown-header">Gestión sanitaria</li>
+                        <li ng-class="{ active: isActive('/paciente/plist')}"><a href="paciente/plist"> <i class="fa fa-address-book-o"></i> Paciente</a></li>
+                    </ul>
+                </li>
+                <li ng-class="{ active: mn.isActive('/license')}"><a href="license"><i class="fa fa-icon-smile"></i>Licencia</a></li>
+            </ul>
+
+
+            <!------------
+            //---------- USUARIO ------
+            ----------------- -->
+
+            <ul class="nav navbar-nav navbar-right">
+                <!-- <li class="active"><a href="./">Fixed top <span class="sr-only">(current)</span></a></li> -->
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-user"></i>
+                        <span id="username_id" ng-if="mn.isSessionActive"> {{mn.session_info.nombre + ' ' + mn.session_info.primer_apellido + ' ' + mn.session_info.segundo_apellido}} ({{mn.session_info.obj_tipousuario.descripcion}})</span>
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu dropdown">
+                        <li ng-if="!mn.isSessionActive"><a href="login"><i class="fa fa-fw fa-user"></i> Login</a></li>
+                        <li ng-if="mn.isSessionActive"><a href="profile"><i class="fa fa-fw fa-user"></i> Perfil de usuario</a></li>
+                        <!--               
+                        <li ng-if="isSessionActive"><a href="#"><i class="fa fa-fw fa-gear"></i> Configuración</a></li>
+                        -->
+                        <li ng-if="mn.isSessionActive"><a href="passchange"><i class="fa fa-fw fa-key"></i> Cambio de contraseña</a></li>
+                        <li ng-if="mn.isSessionActive" class="divider"></li>
+                        <li ng-if="mn.isSessionActive" id="broth_logout"><a href="logout"><i class="fa fa-fw fa-power-off"></i> Log Out</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
