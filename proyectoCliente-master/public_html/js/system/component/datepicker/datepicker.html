@@ -1,13 +1,9 @@
-<div id="fecha_group" ng-class="['input-group','control',{'has-error': dt.form[dt.name].$error.valid}]">
-    <input type="text" 
-           ng-model="dt.model"  
-           class="form-control" 
-           ng-change="dt.change(dt.form[dt.name])"
-           ng-required="dt.required" 
-           placeholder="dd/mm/aaaa" 
-           name="{{dt.name}}" 
-           jqdatepicker />
-    <small>{{dt.model|fechaformateada}}</small>
-</div>
-<span class="help-block" ng-if="dt.form[dt.name].$error.required">El campo es obligatorio</span>
-<span class="help-block" ng-if="dt.form[dt.name].$error.valid">Fecha no válida</span>
+<input type="text" 
+       ng-model="dt.model"  
+       class="form-control" 
+       ng-change="dt.change()"
+       ng-required="dt.required" 
+       placeholder="dd/mm/aaaa HH:mm" 
+       name="{{dt.name}}" 
+       jqdatepicker />
+<small>{{dt.model|fechaformateada}}</small>

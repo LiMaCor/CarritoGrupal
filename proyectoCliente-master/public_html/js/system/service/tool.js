@@ -71,7 +71,7 @@ moduloServicios.factory('toolService', ['$filter', function ($filter) {
                 for (var property in arr) {
                     if (arr.hasOwnProperty(property)) {
                         if (property.match("^obj_")) {
-                            newObj[property.replace("obj_", "id_")] = arr[property].data.id;
+                            newObj[property.replace("obj_", "id_")] = arr[property].id;
                         } else {
                             newObj[property] = arr[property];
                         }

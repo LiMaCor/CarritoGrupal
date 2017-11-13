@@ -30,7 +30,7 @@
 moduloServicios.factory('constantService', function () {
     return {
         getAppUrl: function () {
-            return "http://127.0.0.1:8081/proyectoServidorGenerico/json";
+            return "http://127.0.0.1:8081/trolleyes-server/json";
             //return location.protocol + '//' + location.hostname + ':' + location.port + '/' + this.getAppName() + '/index.php';
         },
         getCAppUrl: function () {

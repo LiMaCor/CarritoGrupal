@@ -61,4 +61,3 @@ moduloPedido.controller('PedidoView1Controller',
                 };
             }
         ]);
-        /*holaa*/

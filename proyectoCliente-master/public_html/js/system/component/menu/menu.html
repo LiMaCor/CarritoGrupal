@@ -43,17 +43,16 @@
      
         <div id="navbar" class="navbar-collapse collapse" >
             <ul class="nav navbar-nav" id="appMenu">
-                <li ng-class="{ active: mn.isActive('/home')}"><a href="home">Home</a></li>
+                <li ng-class="{ 'active': mn.isActive('/home')}"><a href="home">Home</a></li>
 
                 <!-- Administración ------------------------------------------- -->
-                <li class="dropdown" ng-if="mn.session_info.obj_tipousuario.id == 1">
+                <li class="dropdown" ng-if="mn.session_info.obj_tipousuario.id == 1" ng-class="{ 'active': mn.isActive('/usuario') || mn.isActive('/pedido') || mn.isActive('/tipousuario') }" >
                     <a class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="fa fa-icon-list-alt"></i>Administrador<span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
                         <li class="dropdown-header">Usuarios</li>
-                        <li ng-class="{ active: mn.isActive('/usuario/1/plist')}"><a href="usuario/1/plist"> <i ng-class="'fa ' + mn.object_info.getIcon('usuario')"></i> {{mn.object_info.getName("usuario")}}</a></li>
-                        <li ng-class="{ active: mn.isActive('/tipousuario/1/plist/')}"><a href="tipousuario/1/plist"> <i ng-class="'fa ' + mn.object_info.getIcon('tipousuario')"></i> {{mn.object_info.getName("tipousuario")}}</a></li>
-                      <!--  <li ng-class="{ active: mn.isActive('/pedido/1/view/')}"><a href="pedido/1/view/1"> <i ng-class="'fa ' + mn.object_info.getIcon('pedido')"></i> {{mn.object_info.getName("pedido")}}</a></li> -->
-                        <li ng-class="{ active: mn.isActive('/pedido/1/plist')}"><a href="pedido/1/plist"> <i ng-class="'fa ' + mn.object_info.getIcon('pedido')"></i> {{mn.object_info.getName("pedido")}}</a></li>
+                        <li ng-class="{ 'active': mn.isActive('/usuario/1/plist')}"><a href="usuario/1/plist"> <i ng-class="mn.object_info.getIcon('usuario')"></i> {{mn.object_info.getName("usuario")}}</a></li>
+                        <li ng-class="{ 'active': mn.isActive('/tipousuario/1/plist/')}"><a href="tipousuario/1/plist"> <i ng-class="mn.object_info.getIcon('tipousuario')"></i> {{mn.object_info.getName("tipousuario")}}</a></li>
+                        <li ng-class="{ 'active': mn.isActive('/pedido/1/view/')}"><a href="pedido/1/view/1"> <i ng-class="mn.object_info.getIcon('pedido')"></i> {{mn.object_info.getName("pedido")}}</a></li>
                     </ul>
                 </li>
                 <!-- Coordinación ------------------------------------------- -->

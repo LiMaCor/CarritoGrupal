@@ -34,7 +34,7 @@
             <div class="col-lg-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <header ob="ob" title="'Listado de'"></header>
+                        <header ob="ob" title="'Listado de ' + objectService.getName(ob) + ' para el usuario ' + usuariobean.nombre +' ' + usuariobean.primer_apellido + ' ' + usuariobean.segundo_apellido + ' (dni:' + usuariobean.dni + ')'"></header>
                     </div>
                     <div class="panel-body">
                         <div class="row">
@@ -67,7 +67,6 @@
                                                                 searchtext="searchText">
                                                     </cplistinfo>
                                                 </div>
-                                                <p><p>
                                                 <div class="col-lg-6  col-md-6 col-sm-8 text-center">
                                                     <cplistpagination url="url"
                                                                       numpage="numpage"
@@ -78,9 +77,7 @@
                                                                       orderParams="orderParams"
                                                                       sfilterParams="sfilterParams">
                                                     </cplistpagination>
-
                                                 </div>
-                                                <p></p>
                                                 <div class="col-lg-3  col-md-3 col-sm-4 text-center">
                                                     <cplistrpp url="url"
                                                                numpage="numpage"
@@ -88,64 +85,73 @@
                                                                filterParams="filterParams"
                                                                orderParams="orderParams">
                                                     </cplistrpp>
-
                                                 </div>
                                             </div>
                                             <p></p>
                                         </div>
                                         <div role="tabpanel" id="pane1" class="tab-pane fade">
                                             <div class="row">
-                                                <div class="col-md-12">
-                                                    <select class="navbar-form navbar-left" ng-model="filterType" convert-to-number>
-
-                                                        <option value="1">Filtrar números</option>
-                                                        <option value="2">Filtrar fechas</option>
-                                                        <option value="3">Filtrar Booleano</option>
-                                                    </select>
-                                                    <p></p>
-
-                                                    <div ng-show="filterType == 1">
+                                                <div class="col-md-5">
+                                                    <form class="navbar-form navbar-left" role="form" id="typeFilterForm">
+                                                        <label class="control-label col-sm-3" for="filterSelection">
+                                                            Selecciona filtro:
+                                                        </label>
+                                                        <select class="navbar-form navbar-left" ng-model="filterType" convert-to-number id="filterSelection">                                                            
+                                                            <option value="0">Filtrar por id o cantidad de iva</option>
+                                                            <option value="1">Filtrar por fecha</option>
+                                                            <option value="2">Filtrar por si tiene iva</option>
+                                                            <option value="3">Filtrar por usuario</option>                                                            
+                                                        </select>
+                                                    </form>
+                                                </div>
+                                                <div class="col-md-7">                                          
+                                                    <div ng-show="filterType == 0">
                                                         <cplistfilterbynumber
                                                             url="url"
-                                                            fields="[{'name':'id','longname':'Identificador'},{'name':'iva','longname':'IVA'},{'name':'id_usuario','longname':'Identificador de usuario'}]"
+                                                            fields="filterNumber"
                                                             rpp="rpp"
                                                             numpage="numpage"
                                                             orderparams="orderParams"
                                                             filterparams="filterParams">
                                                         </cplistfilterbynumber>
-
                                                     </div>
                                                     <p></p>
-                                                     <div ng-show="filterType == 2">
+                                                    <div ng-show="filterType == 1">
                                                         <cplistfilterbydate
                                                             url="url"
-                                                            fields="[{'name':'fecha','longname':'Fecha de pedido'}]"
+                                                            fields="filterDate"
                                                             rpp="rpp"
                                                             numpage="numpage"
                                                             orderparams="orderParams"
                                                             filterparams="filterParams">
                                                         </cplistfilterbydate>
-
-                                                     </div>
-                                                      <p></p>
-
-                                                      <div ng-show="filterType == 3">
+                                                    </div>
+                                                    <p></p>
+                                                    <div ng-show="filterType == 2">
                                                         <cplistfilterbyboolean
                                                             url="url"
-                                                            fields="[{'name':'tiene_iva','longname':'Tiene IVA'}]"
+                                                            fields="filterBoolean"
                                                             rpp="rpp"
                                                             numpage="numpage"
                                                             orderparams="orderParams"
                                                             filterparams="filterParams">
                                                         </cplistfilterbyboolean>
-
                                                     </div>
-
-                                                </div>
+                                                    <p></p>
+                                                    <div ng-show="filterType == 3">
+                                                        <cplistfilterbyforeign
+                                                            url="url"
+                                                            field="filterUsuario"
+                                                            rpp="rpp"
+                                                            numpage="numpage"
+                                                            orderparams="orderParams"
+                                                            filterparams="filterParams"
+                                                            profile="profile">
+                                                        </cplistfilterbyforeign>
                                                     </div>
                                                 </div>
-                                            <!-- copiado de alberto-->
-                                          
+                                            </div>
+                                        </div>
                                         <div role="tabpanel" id="pane2" class="tab-pane fade">
                                             <div class="row">
                                                 <div class="col-md-12">
@@ -161,7 +167,7 @@
                                             <div class="row">
                                                 <div class="col-md-12 text-center">
                                                     <p><br>
-                                                        <a class="btn btn-primary" href="{{ob}}/{{profile}}/new">Crear un nuevo {{ob}}</a>
+                                                        <a class="btn btn-primary" href="{{ob}}/{{profile}}/newXusuario/{{xid}}/">Crear un nuevo {{ob}} para el usuario {{usuariobean.nombre}} {{usuariobean.primer_apellido}} {{usuariobean.segundo_apellido}} (dni:{{usuariobean.dni}})</a>
                                                     </p>
                                                 </div>
                                             </div>
@@ -173,12 +179,11 @@
                                         <div class="panel-heading">
                                             <div class="text-center">
                                                 <ul class="list-inline">
-                                                    <li><input type="checkbox" ng-model="visibles.id" ng-checked="visibles.id">Ident.</li>
-                                                    <li><input type="checkbox" ng-model="visibles.fecha" ng-checked="visibles.fecha">Fecha</li>
+                                                    <li><input type="checkbox" ng-model="visibles.id" ng-checked="visibles.id">Identificador</li>
+                                                    <li><input type="checkbox" ng-model="visibles.fecha" ng-checked="visibles.fecha">Fecha de pedido</li>
+                                                    <li><input type="checkbox" ng-model="visibles.id_usuario" ng-checked="visibles.id_usuario" >Usuario cliente</li>
+                                                    <li><input type="checkbox" ng-model="visibles.tiene_iva" ng-checked="visibles.tiene_iva" >¿Lleva Iva?</li>
                                                     <li><input type="checkbox" ng-model="visibles.iva" ng-checked="visibles.iva" >IVA</li>
-                                                    <li><input type="checkbox" ng-model="visibles.tiene_iva" ng-checked="visibles.tiene_iva" >Tiene IVA</li>
-
-                                                    <li><input type="checkbox" ng-model="visibles.id_usuario" ng-checked="visibles.id_usuario">Id de usuario</li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -194,32 +199,32 @@
                                                     <a ng-click="doorder('fecha', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
                                                     <a ng-click="doorder('fecha', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
                                                 </th>
-                                                <th ng-show="visibles.iva" class="text-center">
-                                                    <label>IVA</label><br/>
-                                                    <a ng-click="doorder('iva', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
-                                                    <a ng-click="doorder('iva', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
-                                                </th>
-                                                <th ng-show="visibles.tiene_iva" class="text-center">
-                                                    <label>Tiene IVA</label><br/>
-                                                    <a ng-click="doorder('tiene_iva', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
-                                                    <a ng-click="doorder('tiene_iva', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
-                                                </th>
-
                                                 <th ng-show="visibles.id_usuario" class="text-center">
-                                                    <label>ID usuario</label><br/>
+                                                    <label>Usuario</label><br/>
                                                     <a ng-click="doorder('id_usuario', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
                                                     <a ng-click="doorder('id_usuario', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
                                                 </th>
+                                                <th ng-show="visibles.tiene_iva" class="text-center">
+                                                    <label>¿Tiene iva?</label><br/>
+                                                    <a ng-click="doorder('tiene_iva', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
+                                                    <a ng-click="doorder('tiene_iva', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
+                                                </th>
+                                                <th ng-show="visibles.iva" class="text-center">
+                                                    <label>iva</label><br/>
+                                                    <a ng-click="doorder('iva', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
+                                                    <a ng-click="doorder('iva', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
+                                                </th>                                              
                                                 <th  class="text-center">Acciones</th>
                                             </tr>
                                             <tbody>
                                                 <tr ng-repeat="obj in page| filter:searchText">
                                                     <td ng-show="visibles.id"><b>{{obj.id}}</b></td>
                                                     <td ng-show="visibles.fecha"><b>{{obj.fecha}}</b></td>
-                                                    <td ng-show="visibles.iva">{{obj.iva}}</td>
-                                                    <td ng-show="visibles.tiene_iva">{{obj.tiene_iva}}</td>
-
-                                                    <td ng-show="visibles.id_usuario"><a href="usuario/{{profile}}/view/{{obj.obj_usuario.id}}">{{obj.obj_usuario.id}}</a></td>
+                                                    <td ng-show="visibles.id_usuario" class="text-center">
+                                                        <a href="usuario/{{profile}}/view/{{obj.obj_usuario.id}}">{{obj.obj_usuario.nombre}} {{obj.obj_usuario.primer_apellido}} {{obj.obj_usuario.segundo_apellido}} ({{obj.obj_usuario.dni}})</a>
+                                                    </td>                                                    
+                                                    <td ng-show="visibles.tiene_iva" class="text-center" ng-bind-html="obj.tiene_iva | booleanizate"></td>
+                                                    <td ng-show="visibles.iva">{{obj.iva}}</td>                                                   
                                                     <td>
                                                         <div class="btn-toolbar" role="toolbar">
                                                             <div class="btn-group">

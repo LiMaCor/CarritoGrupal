@@ -31,13 +31,13 @@ moduloServicios.factory('objectService', function () {
         getIcon: function (reg) {
             switch (reg) {
                 case "usuario":
-                    return 'fa-user';
+                    return 'fa fa-user';
                     break;
                 case "tipousuario":
-                    return 'fa-user-o';
+                    return 'fa fa-user-o';
                     break;              
                 case "pedido":
-                    return 'fa-sticky-note-o ';
+                    return 'fa fa-sticky-note-o ';
                     break;              
                 default:
                     return null;

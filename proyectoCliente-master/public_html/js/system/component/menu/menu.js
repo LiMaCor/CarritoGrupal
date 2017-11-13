@@ -10,6 +10,7 @@ function menuCtrl(sessionService, objectService, $location) {
     self.isSessionActive = sessionService.isSessionActive();
     self.object_info = objectService;
     self.isActive = function (viewLocation) {
-        return viewLocation === $location.path();
+        //return viewLocation === $location.path();
+        return $location.path().startsWith(viewLocation);
     };
 }

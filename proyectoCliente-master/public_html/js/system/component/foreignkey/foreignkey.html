@@ -1,36 +1,18 @@
-<div id="{{fk.name}}_group" ng-class="['input-group','foreign','control',{'has-error': fk.form[fk.name].$error.exists}]">
+<div id="{{fk.name}}_group" class="input-group foreign control">
     <span class="input-group-addon" id="{{fk.name}}_button" ng-click="fk.chooseOne()">
-        <span class="glyphicon glyphicon-search">
-        </span>
+        <span class="glyphicon glyphicon-search"></span>
     </span>                                        
     <input type="text" 
-           ng-model-options="{debounce: 1000}" 
-           ng-model="fk.bean.id"
-           ng-change="fk.change_value(fk.bean.id)"
-           validatemin="0" 
-           ng-required="{{fk.required}}"  
-           aria-describedby="basic-addon2" 
            class="form-control" 
            id="{{fk.name}}" 
+           name="{{fk.name}}"
+           ng-model-options="{debounce: 1000}" 
+           ng-model="fk.bean.id"
+           ng-change="fk.change_value()"
+           ng-required="{{fk.required}}"    
            size="5" 
            maxlength="5">                                        
     <span class="input-group-addon">
         <span>{{fk.desc}}</span>
     </span> 
 </div>
-<span class="help-block" ng-if="fk.form[fk.name].$error.exists">Debes elegir uno/a que exista</span>
-
-<!--
-<radiogroup 
-    required="fk.required"
-    ide="fk.bean.id"
-    tablereference="'importancia'"
-    field="'descripcion'">
-</radiogroup>
-
-<dropdown 
-    ide="fk.bean.id"
-    tablereference="'importancia'"
-    field="'descripcion'">
-</dropdown>
--->

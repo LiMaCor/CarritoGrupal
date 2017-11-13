@@ -28,62 +28,58 @@
 
 'use strict';
 
-moduloUsuario.controller('UsuarioRemove1Controller', ['$scope', '$routeParams', '$location', 'serverCallService', 'sessionService', 'constantService',
-    function ($scope, $routeParams, $location, serverCallService, sessionService, constantService) {
-        $scope.ob = "usuario";
-        $scope.source = "usuario";
-        $scope.op = "new";
-        $scope.profile = 1;
-        //--------
-        $scope.id = $routeParams.id;
-        $scope.session_info = sessionService.getSessionInfo();
-        $scope.isSessionActive = sessionService.isSessionActive();
-        $scope.status = null;
-        $scope.debugging = constantService.debugging();
-        serverCallService.getOne($scope.source, $scope.id).then(function (response) {
-            if (response.status == 200) {
-                if (response.data.status == 200) {
-                    $scope.status = null;
-                    $scope.bean = response.data.message.data;
-                    $scope.metaobj = response.data.message.metaobj;
-                    $scope.metaprops = response.data.message.metaprops;
-
-                    $scope.icon = $scope.metaobj.icon;
-                    $scope.obtitle = $scope.metaobj.name;
-                    $scope.ob = $scope.metaobj.name;
-                    $scope.title = "Borrado de " + $scope.obtitle;
-                } else {
-                    $scope.status = "Error en la recepción de datos del servidor";
-                }
-            } else {
-                $scope.status = "Error en la recepción de datos del servidor";
-            }
-        }).catch(function (data) {
-            $scope.status = "Error en la recepción de datos del servidor";
-        });
-        $scope.remove = function () {
-            serverCallService.remove($scope.source, $scope.id).then(function (response) {
-                if (response.status == 200) {
-                    if (response.data.status == 200) {
-                        if (response.data.message == 1) {
-                            $scope.status = "El registro de " + $scope.obtitle + " con id=" + $scope.id + " se ha eliminado.";
+moduloUsuario.controller('UsuarioRemove1Controller',
+        ['$scope', '$routeParams', 'serverCallService', '$location', 'sessionService', 'constantService','objectService',
+            function ($scope, $routeParams, serverCallService, $location, sessionService, constantService,objectService) {
+                $scope.ob = "usuario";
+                $scope.op = "remove";
+                $scope.profile = 1;
+                //---
+                $scope.status = null;
+                $scope.debugging = constantService.debugging();
+                $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op;
+                //---
+                $scope.id = $routeParams.id;
+                //---
+                $scope.objectService = objectService;
+                //---
+                serverCallService.getOne($scope.ob, $scope.id).then(function (response) {
+                    if (response.status == 200) {
+                        if (response.data.status == 200) {
+                            $scope.status = null;
+                            $scope.bean = response.data.json;
                         } else {
-                            $scope.status = "Error en el borrado de datos del servidor";
+                            $scope.status = "Error en la recepción de datos del servidor";
                         }
                     } else {
                         $scope.status = "Error en la recepción de datos del servidor";
                     }
-                } else {
+                }).catch(function (data) {
                     $scope.status = "Error en la recepción de datos del servidor";
+                });
+                $scope.remove = function () {
+                    serverCallService.remove($scope.ob, $scope.id).then(function (response) {
+                        if (response.status == 200) {
+                            if (response.data.status == 200) {
+                                if (response.data.json == 1) {
+                                    $scope.status = "El registro con id=" + $scope.id + " se ha eliminado.";
+                                } else {
+                                    $scope.status = "Error en el borrado de datos del servidor";
+                                }
+                            } else {
+                                $scope.status = "Error en la recepción de datos del servidor";
+                            }
+                        } else {
+                            $scope.status = "Error en la recepción de datos del servidor";
+                        }
+                    }).catch(function (data) {
+                        $scope.status = "Error en la recepción de datos del servidor";
+                    });
                 }
-            }).catch(function (data) {
-                $scope.status = "Error en la recepción de datos del servidor";
-            });
-        }
-        $scope.back = function () {
-            window.history.back();
-        };
-        $scope.close = function () {
-            $location.path('/home');
-        };
-    }]);
+                $scope.back = function () {
+                    window.history.back();
+                };
+                $scope.close = function () {
+                    $location.path('/home');
+                };
+            }]);

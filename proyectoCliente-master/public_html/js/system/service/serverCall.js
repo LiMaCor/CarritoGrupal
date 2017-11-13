@@ -77,6 +77,30 @@ moduloServicios.factory('serverCallService',
                                 return $http.get(constantService.getAppUrl() + '?ob=' + strObject + '&op=getpage&page=1&rpp=1000', 'GET', '');
                             }
                         }
+                    },
+                    getPageX: function (strObject, strObjectForeign, idForeign, rpp, page, filter, order) {
+                        var base = constantService.getAppUrl() + '?ob=' + strObject + '&ob_foreign=' + strObjectForeign + '&id_foreign=' + idForeign + '&op=getpagex';
+                        if (filter) {
+                            if (order) {
+                                return $http.get(base + '&np=' + page + "&rpp=" + rpp + "&filter=" + filter + "&order=" + order, 'GET', '');
+                            } else {
+                                return $http.get(base + '&np=' + page + "&rpp=" + rpp + "&filter=" + filter, 'GET', '');
+                            }
+                        } else {
+                            if (order) {
+                                return $http.get(base + '&np=' + page + "&rpp=" + rpp + "&order=" + order, 'GET', '');
+                            } else {
+                                return $http.get(base + '&np=' + page + "&rpp=" + rpp, 'GET', '');
+                            }
+                        }
+                    },
+                    getCountX: function (strObject, strObjectForeign, idForeign, filter) {
+                        var base = constantService.getAppUrl() + '?ob=' + strObject + '&ob_foreign=' + strObjectForeign + '&id_foreign=' + idForeign + '&op=getcountx';
+                        if (filter) {
+                            return $http.get(base + '&filter=' + filter, 'GET', '');
+                        } else {
+                            return $http.get(base, 'GET', '');
+                        }
                     }
                 }
             }

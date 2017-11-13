@@ -1,15 +1,11 @@
-<div id="fecha_group" ng-class="['input-group','control',{'has-error': dtp.form[dtp.name].$error.valid}]">
-    <input type="text"
-           ng-model="dtp.model"
-           class="form-control"
-           ng-change="dtp.change()"
-           ng-required="dtp.required"
-           placeholder="dd/mm/aaaa HH:mm"
-           name="{{dtp.name}}"
-           datetimepicker
-           />
-    <small>{{dt.model| fechaformateada }}</small>
-</div>
-<span class="help-block" ng-if="dtp.form[dtp.name].$error.required">El campo es obligatorio</span>
-<span class="help-block" ng-if="dtp.form[dtp.name].$error.valid">Fecha u hora incorrectas</span>
+<input type="text"
+       ng-model="dtp.model"
+       class="form-control"
+       ng-change="dtp.change()"
+       ng-required="dtp.required"
+       placeholder="dd/mm/aaaa HH:mm"
+       name="{{dtp.name}}"
+       datetimepicker
+       />
+<small>{{dtp.model|fechaConHoraFormateadaSinHora}}</small>
 

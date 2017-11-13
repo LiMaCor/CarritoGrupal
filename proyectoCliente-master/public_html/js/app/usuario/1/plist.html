@@ -34,7 +34,7 @@
             <div class="col-lg-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <header ob="ob" title="'Listado de'"></header>
+                        <header ob="ob" title="'Listado de ' + objectService.getName(ob)"></header>
                     </div>
                     <div class="panel-body">
                         <div class="row">
@@ -91,17 +91,24 @@
                                         </div>
                                         <div role="tabpanel" id="pane1" class="tab-pane fade">
                                             <div class="row">
-                                                <div class="col-md-12">                                                                                                                                                           
-                                                    <select class="navbar-form navbar-left" ng-model="filterType" convert-to-number>
-                                                        <option value="0">Filtrar textos</option>
-                                                        <option value="1">Filtrar números</option>
-                                                        <option value="2">Filtrar fechas</option>
-                                                    </select>
-                                                    <p></p>
+                                                <div class="col-md-5">
+                                                    <form class="navbar-form navbar-left" role="form" id="typeFilterForm">
+                                                        <label class="control-label col-sm-3" for="filterSelection">
+                                                            Selecciona filtro:
+                                                        </label>
+                                                        <select class="navbar-form navbar-left" ng-model="filterType" convert-to-number id="filterSelection">
+                                                            <option value="0">Filtrar por dni, nombre, primer apellido, segundo apellido o login</option>
+                                                            <option value="1">Filtrar por id</option>
+                                                            <option value="2">Filtrar por fecha de nacimiento</option>
+                                                            <option value="3">Filtrar por tipo de usuario</option>                                                            
+                                                        </select>
+                                                    </form>
+                                                </div>
+                                                <div class="col-md-7">
                                                     <div ng-show="filterType == 0">
                                                         <cplistfilterbystring
                                                             url="url"
-                                                            fields="[{'name':'dni','longname':'DNI'},{'name':'nombre','longname':'Nombre'},{'name':'primer_apellido','longname':'Primer apellido'},{'name':'segundo_apellido','longname':'Segundo apellido'}]"
+                                                            fields="filterString"
                                                             rpp="rpp"
                                                             numpage="numpage"
                                                             orderparams="orderParams"
@@ -112,25 +119,35 @@
                                                     <div ng-show="filterType == 1">
                                                         <cplistfilterbynumber
                                                             url="url"
-                                                            fields="[{'name':'id','longname':'Identificador'}]"
+                                                            fields="filterNumber"
                                                             rpp="rpp"
                                                             numpage="numpage"
                                                             orderparams="orderParams"
                                                             filterparams="filterParams">
                                                         </cplistfilterbynumber>
-                                                            
                                                     </div>
                                                     <p></p>
-                                                     <div ng-show="filterType == 2">
+                                                    <div ng-show="filterType == 2">
                                                         <cplistfilterbydate
                                                             url="url"
-                                                            fields="[{'name':'fecha_nacimiento','longname':'Fecha de nacimiento'}]"
+                                                            fields="filterDate"
                                                             rpp="rpp"
                                                             numpage="numpage"
                                                             orderparams="orderParams"
                                                             filterparams="filterParams">
                                                         </cplistfilterbydate>
-                                                            
+                                                    </div>
+                                                    <p></p>
+                                                    <div ng-show="filterType == 3">
+                                                        <cplistfilterbyforeign
+                                                            url="url"
+                                                            field="filterTipousuario"
+                                                            rpp="rpp"
+                                                            numpage="numpage"
+                                                            orderparams="orderParams"
+                                                            filterparams="filterParams"
+                                                            profile="profile">
+                                                        </cplistfilterbyforeign>
                                                     </div>
                                                 </div>
                                             </div>
@@ -233,11 +250,16 @@
                                                     <td ng-show="visibles.login">{{obj.login}}</td>
                                                     <td ng-show="visibles.email">{{obj.email}}</td>
                                                     <td ng-show="visibles.fecha_nacimiento">{{obj.fecha_nacimiento}}</td>
-                                                    <td ng-show="visibles.id_tipousuario"><a href="tipousuario/{{profile}}/view/{{obj.obj_tipousuario.id}}">{{obj.obj_tipousuario.descripcion}}</a></td>
+                                                    <td ng-show="visibles.id_tipousuario" class="text-center">
+                                                        <a href="tipousuario/{{profile}}/view/{{obj.obj_tipousuario.id}}">{{obj.obj_tipousuario.descripcion}}</a>
+                                                    </td>
                                                     <td>
                                                         <div class="btn-toolbar" role="toolbar">
                                                             <div class="btn-group">
                                                                 <actions id="obj.id" name="ob"></actions>
+                                                                <a class="btn btn-default btn-xs" title="Pedidos" href="pedido/{{profile}}/plistXusuario/{{obj.id}}/1/10">
+                                                                    <span ng-class="objectService.getIcon('pedido')"></span>
+                                                                </a>
                                                             </div>
                                                         </div>
                                                     </td>

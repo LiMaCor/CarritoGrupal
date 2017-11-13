@@ -123,7 +123,23 @@ moduloFiltros
                     return text.replace(/\n/g, '<br />');
             };
         })
-
+        .filter('fechaConHoraFormateadaSinHora', function ($filter)
+        {
+            return function (input) {
+                if (input == null || input == "" || input.length != 16)
+                {
+                    return "";
+                }
+                var arr1 = input.split(" ");
+                var arr2 = arr1[0].split("/");
+                var arr3 = arr1[1].split(":");
+                var mm = parseInt(arr2[1]);
+                mm -= 1;
+                var newDate = new Date(arr2[2], mm, arr2[0], arr3[0], arr3[1]);
+                var formatedDate = $filter('date')(newDate, 'EEEE, dd \'de\' MMMM \'de\' yyyy');
+                return formatedDate;
+            };
+        })
         .filter('fechaformateada', function ($filter)
         {
             return function (input) {
