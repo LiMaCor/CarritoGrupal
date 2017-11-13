@@ -25,21 +25,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 'use strict';
-moduloUsuario.controller('UsuarioEdit1Controller',
-        ['$scope', '$routeParams', '$location', 'serverCallService', 'toolService', 'constantService',
-            function ($scope, $routeParams, $location, serverCallService, toolService, constantService) {
-                $scope.ob = "usuario";
+moduloPedido.controller('PedidoView1Controller',
+        ['$scope', '$routeParams', 'serverCallService', '$location', 'sessionService', 'constantService',
+            function ($scope, $routeParams, serverCallService, $location, sessionService, constantService) {
+                $scope.ob = "pedido";
                 $scope.op = "view";
                 $scope.profile = 1;
                 //---
                 $scope.status = null;
                 $scope.debugging = constantService.debugging();
                 $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op;
-                //---
-                $scope.bean = {};
-                $scope.bean.obj_tipousuario = {"id": 0};
                 //---
                 $scope.id = $routeParams.id;
                 //---
@@ -57,25 +53,6 @@ moduloUsuario.controller('UsuarioEdit1Controller',
                 }).catch(function (data) {
                     $scope.status = "Error en la recepción de datos del servidor";
                 });
-                $scope.save = function () {
-                    var jsonToSend = {json: JSON.stringify(toolService.array_identificarArray($scope.bean))};
-                    serverCallService.set($scope.ob, jsonToSend).then(function (response) {
-                        if (response.status == 200) {
-                            if (response.data.status == 200) {
-                                $scope.response = response;
-                                $scope.status = "El registro de " + $scope.obtitle + " con id=" + $scope.bean.id + " se ha modificado.";
-                                $scope.bean.id = $scope.bean.id;
-                            } else {
-                                $scope.status = "Error en la recepción de datos del servidor";
-                            }
-                        } else {
-                            $scope.status = "Error en la recepción de datos del servidor";
-                        }
-                    }).catch(function (data) {
-                        $scope.status = "Error en la recepción de datos del servidor";
-                    });
-                    ;
-                };
                 $scope.back = function () {
                     window.history.back();
                 };
@@ -84,3 +61,4 @@ moduloUsuario.controller('UsuarioEdit1Controller',
                 };
             }
         ]);
+        /*holaa*/

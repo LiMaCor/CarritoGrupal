@@ -26,10 +26,10 @@
  * THE SOFTWARE.
  */
 'use strict';
-moduloUsuario.controller('UsuarioPList1Controller',
+moduloPedido.controller('PedidoPList1Controller',
         ['$scope', '$routeParams', '$location', 'serverCallService', 'toolService', 'constantService',
             function ($scope, $routeParams, $location, serverCallService, toolService, constantService) {
-                $scope.ob = "usuario";
+                $scope.ob = "pedido";
                 $scope.op = "plist";
                 $scope.profile = 1;
                 //---
@@ -59,14 +59,10 @@ moduloUsuario.controller('UsuarioPList1Controller',
                 //---
                 $scope.visibles = {};
                 $scope.visibles.id = true;
-                $scope.visibles.dni = true;
-                $scope.visibles.nombre = true;
-                $scope.visibles.primer_apellido = true;
-                $scope.visibles.segundo_apellido = true;
-                $scope.visibles.login = true;
-                $scope.visibles.email = true;
-                $scope.visibles.fecha_nacimiento = false;
-                $scope.visibles.id_tipousuario = true;
+                $scope.visibles.fecha = true;
+                $scope.visibles.iva = true;
+                $scope.visibles.id_usuario = true;
+                $scope.visibles.tiene_iva = true;               
                 //---
                 function getDataFromServer() {
                     serverCallService.getCount($scope.ob, $scope.filterParams).then(function (response) {

@@ -33,25 +33,27 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="panel panel-default">
-                    <div class="panel-heading" style="font-family:Oswald , serif;"  ng-include="'js/system/include/header.html'"></div>
+                                        <div class="panel-heading">
+                        <header ob="''" title="'Formulario de entrada al sistema'"></header>
+                    </div>
                     <div class="panel-body" ng-cloak>
                         <div class="row-fluid">
                             <div class="col-md-3 col-md-offset-4">
                                 <div class="panel panel-default">
                                     <div class="panel-heading">Entra en el sistema</div>
                                     <div class="panel-body">
-                                        <a href="#" class="btn btn-default" ng-if="debugging"    ng-click="fill('pepe')">pepe</a>
-                                        <a href="#"  class="btn btn-default"  ng-if="debugging"    ng-click="fill('ana')">ana</a>                                        
+                                        <a href="#" class="btn btn-default" ng-if="debugging"    ng-click="fill('pablo')">pablo</a>
+                                        <a href="#"  class="btn btn-default"  ng-if="debugging"    ng-click="fill('menxu')">menxu</a>                                        
                                         <br /><br />
                                         <form name="form" ng-submit="login()" role="form">
                                             <div class="form-group" ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required }">
                                                 <label for="username">Usuario:</label>
-                                                <input type="text" name="username" id="username" class="form-control" ng-model="user.username" required />
+                                                <input type="text" name="username" id="username" class="form-control" ng-model="user.username" required value="rafa" value="rafael" />
                                                 <span ng-if="form.username.$dirty && form.username.$error.required" class="help-block">Debes introducir un nombre de usuario</span>
                                             </div>
                                             <div class="form-group" ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }">
                                                 <label for="password">Contraseña:</label>
-                                                <input type="password" name="password" id="password" class="form-control" ng-model="user.password" required />
+                                                <input type="password" name="password" id="password" class="form-control" ng-model="user.password" required value="rafa" value="rafael" />
                                                 <span ng-if="form.password.$dirty && form.password.$error.required" class="help-block">Debes introducir un password</span>
                                             </div>
                                             <div class="form-actions">

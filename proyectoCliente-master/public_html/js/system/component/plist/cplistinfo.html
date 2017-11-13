@@ -1,6 +1,6 @@
 <p>Mostrando una consulta de {{pli.registers}} registros.</p>
-<p ng-if="pli.orderparams == null">Contenido no ordenado</p>
-<p ng-if="pli.orderparams != null">Contenido ordenado: {{pli.orderparams}}
+<p ng-if="!pli.orderparams">Contenido no ordenado</p>
+<p ng-if="pli.orderparams">Contenido ordenado: {{pli.orderparams}}
     <a ng-click="pli.doresetorder()" id="linkQuitarOrden">(Quitar orden)</a>
 </p>
 <p ng-if="!pli.filterparams">Contenido no filtrado en servidor</p>

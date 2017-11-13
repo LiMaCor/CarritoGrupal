@@ -1,0 +1,16 @@
+<form class="navbar-form navbar-right" role="form" action="Controller" method="post" id="textFilterForm">
+    <select id="selectFilter" class="form-control" name="filter" style="width: 160px" ng-model="filterbynumber.field">
+        <option style="display:none">selecciona un campo</option>
+        <option ng-repeat="field in filterbynumber.fields"  value="{{field.name}}">{{field.longname}}</option>
+    </select>
+    <select id="selectFilteroperator" class="form-control" name="filteroperator" width="80" style="width: 200px" ng-model="filterbynumber.operator">
+        <option value="equa"  ng-selected="true">es igual a</option>
+        <option value="nequ">es distinto de</option>
+        <option value="lowe">es menor que</option>
+        <option value="lequ">es menor o igual que</option>
+        <option value="grea">es mayor que</option>
+        <option value="gequ">es mayor o igual que</option>
+    </select>
+    <input id="inputFiltervalue" class="form-control" name="filtervalue" type="text" size="20" maxlength="50" value="" width="100" style="width: 140px" placeholder="Valor" ng-model="filterbynumber.value">
+    <input type="button" class="btn" id="btnFiltrar" name="btnFiltrar" value="Filtrar" ng-click="filterbynumber.dofilter()" />
+</form>

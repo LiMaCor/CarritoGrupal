@@ -1,0 +1,24 @@
+<form class="navbar-form navbar-right" role="form" action="Controller" method="post" id="filterForm" name="filterForm">
+
+    <select id="selectFilter" class="form-control" name="filter" style="width: 160px" ng-model="filterbydate.field">
+        <option style="display:none">selecciona un campo</option>
+        <option ng-repeat="field in filterbydate.fields"  value="{{field.name}}">{{field.longname}}</option>
+    </select>
+    <select id="selectFilteroperator" class="form-control" name="filteroperator" width="80" style="width: 200px" ng-model="filterbydate.operator">
+        <option style="display:none">selecciona una operacion</option>
+        <option value="equa"  ng-selected="true">es igual a</option>
+        <option value="nequ">es distinto de</option>
+        <option value="lowe">es anterior que</option>
+        <option value="lequ">es anterior o igual que</option>
+        <option value="grea">es posterior que</option>
+        <option value="gequ">es posterior o igual que</option>
+    </select>
+     <date-picker
+        name="'fecha_nacimiento'"
+        required="true"
+        model="filterbydate.value"
+        form="filterForm">
+    </date-picker>
+    <input type="button" class="btn" id="btnFiltrar" name="btnFiltrar" value="Filtrar" ng-click="filterbydate.dofilter()" />
+
+</form>

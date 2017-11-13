@@ -33,7 +33,9 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="panel panel-default">
-                    <div class="panel-heading" style="font-family:Oswald , serif;"  ng-include="'js/system/include/header.html'"></div>
+                    <div class="panel-heading">
+                        <header ob="ob" title="'Vista de'"></header>
+                    </div>
                     <div class="panel-body">
                         <div class="row-fluid" ng-if="status">
                             <div class="col-xs-12">
@@ -63,7 +65,7 @@
                                         <tr><td>Login</td><td>{{bean.login}}</td></tr>
                                         <tr><td>Email</td><td>{{bean.email}}</td></tr>
                                         <tr><td>Fecha de nacimiento</td><td>{{bean.fecha_nacimiento}}</td></tr>
-                                        <tr><td>Tipo de usuario</td><td>{{bean.obj_tipousuario.descripcion}}</td></tr>
+                                        <tr><td>Tipo de usuario</td><td><a href="tipousuario/{{profile}}/view/{{bean.obj_tipousuario.id}}">{{bean.obj_tipousuario.descripcion}}</td></tr>
                                     </tbody>
                                 </table>
                                 <div class="control-group text-right">

@@ -31,6 +31,8 @@ trolleyes.run(function ($rootScope, $location, sessionService) {
         //url where user wants to go
         //sessionservice will let or not it go depending on the
         //call to the server sessionstatus
-        sessionService.setNextURL(next.$$route.originalPath);
+        if (next.$$route) {
+            sessionService.setNextURL(next.$$route.originalPath);
+        }
     });
 });
