@@ -29,11 +29,11 @@ public abstract class TableGenericDaoImplementation extends ViewGenericDaoImplem
         TableGenericBeanImplementation oBean = null;
         try {
             oPreparedStatement = oConnection.prepareStatement(strSQL);
-            oResultSet = oPreparedStatement.executeQuery(strSQL);
+            oPreparedStatement.setInt(1, id);
+            oResultSet = oPreparedStatement.executeQuery();
             if (oResultSet.next()) {
                 oBean = (TableGenericBeanImplementation) MappingBeanHelper.getBean(ob);
                 oBean = (TableGenericBeanImplementation) oBean.fill(oResultSet, oConnection, oPuserSecurity, intExpand);
-
             } else {
                 oBean = null;
             }
@@ -48,7 +48,6 @@ public abstract class TableGenericDaoImplementation extends ViewGenericDaoImplem
             if (oPreparedStatement != null) {
                 oPreparedStatement.close();
             }
-
         }
         return oBean;
     }
@@ -65,15 +64,18 @@ public abstract class TableGenericDaoImplementation extends ViewGenericDaoImplem
                 strSQL += "(" + oBean.getColumns() + ")";
                 strSQL += " VALUES ";
                 strSQL += "(" + oBean.getValues() + ")";
+                oPreparedStatement = oConnection.prepareStatement(strSQL, Statement.RETURN_GENERATED_KEYS);
+                iResult = oPreparedStatement.executeUpdate();
             } else {
                 insert = false;
                 strSQL = "UPDATE " + ob;
                 strSQL += " SET ";
                 strSQL += oBean.toPairs();
-                strSQL += " WHERE id=" + oBean.getId();
+                strSQL += " WHERE id=? ";
+                oPreparedStatement = oConnection.prepareStatement(strSQL, Statement.RETURN_GENERATED_KEYS);
+                oPreparedStatement.setInt(1, oBean.getId());
+                iResult = oPreparedStatement.executeUpdate();
             }
-            oPreparedStatement = oConnection.prepareStatement(strSQL, Statement.RETURN_GENERATED_KEYS);
-            iResult = oPreparedStatement.executeUpdate();
             if (iResult < 1) {
                 String msg = this.getClass().getName() + ": set";
                 Log4jConfigurationHelper.errorLog(msg);
@@ -100,14 +102,14 @@ public abstract class TableGenericDaoImplementation extends ViewGenericDaoImplem
     }
 
     @Override
-    public Boolean remove(Integer id) throws Exception {
-        boolean iResult = false;
+    public int remove(Integer id) throws Exception {
+        int iResult = 0;
         strSQL = "DELETE FROM " + ob + " WHERE id=?";
         PreparedStatement oPreparedStatement = null;
         try {
             oPreparedStatement = oConnection.prepareStatement(strSQL);
             oPreparedStatement.setInt(1, id);
-            iResult = oPreparedStatement.execute();
+            iResult = oPreparedStatement.executeUpdate();
         } catch (Exception ex) {
             String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName();
             Log4jConfigurationHelper.errorLog(msg, ex);

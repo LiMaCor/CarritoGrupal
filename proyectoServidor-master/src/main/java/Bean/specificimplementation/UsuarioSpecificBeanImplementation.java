@@ -33,7 +33,6 @@ public class UsuarioSpecificBeanImplementation extends TableGenericBeanImplement
     private Date fecha_nacimiento;
     @Expose
     private String email;
-
     @Expose(serialize = false)
     private Integer id_tipousuario = 0;
     @Expose(deserialize = false)
@@ -173,7 +172,7 @@ public class UsuarioSpecificBeanImplementation extends TableGenericBeanImplement
         strColumns += EncodingUtilHelper.quotate(primer_apellido) + ",";
         strColumns += EncodingUtilHelper.quotate(segundo_apellido) + ",";
         strColumns += EncodingUtilHelper.quotate(login) + ",";
-        strColumns += EncodingUtilHelper.quotate(pass) + ",";
+        strColumns += EncodingUtilHelper.quotate("da8ab09ab4889c6208116a675cad0b13e335943bd7fc418782d054b32fdfba04") + ", ";
         strColumns += EncodingUtilHelper.stringifyAndQuotate(fecha_nacimiento) + ",";
         strColumns += EncodingUtilHelper.quotate(email) + ",";
         strColumns += id_tipousuario;
@@ -194,7 +193,6 @@ public class UsuarioSpecificBeanImplementation extends TableGenericBeanImplement
         strPairs += "primer_apellido=" + EncodingUtilHelper.quotate(primer_apellido) + ",";
         strPairs += "segundo_apellido=" + EncodingUtilHelper.quotate(segundo_apellido) + ",";
         strPairs += "login=" + EncodingUtilHelper.quotate(login) + ",";
-        strPairs += "pass=" + EncodingUtilHelper.quotate(pass) + ",";
         strPairs += "fecha_nacimiento=" + EncodingUtilHelper.stringifyAndQuotate(fecha_nacimiento) + ",";
         strPairs += "email=" + EncodingUtilHelper.quotate(email) + ",";
         strPairs += "id_tipousuario=" + id_tipousuario;
