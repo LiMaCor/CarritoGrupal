@@ -26,10 +26,10 @@
  * THE SOFTWARE.
  */
 'use strict';
-moduloProducto.controller('ProductoPList1Controller',
+moduloLineapedido.controller('LineapedidoPList1Controller',
         ['$scope', '$routeParams', '$location', 'serverCallService', 'toolService', 'constantService', 'objectService',
             function ($scope, $routeParams, $location, serverCallService, toolService, constantService, objectService) {
-                $scope.ob = "producto";
+                $scope.ob = "lineapedido";
                 $scope.op = "plist";
                 $scope.profile = 1;
                 //---
@@ -46,16 +46,19 @@ moduloProducto.controller('ProductoPList1Controller',
                 //---
                 $scope.objectService = objectService;
                 //---
-                $scope.filterString = [{'name': 'codigo', 'longname': 'Código'}, {'name': 'descripcion', 'longname': 'Nombre'}];
-                $scope.filterNumber = [{'name': 'id', 'longname': 'Identificador'},{'name': 'existencias', 'longname': 'Existencias'},{'name': 'precio', 'longname': 'Precio'}];
+                $scope.filterString = null
+                $scope.filterNumber = [{'name': 'id', 'longname': 'Identificador'},{'name': 'cantidad', 'longname': 'Cantidad'},{'name': 'id_pedido', 'longname': 'Pedido'},{'name': 'id_producto', 'longname': 'Producto'},];
+                $scope.filterDate = null
+                $scope.filterBoolean = null;
+                //$scope.filterTipousuario = {'name':'id_tipousuario','longname':'Tipo de usuario','reference':'tipousuario','description':['descripcion']};
                 
                 //---
                 $scope.visibles = {};
                 $scope.visibles.id = true;
-                $scope.visibles.codigo = true;
-                $scope.visibles.descripcion = true;
-                $scope.visibles.existencias = true;
-                $scope.visibles.precio = true;
+                $scope.visibles.cantidad = true;
+                $scope.visibles.id_pedido = true;
+                $scope.visibles.id_producto = true;
+             
                 //---
                 function getDataFromServer() {
                     serverCallService.getCount($scope.ob, $scope.filterParams).then(function (response) {
@@ -89,5 +92,3 @@ moduloProducto.controller('ProductoPList1Controller',
                 getDataFromServer();
             }
         ]);
-
-

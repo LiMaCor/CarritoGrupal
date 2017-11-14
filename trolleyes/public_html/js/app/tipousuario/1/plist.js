@@ -26,10 +26,10 @@
  * THE SOFTWARE.
  */
 'use strict';
-moduloProducto.controller('ProductoPList1Controller',
-        ['$scope', '$routeParams', '$location', 'serverCallService', 'toolService', 'constantService', 'objectService',
-            function ($scope, $routeParams, $location, serverCallService, toolService, constantService, objectService) {
-                $scope.ob = "producto";
+moduloTipousuario.controller('TipousuarioPList1Controller',
+        ['$scope', '$routeParams', '$location', 'serverCallService', 'toolService', 'constantService',
+            function ($scope, $routeParams, $location, serverCallService, toolService, constantService) {
+                $scope.ob = "tipousuario";
                 $scope.op = "plist";
                 $scope.profile = 1;
                 //---
@@ -43,19 +43,24 @@ moduloProducto.controller('ProductoPList1Controller',
                 //---
                 $scope.orderParams = toolService.checkEmptyString($routeParams.order);
                 $scope.filterParams = toolService.checkEmptyString($routeParams.filter);
-                //---
-                $scope.objectService = objectService;
-                //---
-                $scope.filterString = [{'name': 'codigo', 'longname': 'Código'}, {'name': 'descripcion', 'longname': 'Nombre'}];
-                $scope.filterNumber = [{'name': 'id', 'longname': 'Identificador'},{'name': 'existencias', 'longname': 'Existencias'},{'name': 'precio', 'longname': 'Precio'}];
-                
+                //---      
+                $scope.filter = {};
+                $scope.filter.text = {};
+                $scope.filter.number = {};
+                $scope.filter.date = {};
+                $scope.filter.boolean = {};
+                $scope.filter.foreign = {};
+                $scope.filter.text.field = "";
+                $scope.filter.text.operator = "";
+                $scope.filter.text.value = "";
+                $scope.filter.number.field = "";
+                $scope.filter.number.operator = "";
+                $scope.filter.number.value = "";
                 //---
                 $scope.visibles = {};
                 $scope.visibles.id = true;
-                $scope.visibles.codigo = true;
                 $scope.visibles.descripcion = true;
-                $scope.visibles.existencias = true;
-                $scope.visibles.precio = true;
+                
                 //---
                 function getDataFromServer() {
                     serverCallService.getCount($scope.ob, $scope.filterParams).then(function (response) {
@@ -79,6 +84,29 @@ moduloProducto.controller('ProductoPList1Controller',
                         $scope.status = "Error en la recepción de datos del servidor";
                     });
                 }
+                $scope.dofilter = function (filterType) {
+                    if (filterType == 0) {
+                        if ($scope.filter.text.field != "" && $scope.filter.text.operator != "" && $scope.filter.text.value != "") {
+                            var newFilter = $scope.filterParams + "+and," + $scope.filter.text.field + "," + $scope.filter.text.operator + "," + $scope.filter.text.value;
+                            if ($scope.orderParams) {
+                                $location.path($scope.url + '/' + $scope.numpage + '/' + $scope.rpp).search('filter', newFilter).search('order', $scope.orderParams);
+                            } else {
+                                $location.path($scope.url + '/' + $scope.numpage + '/' + $scope.rpp).search('filter', newFilter);
+                            }
+                        }
+                    }
+                    if (filterType == 1) {
+                        if ($scope.filter.number.field != "" && $scope.filter.number.operator != "" && $scope.filter.number.value != "") {
+                            var newFilter = $scope.filterParams + "+and," + $scope.filter.number.field + "," + $scope.filter.number.operator + "," + $scope.filter.number.value;
+                            if ($scope.orderParams) {
+                                $location.path($scope.ob + '/' + $scope.profile + '/' + $scope.op + '/' + $scope.numpage + '/' + $scope.rpp).search('filter', newFilter).search('order', $scope.orderParams);
+                            } else {
+                                $location.path($scope.ob + '/' + $scope.profile + '/' + $scope.op + '/' + $scope.numpage + '/' + $scope.rpp).search('filter', newFilter);
+                            }
+                        }
+                    }
+                    return false;
+                };
                 $scope.doorder = function (orderField, ascDesc) {
                     $location.url($scope.url + '/' + $scope.numpage + '/' + $scope.rpp).search('filter', $scope.filterParams).search('order', orderField + ',' + ascDesc);
                     return false;
@@ -89,5 +117,3 @@ moduloProducto.controller('ProductoPList1Controller',
                 getDataFromServer();
             }
         ]);
-
-

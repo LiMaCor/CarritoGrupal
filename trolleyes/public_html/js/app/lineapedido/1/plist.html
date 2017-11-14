@@ -97,8 +97,10 @@
                                                             Selecciona filtro:
                                                         </label>
                                                         <select class="navbar-form navbar-left" ng-model="filterType" convert-to-number id="filterSelection">
-                                                            <option value="0">Filtrar por código o nombre</option>
-                                                            <option value="1">Filtrar por id, existencias o precio</option>                                                                                        
+                                                            <option value="0">Filtrar por Cantidad</option>
+                                                            <option value="1">Filtrar por Id</option>
+                                                            <option value="2">Filtrar por Fecha de Pedido</option>
+                                                            <option value="3">Filtrar por Tipo de Usuario</option>                                                            
                                                         </select>
                                                     </form>
                                                 </div>
@@ -123,6 +125,29 @@
                                                             orderparams="orderParams"
                                                             filterparams="filterParams">
                                                         </cplistfilterbynumber>
+                                                    </div>
+                                                    <p></p>
+                                                    <div ng-show="filterType == 2">
+                                                        <cplistfilterbydate
+                                                            url="url"
+                                                            fields="filterDate"
+                                                            rpp="rpp"
+                                                            numpage="numpage"
+                                                            orderparams="orderParams"
+                                                            filterparams="filterParams">
+                                                        </cplistfilterbydate>
+                                                    </div>
+                                                    <p></p>
+                                                    <div ng-show="filterType == 3">
+                                                        <cplistfilterbyforeign
+                                                            url="url"
+                                                            field="filterTipousuario"
+                                                            rpp="rpp"
+                                                            numpage="numpage"
+                                                            orderparams="orderParams"
+                                                            filterparams="filterParams"
+                                                            profile="profile">
+                                                        </cplistfilterbyforeign>
                                                     </div>
                                                 </div>
                                             </div>
@@ -155,10 +180,10 @@
                                             <div class="text-center">
                                                 <ul class="list-inline">
                                                     <li><input type="checkbox" ng-model="visibles.id" ng-checked="visibles.id">Ident.</li>
-                                                    <li><input type="checkbox" ng-model="visibles.codigo" ng-checked="visibles.codigo">Cod.</li>
-                                                    <li><input type="checkbox" ng-model="visibles.descripcion" ng-checked="visibles.descripcion" >Nombre</li>
-                                                    <li><input type="checkbox" ng-model="visibles.existencias" ng-checked="visibles.existencias" >Existencias</li>
-                                                    <li><input type="checkbox" ng-model="visibles.precio" ng-checked="visibles.precio" >Precio</li>                                            
+                                                    <li><input type="checkbox" ng-model="visibles.cantidad" ng-checked="visibles.cantidad">Cantidad</li>
+                                                    <li><input type="checkbox" ng-model="visibles.id_pedido" ng-checked="visibles.id_pedido" >Pedido</li>
+                                                    <li><input type="checkbox" ng-model="visibles.id_producto" ng-checked="visibles.id_producto" >Producto</li>
+                                                    
                                                 </ul>
                                             </div>
                                         </div>
@@ -169,40 +194,42 @@
                                                     <a ng-click="doorder('id', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
                                                     <a ng-click="doorder('id', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
                                                 </th>
-                                                <th ng-show="visibles.codigo" class="text-center">
-                                                    <label>Cod.</label><br/>
-                                                    <a ng-click="doorder('codigo', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
-                                                    <a ng-click="doorder('codigo', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
+                                                <th ng-show="visibles.cantidad" class="text-center">
+                                                    <label>Cantidad</label><br/>
+                                                    <a ng-click="doorder('cantidad', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
+                                                    <a ng-click="doorder('cantidad', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
                                                 </th>
-                                                <th ng-show="visibles.descripcion" class="text-center">
-                                                    <label>Nombre</label><br/>
-                                                    <a ng-click="doorder('descripcion', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
-                                                    <a ng-click="doorder('descripcion', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
+                                                <th ng-show="visibles.id_pedido" class="text-center">
+                                                    <label>Pedido</label><br/>
+                                                    <a ng-click="doorder('id_pedido', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
+                                                    <a ng-click="doorder('id_pedido', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
                                                 </th>
-                                                <th ng-show="visibles.existencias" class="text-center">
-                                                    <label>Existencias</label><br/>
-                                                    <a ng-click="doorder('existencias', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
-                                                    <a ng-click="doorder('existencias', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
+                                                <th ng-show="visibles.id_producto" class="text-center">
+                                                    <label>Producto</label><br/>
+                                                    <a ng-click="doorder('id_producto', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
+                                                    <a ng-click="doorder('id_producto', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
                                                 </th>
-                                                <th ng-show="visibles.precio" class="text-center">
-                                                    <label>Precio</label><br/>
-                                                    <a ng-click="doorder('precio', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
-                                                    <a ng-click="doorder('precio', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
-                                                </th>                                             
+                                                
                                                 <th  class="text-center">Acciones</th>
                                             </tr>
                                             <tbody>
                                                 <tr ng-repeat="obj in page| filter:searchText">
                                                     <td ng-show="visibles.id"><b>{{obj.id}}</b></td>
-                                                    <td ng-show="visibles.codigo"><b>{{obj.codigo}}</b></td>
-                                                    <td ng-show="visibles.descripcion">{{obj.descripcion}}</td>
-                                                    <td ng-show="visibles.existencias">{{obj.existencias}}</td>
-                                                    <td ng-show="visibles.precio">{{obj.precio | currency : "€":2}}</td>                                               
+                                                    <td ng-show="visibles.cantidad"><b>{{obj.cantidad}}</b></td>
+                                    
+                                                    <td ng-show="visibles.id_pedido" class="text-center">
+                                                        <a href="pedido/{{profile}}/view/{{obj.obj_pedido.id}}">{{obj.obj_pedido.fecha}}</a>
+                                                    </td>
+                                                    <td ng-show="visibles.id_producto" class="text-center">
+                                                        <a href="producto/{{profile}}/view/{{obj.obj_producto.id}}">{{obj.obj_producto.descripcion}}</a>
                                                     </td>
                                                     <td>
                                                         <div class="btn-toolbar" role="toolbar">
                                                             <div class="btn-group">
-                                                                <actions id="obj.id" name="ob"></actions>                                                                
+                                                                <actions id="obj.id" name="ob"></actions>
+                                                                <a class="btn btn-default btn-xs" title="Pedidos" href="pedido/{{profile}}/plistXusuario/{{obj.id}}/1/10">
+                                                                    <span ng-class="objectService.getIcon('pedido')"></span>
+                                                                </a>
                                                             </div>
                                                         </div>
                                                     </td>
@@ -221,8 +248,6 @@
         </div>
     </div>
 </div>
-
-
 
 
 

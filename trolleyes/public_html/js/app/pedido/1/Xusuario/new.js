@@ -27,7 +27,7 @@
  */
 'use strict';
 
-moduloUsuario.controller('UsuarioNew1Controller',
+moduloPedido.controller('PedidoXusuarioNew1Controller',
         ['$scope', '$routeParams', '$location', 'serverCallService', '$filter', '$uibModal', 'sessionService', '$route', 'toolService', 'constantService', 'objectService',
             function ($scope, $routeParams, $location, serverCallService, $filter, $uibModal, sessionService, $route, toolService, constantService, objectService) {
                 $scope.ob = "pedido";
@@ -46,6 +46,21 @@ moduloUsuario.controller('UsuarioNew1Controller',
                 //---
                 $scope.objectService = objectService;
                 //---
+                serverCallService.getOne($scope.xob, $scope.xid).then(function (response) {
+                    if (response.status == 200) {
+                        if (response.data.status == 200) {
+                            $scope.status = null;
+                            $scope.usuariobean = response.data.json;
+                        } else {
+                            $scope.status = "Error en la recepción de datos del servidor";
+                        }
+                    } else {
+                        $scope.status = "Error en la recepción de datos del servidor";
+                    }
+                }).catch(function (data) {
+                    $scope.status = "Error en la recepción de datos del servidor";
+                });
+                //--
                 $scope.save = function () {
                     var jsonToSend = {json: JSON.stringify(toolService.array_identificarArray($scope.bean))};
                     serverCallService.set($scope.ob, jsonToSend).then(function (response) {

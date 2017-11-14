@@ -18,7 +18,7 @@ moduloDirectivas.component('cplistfilterbyforeign', {
                     var self = this;
                     self.operator = "";
 
-                    self.obj_foreign = {"id": 0};
+                    self.obj_foreign = {"id": 1};
 
 
                     //[{'name':'id_tipousuario','longname':'Tipo de usuario','reference':'tipousuario','description':'['descripcion']'}]

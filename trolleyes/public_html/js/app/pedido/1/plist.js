@@ -26,10 +26,10 @@
  * THE SOFTWARE.
  */
 'use strict';
-moduloProducto.controller('ProductoPList1Controller',
+moduloPedido.controller('PedidoPList1Controller',
         ['$scope', '$routeParams', '$location', 'serverCallService', 'toolService', 'constantService', 'objectService',
             function ($scope, $routeParams, $location, serverCallService, toolService, constantService, objectService) {
-                $scope.ob = "producto";
+                $scope.ob = "pedido";
                 $scope.op = "plist";
                 $scope.profile = 1;
                 //---
@@ -46,16 +46,19 @@ moduloProducto.controller('ProductoPList1Controller',
                 //---
                 $scope.objectService = objectService;
                 //---
-                $scope.filterString = [{'name': 'codigo', 'longname': 'Código'}, {'name': 'descripcion', 'longname': 'Nombre'}];
-                $scope.filterNumber = [{'name': 'id', 'longname': 'Identificador'},{'name': 'existencias', 'longname': 'Existencias'},{'name': 'precio', 'longname': 'Precio'}];
+                //-- $scope.filterString = [{'name': 'dni', 'longname': 'DNI'}, {'name': 'nombre', 'longname': 'Nombre'}, {'name': 'primer_apellido', 'longname': 'Primer apellido'}, {'name': 'segundo_apellido', 'longname': 'Segundo apellido'}, {'name': 'login', 'longname': 'Login'}];
+                $scope.filterNumber = [{'name': 'id', 'longname': 'Identificador'}];
+                $scope.filterDate = [{'name': 'fecha', 'longname': 'Fecha de pedido'}];
+                $scope.filterBoolean = null;
+                $scope.filterUsuario = {'name':'id_usuario','longname':'Usuario','reference':'usuario','description':['nombre']};
                 
                 //---
                 $scope.visibles = {};
                 $scope.visibles.id = true;
-                $scope.visibles.codigo = true;
-                $scope.visibles.descripcion = true;
-                $scope.visibles.existencias = true;
-                $scope.visibles.precio = true;
+                $scope.visibles.iva = true;
+                $scope.visibles.tiene_iva = true;
+                $scope.visibles.fecha = true;
+                $scope.visibles.id_usuario = true;
                 //---
                 function getDataFromServer() {
                     serverCallService.getCount($scope.ob, $scope.filterParams).then(function (response) {

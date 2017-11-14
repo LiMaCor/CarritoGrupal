@@ -28,10 +28,10 @@
 
 'use strict';
 
-moduloUsuario.controller('UsuarioRemove1Controller',
+moduloProducto.controller('ProductoRemove1Controller',
         ['$scope', '$routeParams', 'serverCallService', '$location', 'sessionService', 'constantService','objectService',
             function ($scope, $routeParams, serverCallService, $location, sessionService, constantService,objectService) {
-                $scope.ob = "usuario";
+                $scope.ob = "producto";
                 $scope.op = "remove";
                 $scope.profile = 1;
                 //---

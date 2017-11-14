@@ -34,7 +34,7 @@
             <div class="col-lg-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <header ob="ob" title="'Alta de ' + objectService.getName(ob) + ' para el usuario ' + usuariobean.nombre + ' ' + usuariobean.primer_apellido + ' ' + usuariobean.segundo_apellido + ' (dni:' + usuariobean.dni + ')'"></header>                       
+                        <header ob="ob" title="'Alta de' + objectService.getName(ob)"></header>
                     </div>
                     <div class="panel-body">
                         <div class="alert alert-success" role="alert" ng-if="debugging">
@@ -60,68 +60,98 @@
                                 </div>
                             </div>
                             <!------------------------------------------------->
-                            <div class="form-group" id="fecha-group"
-                                 ng-class="{'has-error': (outerForm.fecha.$error.required ||
-                                                     outerForm.fecha.$error.valid)
-                                                     && !outerForm.fecha.$pristine}">
-                                <label class="control-label col-sm-2" for="fecha">
-                                    <span>*</span>Fecha
+                            <div class="form-group" id="codigo-group"
+                                 ng-class="{'has-error':(outerForm.codigo.$error.pattern && !outerForm.codigo.$pristine) ||
+                                                     (outerForm.codigo.$error.required && !outerForm.codigo.$pristine)}">
+                                <label class="control-label col-sm-2" for="dni">
+                                    <span ng-show="true">*</span>
+                                    DNI
                                 </label>
                                 <div class="control col-sm-2">
-                                    <date-time-picker
-                                        name="'fecha'"
-                                        required="true"
-                                        model="bean.fecha"
-                                        form="outerForm">
-                                    </date-time-picker>
-                                    <span class="help-block" ng-if="!outerForm.fecha.$pristine && outerForm.fecha.$error.required">El campo es obligatorio</span>
-                                    <span class="help-block" ng-if="!outerForm.fecha.$pristine && outerForm.fecha.$error.valid">El campo no tiene formato adecuado: Debe ser una fecha y hora válidas</span>
-                                </div>
-                            </div>                           
-                            <!------------------------------------------------->
-                            <div class="form-group" id="tiene_iva-group"
-                                 ng-class="{'has-error':(outerForm.tiene_iva.$error.required && !outerForm.tiene_iva.$pristine)}">
-                                <label class="control-label col-sm-2" for="tiene_iva">
-                                    <span ng-show="true">*</span>
-                                    ¿Tiene IVA?
-                                </label> 
-                                <div class="control col-sm-3">
-                                    <input  
-                                        ng-model="bean.tiene_iva" 
-                                        type="checkbox" 
-                                        id="tiene_iva" 
-                                        name="tiene_iva">
-                                    <span class="help-block" ng-if="!outerForm.tiene_iva.$pristine && outerForm.tiene_iva.$error.required">El campo es obligatorio</span>
+                                    <input ng-model="bean.codigo"
+                                           type="text"
+                                           class="form-control"
+                                           id="codigo"
+                                           name="codigo"
+                                           ng-pattern="/^[0-9][A-Za-z]{10,}$/"
+                                           placeholder="Código"
+                                           maxlength="10"
+                                           ng-required="true"
+                                           />
+                                    <span class="help-block" ng-if="!outerForm.codigo.$pristine && outerForm.codigo.$error.required">El campo es obligatorio</span>
+                                    <span class="help-block" ng-if="!outerForm.codigo.$pristine && outerForm.codigo.$error.pattern">El campo no tiene formato adecuado: Introduzca un DNI de 8 digitos y una letra mayúscula.</span>
                                 </div>
                             </div>
                             <!------------------------------------------------->
-                            <div class="form-group" id="iva-group"
-                                 ng-class="{'has-error':(outerForm.iva.$error.pattern && !outerForm.iva.$pristine) ||
-                                                     (outerForm.iva.$error.required && !outerForm.iva.$pristine)}">
-                                <label class="control-label col-sm-2" for="iva">
+                            <div class="form-group" id="descripcion-group"
+                                 ng-class="{'has-error':(outerForm.descripcion.$error.pattern && !outerForm.descripcion.$pristine) ||
+                                                     (outerForm.descripcion.$error.required && !outerForm.descripcion.$pristine)}">
+                                <label class="control-label col-sm-2" for="descripcion">
                                     <span ng-show="true">*</span>
-                                    IVA
+                                    Nombre
                                 </label>
                                 <div class="control col-sm-3">
-                                    <input ng-model="bean.iva"
+                                    <input ng-model="bean.descripcion"
                                            type="text"
                                            class="form-control"
-                                           id="nombre"
-                                           name="iva"
-                                           ng-pattern="/^[0-9]+([,.][0-9]+)?$/"
-                                           placeholder="IVA"
+                                           id="descripcion"
+                                           name="descripcion"
+                                           ng-pattern="/^([A-Z]{1}[a-zñáéíóúàèò][0-9]+[\s]*)+$/"
+                                           placeholder="Nombre"
                                            maxlength="100"
                                            ng-required="true"
                                            />
-                                    <span class="help-block" ng-if="!outerForm.nombre.$pristine && outerForm.nombre.$error.required">El campo es obligatorio</span>
-                                    <span class="help-block" ng-if="!outerForm.nombre.$pristine && outerForm.nombre.$error.pattern">El campo no tiene formato adecuado: El iva es un número</span>
+                                    <span class="help-block" ng-if="!outerForm.descripcion.$pristine && outerForm.descripcion.$error.required">El campo es obligatorio</span>
+                                    <span class="help-block" ng-if="!outerForm.descripcion.$pristine && outerForm.descripcion.$error.pattern">El campo no tiene formato adecuado: Los nombres deben comenzar con mayúsculas.</span>
                                 </div>
                             </div>
+                            <!------------------------------------------------->
+                          <div class="form-group" id="existencias-group"
+                                 ng-class="{'has-error':(outerForm.existencias.$error.pattern && !outerForm.existencias.$pristine) ||
+                                                     (outerForm.existencias.$error.required && !outerForm.existencias.$pristine)}">
+                                <label class="control-label col-sm-2" for="existencias">
+                                    * Existencias
+                                </label>
+                                <div class="control col-sm-3">
+                                    <input ng-model="bean.existencias"
+                                           type="text"
+                                           class="form-control"
+                                           id="existencias"
+                                           name="existencias"
+                                           ng-pattern="/^([0-9])+$/"
+                                           placeholder="Existencias"
+                                           maxlength="11"
+                                           ng-required="true"
+                                           />
+                                    <span class="help-block" ng-if="!outerForm.existencias.$pristine && outerForm.existencias.$error.required">El campo es obligatorio</span>
+                                    <span class="help-block" ng-if="!outerForm.existencias.$pristine && outerForm.existencias.$error.pattern">El campo no tiene formato adecuado: Las existencias solo pueden ser de valor numérico.</span>
+                                </div>
+                            </div>
+                            <!------------------------------------------------->
+                             <div class="form-group" id="precio-group"
+                                 ng-class="{'has-error':(outerForm.precio.$error.pattern && !outerForm.precio.$pristine)}">
+                                <label class="control-label col-sm-2" for="precio">
+                                    * Precio
+                                </label>
+                                <div class="control col-sm-3">
+                                    <input ng-model="bean.precio"
+                                           type="text"
+                                           class="form-control"
+                                           id="segundo_apellido"
+                                           name="segundo_apellido"
+                                           ng-pattern="/^([0-9]{1}[0-9]+*)+$/"
+                                           placeholder="Precio"
+                                           maxlength="11"
+                                           ng-required="true"
+                                           />
+                                    <span class="help-block" ng-if="!outerForm.precio.$pristine && outerForm.precio.$error.pattern">El campo no tiene formato adecuado: {{getRegExpl('precio')}}</span>
+                                </div>
+                            </div>                                                       
                             <!------------------------------------------------->
                             <div class="control-group text-right">                               
                                 <div class="controls">
                                     <a class="btn btn-primary" ng-click="save()" ng-disabled="!outerForm.$valid">Guardar</a>
-                                    <a class="btn btn-info" ng-href="{{ob}}/{{profile}}/plist">Ir al listado de {{ob}}</a>
+                                    <a class="btn btn-info" ng-href="{{ob}}/plist">Ir al listado de {{ob}}</a>
                                     <a class="btn btn-default" ng-click="back()">Volver</a>
                                     <a class="btn btn-default" ng-click="close()">Cerrar</a>
                                 </div>

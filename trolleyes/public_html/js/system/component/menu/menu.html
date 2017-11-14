@@ -40,7 +40,7 @@
                 <img style="max-width:100px;" src="images/trolleyes30.png" />
             </a>
         </div>
-     
+
         <div id="navbar" class="navbar-collapse collapse" >
             <ul class="nav navbar-nav" id="appMenu">
                 <li ng-class="{ 'active': mn.isActive('/home')}"><a href="home">Home</a></li>
@@ -50,10 +50,11 @@
                     <a class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="fa fa-icon-list-alt"></i>Administrador<span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
                         <li class="dropdown-header">Usuarios</li>
-                        <li ng-class="{ 'active': mn.isActive('/usuario/1/plist')}"><a href="usuario/1/plist"> <i ng-class="mn.object_info.getIcon('usuario')"></i> {{mn.object_info.getName("usuario")}}</a></li>
+                        <li ng-class="{ 'active': mn.isActive('/usuario/1/plist')}"><a href="usuario/1/plist"> <i ng-class="mn.object_info.getIcon('usuario')"></i> {{mn.object_info.getName("usuario")}}</a></li>                     
                         <li ng-class="{ 'active': mn.isActive('/tipousuario/1/plist/')}"><a href="tipousuario/1/plist"> <i ng-class="mn.object_info.getIcon('tipousuario')"></i> {{mn.object_info.getName("tipousuario")}}</a></li>
                         <li ng-class="{ 'active': mn.isActive('/pedido/1/view/')}"><a href="pedido/1/view/1"> <i ng-class="mn.object_info.getIcon('pedido')"></i> {{mn.object_info.getName("pedido")}}</a></li>
                         <li ng-class="{ 'active': mn.isActive('/producto/1/plist')}"><a href="producto/1/plist"> <i ng-class="mn.object_info.getIcon('producto')"></i> {{mn.object_info.getName("producto")}}</a></li>
+                        <li ng-class="{ 'active': mn.isActive('/lineapedido/1/plist')}"><a href="lineapedido/1/plist"> <i ng-class="mn.object_info.getIcon('lineapedido')"></i> {{mn.object_info.getName("lineapedido")}}</a></li>
                     </ul>
                 </li>
                 <!-- Coordinación ------------------------------------------- -->
