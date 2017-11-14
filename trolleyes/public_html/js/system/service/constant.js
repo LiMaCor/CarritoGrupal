@@ -34,7 +34,7 @@ moduloServicios.factory('constantService', function () {
             //return location.protocol + '//' + location.hostname + ':' + location.port + '/' + this.getAppName() + '/index.php';
         },
         getCAppUrl: function () {
-            return "http://localhost:8080/trolleyes/public_html";
+            return "http://localhost:8383/trolleyes/public_html";
             //return location.protocol + '//' + location.hostname + ':' + location.port + '/' + this.getAppName() + '/index.php';
         },
         debugging: function () {
