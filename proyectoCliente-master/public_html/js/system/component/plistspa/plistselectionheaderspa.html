@@ -1,8 +1,0 @@
-<tr ng-controller="plistSelectionHeaderSpaController">     
-    <th ng-repeat="field in metaprops" ng-if="field.showSelection && field.visible" class="text-center">                                            
-        <label>{{field.longname}}</label><br/>
-        <a ng-click="dosortSelection(field.name, 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
-        <a ng-click="dosortSelection(field.name, 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
-    </th>
-    <th class="text-center">Acciones</th>
-</tr>
