@@ -1,0 +1,72 @@
+<form 
+    class="form-inline navbar-form navbar-right" 
+    role="form"     
+    id="filterForm" 
+    name="filterForm"> 
+    <div class="form-group" 
+         ng-class="{'has-error': (filterForm.filterField.$error.required ||
+                     filterForm.filterField.$error.valid)}">
+        <select
+            id="filterField"
+            ng-required="true"
+            class="form-control"
+            name="filterField"
+            style="width: 160px"
+            ng-model="filterbystring.field">
+            <option style="display:none">selecciona un campo</option>
+            <option ng-repeat="field in filterbystring.fields"  value="{{field.name}}">{{field.longname}}</option>
+        </select>
+        <span class="help-block" ng-if="!filterForm.filterField.$pristine && filterForm.filterField.$error.required">El campo es obligatorio</span>
+    </div>
+    <div class="form-group"
+         ng-class="{'has-error': (filterForm.filterOperator.$error.required ||
+                     filterForm.filterOperator.$error.valid)}">
+        <select 
+            id="filterOperator" 
+            ng-required="true"   
+            class="form-control" 
+            name="filterOperator" 
+            width="50" 
+            style="width: 200px" 
+            ng-model="filterbystring.operator">
+            <option style="display:none">selecciona una operacion</option>
+            <option value="slike" ng-selected="true">contiene</option>
+            <option value="snlik">no contiene</option>
+            <option value="sequa">es igual a</option>
+            <option value="snequ">es distinto de</option>
+            <option value="sstar">comienza por</option>
+            <option value="snsta">no comienza por</option>
+            <option value="sends">acaba en</option>
+            <option value="snend">no acaba en</option>
+        </select>
+        <span class="help-block" ng-if="!filterForm.filterOperator.$pristine && filterForm.filterOperator.$error.valid">El campo es obligatorio</span>        
+    </div>
+    <div class="form-group"
+         ng-class="{'has-error': (filterForm.filterValue.$error.required ||
+                     filterForm.filterValue.$error.pattern)}">
+        <input 
+            id="filterValue" 
+            ng-required="true"              
+            ng-pattern="/^.{1,200}$/"
+            class="form-control" 
+            name="filterValue" 
+            type="text" 
+            size="20" 
+            maxlength="50" 
+            value="" 
+            width="100" 
+            style="width: 140px" 
+            placeholder="Valor" 
+            ng-model="filterbystring.value">
+        <span class="help-block" ng-if="!filterForm.filterValue.$pristine && filterForm.filterValue.$error.required">El campo es obligatorio</span>        
+        <span class="help-block" ng-if="!filterForm.filterValue.$pristine && filterForm.filterValue.$error.pattern">El campo no tiene formato adecuado: debe ser un texto de 1 a 200 caracteres.</span>
+    </div>
+    <input 
+        type="button" 
+        ng-disabled="!filterForm.$valid" 
+        class="btn" 
+        id="btnFiltrar" 
+        name="btnFiltrar" 
+        value="Filtrar" 
+        ng-click="filterbystring.dofilter()" />
+</form>

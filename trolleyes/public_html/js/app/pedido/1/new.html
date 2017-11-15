@@ -68,16 +68,12 @@
                                     Fecha
                                 </label>
                                 <div class="control col-sm-2">
-                                    <input ng-model="bean.fecha"
-                                           type="text"
-                                           class="form-control"
-                                           id="fecha"
-                                           name="fecha"
-                                           ng-pattern="/^(([A-Za-z]?)([0-9]?))+$/"
-                                           placeholder="Fecha"
-                                           maxlength="100"
-                                           ng-required="true"
-                                           />
+                                    <date-time-picker
+                                        name="'fecha'"
+                                        required="true"
+                                        model="bean.fecha"
+                                        form="outerForm">
+                                    </date-time-picker>
                                     <span class="help-block" ng-if="!outerForm.fecha.$pristine && outerForm.fecha.$error.required">El campo es obligatorio</span>
                                     <span class="help-block" ng-if="!outerForm.fecha.$pristine && outerForm.fecha.$error.pattern">El campo no tiene formato adecuado: Introduce una fecha válida.</span>
                                 </div>
@@ -96,7 +92,7 @@
                                            class="form-control"
                                            id="iva"
                                            name="iva"
-                                           ng-pattern="/^([A-Za-z])(([A-Za-zñáéíóúàèò]?)+([0-9]?)+([\s]?))+$/"
+                                           ng-pattern="/^([0-9])+$/"
                                            placeholder="IVA"
                                            maxlength="3"
                                            />
@@ -111,16 +107,11 @@
                                     * Existencias
                                 </label>
                                 <div class="control col-sm-3">
-                                    <input ng-model="bean.tiene_iva"
-                                           type="text"
-                                           class="form-control"
-                                           id="tiene_iva"
-                                           name="tiene_iva"
-                                           ng-pattern="/^([0-9])+$/"
-                                           placeholder="Tiene IVA"
-                                           maxlength="2"
-                                           ng-required="true"
-                                           />
+                                    <input  
+                                        ng-model="bean.tiene_iva" 
+                                        type="checkbox" 
+                                        id="tiene_iva" 
+                                        name="tiene_iva">
                                     <span class="help-block" ng-if="!outerForm.existencias.$pristine && outerForm.existencias.$error.required">El campo es obligatorio</span>
                                     <span class="help-block" ng-if="!outerForm.existencias.$pristine && outerForm.existencias.$error.pattern">El campo no tiene formato adecuado: Tiene IVA solo puede ser True o False.</span>
                                 </div>
@@ -149,7 +140,7 @@
                             <div class="control-group text-right">                               
                                 <div class="controls">
                                     <a class="btn btn-primary" ng-click="save()" ng-disabled="!outerForm.$valid">Guardar</a>
-                                    <a class="btn btn-info" ng-href="{{ob}}/plist">Ir al listado de {{ob}}</a>
+                                    <a class="btn btn-info" ng-href="{{ob}}/{{profile}}/plist">Ir al listado de {{ob}}</a>
                                     <a class="btn btn-default" ng-click="back()">Volver</a>
                                     <a class="btn btn-default" ng-click="close()">Cerrar</a>
                                 </div>

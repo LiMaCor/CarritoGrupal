@@ -1,37 +1,16 @@
 /* 
- * Copyright (c) 2015 by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com)
- * 
- * sisane: The stunning micro-library that helps you to develop easily 
- *             AJAX web applications by using Angular.js 1.x & sisane-server
- * sisane is distributed under the MIT License (MIT)
- * Sources at https://github.com/rafaelaznar/
- * 
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- * 
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- * 
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- * 
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
+
 
 'use strict';
 
-moduloTipousuario.controller('TipousuarioSelection1Controller',
-        ['$scope', '$uibModalInstance', 'serverCallService', '$location', 'toolService',
-            function ($scope, $modalInstance, serverCallService, $location, toolService) {
-                $scope.ob = 'tipousuario';
+moduloUsuario.controller('UsuarioSelection1Controller',
+        ['$scope', '$uibModalInstance', 'serverCallService', '$location', 'toolService', 'objectService',
+            function ($scope, $modalInstance, serverCallService, $location, toolService, objectService) {
+                $scope.ob = 'usuario';
                 $scope.op = "selection";
                 //---
                 $scope.numpage = 1;
@@ -46,10 +25,12 @@ moduloTipousuario.controller('TipousuarioSelection1Controller',
 
                 $scope.visibles = {};
                 $scope.visibles.id = true;
-                $scope.visibles.descripcion = true;
-
-                $scope.filterString = [{'name': 'descripcion', 'longname': 'Descripción'}];
+                $scope.visibles.nombre = true;
+                
+                $scope.filterString = [{'name': 'nombre', 'longname': 'Nombre'}];
                 $scope.filterNumber = [{'name': 'id', 'longname': 'Identificador'}];
+                
+                $scope.objectService = objectService;
 
                 $scope.closeForm = function (id) {
                     $modalInstance.close(id);
@@ -109,6 +90,11 @@ moduloTipousuario.controller('TipousuarioSelection1Controller',
                     return false;
                 }
 
+
+               
+                
+                
+                
                 $scope.doorder = function (orderField, ascDesc) {
                     $scope.orderParams = orderField + ',' + ascDesc;
                     getData();

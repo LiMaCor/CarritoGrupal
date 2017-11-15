@@ -60,91 +60,69 @@
                                 </div>
                             </div>
                             <!------------------------------------------------->
-                            <div class="form-group" id="codigo-group"
-                                 ng-class="{'has-error':(outerForm.codigo.$error.pattern && !outerForm.codigo.$pristine) ||
-                                                     (outerForm.codigo.$error.required && !outerForm.codigo.$pristine)}">
-                                <label class="control-label col-sm-2" for="codigo">
-                                    * Código
+                            <div class="form-group" id="cantidad-group"
+                                 ng-class="{'has-error':(outerForm.cantidad.$error.pattern && !outerForm.cantidad.$pristine) ||
+                                             (outerForm.cantidad.$error.required && !outerForm.cantidad.$pristine)}">
+                                <label class="control-label col-sm-2" for="dni">
+                                    * Cantidad
                                 </label>
                                 <div class="control col-sm-2">
-                                    <input ng-model="bean.codigo"
+                                    <input ng-model="bean.cantidad"
                                            type="text"
                                            class="form-control"
                                            id="codigo"
-                                           name="codigo"
-                                           ng-pattern="/^(([A-Za-z]?)([0-9]?))+$/"
-                                           placeholder="Código"
-                                           maxlength="10"
+                                           name="cantidad"
+                                           
+                                           placeholder="Cantidad"
+                                           maxlength="20"
                                            ng-required="true"
                                            />
-                                    <span class="help-block" ng-if="!outerForm.codigo.$pristine && outerForm.codigo.$error.required">El campo es obligatorio</span>
-                                    <span class="help-block" ng-if="!outerForm.codigo.$pristine && outerForm.codigo.$error.pattern">El campo no tiene formato adecuado: Introduzca un código de 10 caracteres.</span>
+                                    <span class="help-block" ng-if="!outerForm.cantidad.$pristine && outerForm.cantidad.$error.required">El campo es obligatorio</span>
+                                    <span class="help-block" ng-if="!outerForm.cantidad.$pristine && outerForm.cantidad.$error.pattern">El campo no tiene formato adecuado: Introduzca una cantidad válida.</span>
                                 </div>
                             </div>
                             <!------------------------------------------------->
-                            <div class="form-group" id="descripcion-group"
-                                 ng-class="{'has-error':(outerForm.descripcion.$error.pattern && !outerForm.descripcion.$pristine) ||
-                                                     (outerForm.descripcion.$error.required && !outerForm.descripcion.$pristine)}">
-                                <label class="control-label col-sm-2" for="descripcion">
-                                    * Nombre
+                            <div class="form-group" id="obj_pedido-group"
+                                 ng-class="{'has-error': outerForm.obj_pedido.$error.exists}">
+                                <label class="control-label col-sm-2" for="obj_pedido">
+                                    * ID del Pedido
                                 </label>
-                                <div class="control col-sm-3">
-                                    <input ng-model="bean.descripcion"
-                                           type="text"
-                                           class="form-control"
-                                           id="descripcion"
-                                           name="descripcion"
-                                           ng-pattern="/^([A-Za-z])(([A-Za-zñáéíóúàèò]?)+([0-9]?)+([\s]?))+$/"
-                                           placeholder="Nombre"
-                                           maxlength="100"
-                                           ng-required="true"
-                                           />
-                                    <span class="help-block" ng-if="!outerForm.descripcion.$pristine && outerForm.descripcion.$error.required">El campo es obligatorio</span>
-                                    <span class="help-block" ng-if="!outerForm.descripcion.$pristine && outerForm.descripcion.$error.pattern">El campo no tiene formato adecuado: Los productos deben comenzar con mayúsculas.</span>
+                                <div class="col-md-4">
+                                    <foreign-key
+                                        bean="bean.obj_pedido"
+                                        form="outerForm"
+                                        name="'obj_pedido'"
+                                        reference="'pedido'"
+                                        profile="profile"
+                                        description="['fecha']"
+                                        required="true">
+                                    </foreign-key>
+                                    <span class="help-block" ng-if="!outerForm.obj_pedido.$pristine && outerForm.obj_pedido.$error.required">El campo es obligatorio</span>
+                                    <span class="help-block" ng-if="!outerForm.obj_pedido.$pristine && outerForm.obj_pedido.$error.exists">El ID de pedido no existe</span>
                                 </div>
                             </div>
                             <!------------------------------------------------->
-                            <div class="form-group" id="existencias-group"
-                                 ng-class="{'has-error':(outerForm.existencias.$error.pattern && !outerForm.existencias.$pristine) ||
-                                                     (outerForm.existencias.$error.required && !outerForm.existencias.$pristine)}">
-                                <label class="control-label col-sm-2" for="existencias">
-                                    * Existencias
+                            <div class="form-group" id="obj_producto-group"
+                                 ng-class="{'has-error': outerForm.obj_producto.$error.exists}">
+                                <label class="control-label col-sm-2" for="obj_producto">
+                                    * ID del Producto
                                 </label>
-                                <div class="control col-sm-3">
-                                    <input ng-model="bean.existencias"
-                                           type="text"
-                                           class="form-control"
-                                           id="existencias"
-                                           name="existencias"
-                                           ng-pattern="/^([0-9])+$/"
-                                           placeholder="Existencias"
-                                           maxlength="11"
-                                           ng-required="true"
-                                           />
-                                    <span class="help-block" ng-if="!outerForm.existencias.$pristine && outerForm.existencias.$error.required">El campo es obligatorio</span>
-                                    <span class="help-block" ng-if="!outerForm.existencias.$pristine && outerForm.existencias.$error.pattern">El campo no tiene formato adecuado: Las existencias solo pueden ser de valor numérico.</span>
+                                <div class="col-md-4">
+                                    <foreign-key
+                                        bean="bean.obj_producto"
+                                        form="outerForm"
+                                        name="'obj_producto'"
+                                        reference="'producto'"
+                                        profile="profile"
+                                        description="['descripcion']"
+                                        required="true">
+                                    </foreign-key>
+                                    <span class="help-block" ng-if="!outerForm.obj_producto.$pristine && outerForm.obj_producto.$error.required">El campo es obligatorio</span>
+                                    <span class="help-block" ng-if="!outerForm.obj_producto.$pristine && outerForm.obj_producto.$error.exists">El ID de producto no existe</span>
                                 </div>
                             </div>
-                            <!------------------------------------------------->
-                            <div class="form-group" id="precio-group"
-                                 ng-class="{'has-error':(outerForm.precio.$error.pattern && !outerForm.precio.$pristine)}">
-                                <label class="control-label col-sm-2" for="precio">
-                                    * Precio
-                                </label>
-                                <div class="control col-sm-3">
-                                    <input ng-model="bean.precio"
-                                           type="text"
-                                           class="form-control"
-                                           id="precio"
-                                           name="precio"
-                                           ng-pattern="/^([0-9]{1})([0-9]+)((.)?)(([0-9]+)?)$/"
-                                           placeholder="Precio"
-                                           maxlength="11"
-                                           ng-required="true"
-                                           />
-                                    <span class="help-block" ng-if="!outerForm.precio.$pristine && outerForm.precio.$error.pattern">El campo no tiene formato adecuado: {{getRegExpl('precio')}}</span>
-                                </div>
-                            </div>                         
+                            
+                                                         
                             <!------------------------------------------------->
                             <div class="control-group text-right">
                                 <div class="controls">

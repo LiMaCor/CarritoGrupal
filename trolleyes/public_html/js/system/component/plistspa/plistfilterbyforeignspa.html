@@ -1,0 +1,54 @@
+<form 
+    class="form-inline navbar-form navbar-right" 
+    role="form"     
+    id="filterForm" 
+    name="filterForm">    
+    <div class="form-group"
+         ng-class="{'has-error': (filterForm.filterOperator.$error.required ||
+                     filterForm.filterOperator.$error.valid)}">
+        <select 
+            id="filterOperator" 
+            ng-required="true"   
+            class="form-control" 
+            name="filterOperator" 
+            width="50" 
+            style="width: 200px" 
+            ng-model="filterbyforeign.operator">
+            <option style="display:none">selecciona una operacion</option>
+            <option value="nequa"  ng-selected="true">es igual a</option>
+            <option value="nnequ">es distinto de</option>   
+        </select>
+        <span class="help-block" ng-if="!filterForm.filterOperator.$pristine && filterForm.filterOperator.$error.valid">El campo es obligatorio</span>        
+    </div>
+    <div class="form-group">
+        <div class="form-group" 
+             ng-class="{'has-error': (filterForm[filterbyforeign.field.name].$error.required ||
+                         filterForm[filterbyforeign.field.name].$error.valid)}">                
+            <foreign-key
+                class=""
+                bean="filterbyforeign.obj_foreign"
+                form="filterForm"
+                name="filterbyforeign.field.name"
+                reference="filterbyforeign.field.reference"
+                profile="filterbyforeign.profile"
+                description="filterbyforeign.field.description"
+                required="true">
+            </foreign-key>
+            <span class="help-block" ng-if="!filterForm[filterbyforeign.field.name].$pristine && filterForm[filterbyforeign.field.name].$error.required">El campo es obligatorio</span>        
+        </div>
+        <!--
+    <div class="row">
+        <foreign-key
+            class="col-md-12"
+            bean="filterbyforeign.obj_foreign"
+            form="'filterForm'"
+            name="'id_tipousuario'"
+            reference="'tipousuario'"
+            profile="1"
+            description="['descripcion']"
+            required="true">
+        </foreign-key>
+    </div>
+        -->
+        <input type="button" ng-disabled="!filterForm.$valid" class="btn" id="btnFiltrar" name="btnFiltrar" value="Filtrar" ng-click="filterbyforeign.dofilter()" />
+</form>

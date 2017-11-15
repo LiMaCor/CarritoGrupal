@@ -65,7 +65,7 @@
                                                      (outerForm.codigo.$error.required && !outerForm.codigo.$pristine)}">
                                 <label class="control-label col-sm-2" for="codigo">
                                     <span ng-show="true">*</span>
-                                    Código
+                                    Cod.
                                 </label>
                                 <div class="control col-sm-2">
                                     <input ng-model="bean.codigo"
@@ -79,14 +79,14 @@
                                            ng-required="true"
                                            />
                                     <span class="help-block" ng-if="!outerForm.codigo.$pristine && outerForm.codigo.$error.required">El campo es obligatorio</span>
-                                    <span class="help-block" ng-if="!outerForm.codigo.$pristine && outerForm.codigo.$error.pattern">El campo no tiene formato adecuado: Introduzca un código de 10 carácteres.</span>
+                                    <span class="help-block" ng-if="!outerForm.codigo.$pristine && outerForm.codigo.$error.pattern">El campo no tiene formato adecuado: Introduzca un DNI de 8 digitos y una letra mayúscula.</span>
                                 </div>
                             </div>
                             <!------------------------------------------------->
                             <div class="form-group" id="descripcion-group"
                                  ng-class="{'has-error':(outerForm.descripcion.$error.pattern && !outerForm.descripcion.$pristine) ||
                                                      (outerForm.descripcion.$error.required && !outerForm.descripcion.$pristine)}">
-                                <label class="control-label col-sm-2" for="nombre">
+                                <label class="control-label col-sm-2" for="descripcion">
                                     <span ng-show="true">*</span>
                                     Nombre
                                 </label>
@@ -102,7 +102,7 @@
                                            ng-required="true"
                                            />
                                     <span class="help-block" ng-if="!outerForm.descripcion.$pristine && outerForm.descripcion.$error.required">El campo es obligatorio</span>
-                                    <span class="help-block" ng-if="!outerForm.descripcion.$pristine && outerForm.descripcion.$error.pattern">El campo no tiene formato adecuado: La descripción deben comenzar con mayúsculas.</span>
+                                    <span class="help-block" ng-if="!outerForm.descripcion.$pristine && outerForm.descripcion.$error.pattern">El campo no tiene formato adecuado: Los nombres deben comenzar con mayúsculas.</span>
                                 </div>
                             </div>
                             <!------------------------------------------------->
@@ -139,7 +139,7 @@
                                            class="form-control"
                                            id="precio"
                                            name="precio"
-                                           ng-pattern="/^([0-9]{1})([0-9]+)((\.)?)(([0-9]+)?)$/"
+                                           ng-pattern="/^([0-9]{1})([0-9]+)((.)?)(([0-9]+)?)$/"
                                            placeholder="Precio"
                                            maxlength="11"
                                            ng-required="true"
@@ -147,11 +147,11 @@
                                     <span class="help-block" ng-if="!outerForm.precio.$pristine && outerForm.precio.$error.pattern">El campo no tiene formato adecuado: {{getRegExpl('precio')}}</span>
                                 </div>
                             </div>                                                       
-                            <!------------------------------------------------->
+                         <!------------------------------------------------->
                             <div class="control-group text-right">                               
                                 <div class="controls">
                                     <a class="btn btn-primary" ng-click="save()" ng-disabled="!outerForm.$valid">Guardar</a>
-                                    <a class="btn btn-info" ng-href="{{ob}}/plist">Ir al listado de {{ob}}</a>
+                                    <a class="btn btn-info" ng-href="{{ob}}/{{profile}}/plist">Ir al listado de {{ob}}</a>
                                     <a class="btn btn-default" ng-click="back()">Volver</a>
                                     <a class="btn btn-default" ng-click="close()">Cerrar</a>
                                 </div>

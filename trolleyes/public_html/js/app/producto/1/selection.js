@@ -28,13 +28,13 @@
 
 'use strict';
 
-moduloTipousuario.controller('TipousuarioSelection1Controller',
+moduloProducto.controller('ProductoSelection1Controller',
         ['$scope', '$uibModalInstance', 'serverCallService', '$location', 'toolService',
             function ($scope, $modalInstance, serverCallService, $location, toolService) {
-                $scope.ob = 'tipousuario';
+                $scope.ob = 'producto';
                 $scope.op = "selection";
                 //---
-                $scope.numpage = 1;
+                 $scope.numpage = 1;
                 $scope.rpp = 10;
                 $scope.neighbourhood = 1;
                 //---
@@ -47,9 +47,6 @@ moduloTipousuario.controller('TipousuarioSelection1Controller',
                 $scope.visibles = {};
                 $scope.visibles.id = true;
                 $scope.visibles.descripcion = true;
-
-                $scope.filterString = [{'name': 'descripcion', 'longname': 'Descripción'}];
-                $scope.filterNumber = [{'name': 'id', 'longname': 'Identificador'}];
 
                 $scope.closeForm = function (id) {
                     $modalInstance.close(id);
@@ -109,8 +106,26 @@ moduloTipousuario.controller('TipousuarioSelection1Controller',
                     return false;
                 }
 
+
+                $scope.dofilter = function (filterType) {
+                    if (filterType == 0) {
+                        if ($scope.filter.text.field != "" && $scope.filter.text.operator != "" && $scope.filter.text.value != "") {
+                            $scope.filterParams = $scope.filterParams + "+and," + $scope.filter.text.field + "," + $scope.filter.text.operator + "," + $scope.filter.text.value;                            
+                        }
+                    }
+                    if (filterType == 1) {
+                        if ($scope.filter.number.field != "" && $scope.filter.number.operator != "" && $scope.filter.number.value != "") {
+                            $scope.filterParams = $scope.filterParams + "+and," + $scope.filter.number.field + "," + $scope.filter.number.operator + "," + $scope.filter.number.value;
+                        }
+                    }
+                    getData();
+                    return false;
+                };
+                
+                
+                
                 $scope.doorder = function (orderField, ascDesc) {
-                    $scope.orderParams = orderField + ',' + ascDesc;
+                    $scope.orderParams =  orderField + ',' + ascDesc;
                     getData();
                     return false;
                 };

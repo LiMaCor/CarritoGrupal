@@ -109,5 +109,3 @@ moduloPedido.controller('PedidoXusuarioPList1Controller',
                 getDataFromServer();
             }
         ]);
-
-

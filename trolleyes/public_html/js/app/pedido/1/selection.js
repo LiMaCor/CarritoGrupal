@@ -28,10 +28,10 @@
 
 'use strict';
 
-moduloTipousuario.controller('TipousuarioSelection1Controller',
+moduloPedido.controller('PedidoSelection1Controller',
         ['$scope', '$uibModalInstance', 'serverCallService', '$location', 'toolService',
             function ($scope, $modalInstance, serverCallService, $location, toolService) {
-                $scope.ob = 'tipousuario';
+                $scope.ob = 'pedido';
                 $scope.op = "selection";
                 //---
                 $scope.numpage = 1;
@@ -48,7 +48,7 @@ moduloTipousuario.controller('TipousuarioSelection1Controller',
                 $scope.visibles.id = true;
                 $scope.visibles.descripcion = true;
 
-                $scope.filterString = [{'name': 'descripcion', 'longname': 'Descripción'}];
+                $scope.filterDate = [{'name': 'fecha', 'longname': 'Fecha'}];
                 $scope.filterNumber = [{'name': 'id', 'longname': 'Identificador'}];
 
                 $scope.closeForm = function (id) {

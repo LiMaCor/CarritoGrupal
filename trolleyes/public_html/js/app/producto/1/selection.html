@@ -123,11 +123,21 @@ THE SOFTWARE.
                                 <a ng-click="doorder('id', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
                                 <a ng-click="doorder('id', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
                             </th>
+                            <th ng-show="visibles.codigo" class="text-center">
+                                <label>ID.</label><br/>
+                                <a ng-click="doorder('codigo', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
+                                <a ng-click="doorder('codigo', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
+                            </th>                            
                             <th ng-show="visibles.descripcion" class="text-center">
                                 <label>Descripción</label><br/>
                                 <a ng-click="doorder('descripcion', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
                                 <a ng-click="doorder('descripcion', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
-                            </th>                                               
+                            </th>
+                            <th ng-show="visibles.existencias" class="text-center">
+                                <label>Descripción</label><br/>
+                                <a ng-click="doorder('existencias', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
+                                <a ng-click="doorder('existencias', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
+                            </th>                                              
                             <th  class="text-center">Acciones</th>
                         </tr>
                         <tbody>

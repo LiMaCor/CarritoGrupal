@@ -39,6 +39,7 @@ moduloPedido.controller('PedidoEdit1Controller',
                 $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op;
                 //---
                 $scope.bean = {};
+                $scope.bean.obj_usuario = {"id": 0};
                 //---
                 $scope.id = $routeParams.id;
                 //---

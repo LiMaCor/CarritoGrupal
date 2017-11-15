@@ -97,26 +97,14 @@
                                                             Selecciona filtro:
                                                         </label>
                                                         <select class="navbar-form navbar-left" ng-model="filterType" convert-to-number id="filterSelection">
-                                                            <option value="0">Filtrar por dni, nombre, primer apellido, segundo apellido o login</option>
-                                                            <option value="1">Filtrar por id</option>
+                                                            <option value="1">Filtrar por id o iva</option>
                                                             <option value="2">Filtrar por fecha de pedido</option>
-                                                            <option value="3">Filtrar por tipo de usuario</option>
+                                                            <option value="3">Filtrar por usuario</option>
                                                             <option value="4">Filtrar por tiene_iva </option>
                                                         </select>
                                                     </form>
                                                 </div>
-                                                <div class="col-md-7">
-                                                    <div ng-show="filterType == 0">
-                                                        <cplistfilterbystring
-                                                            url="url"
-                                                            fields="filterString"
-                                                            rpp="rpp"
-                                                            numpage="numpage"
-                                                            orderparams="orderParams"
-                                                            filterparams="filterParams">
-                                                        </cplistfilterbystring>
-                                                    </div>
-                                                    <p></p>
+                                                <div class="col-md-7">                                                    
                                                     <div ng-show="filterType == 1">
                                                         <cplistfilterbynumber
                                                             url="url"
@@ -208,22 +196,22 @@
                                                     <a ng-click="doorder('id', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
                                                 </th>
                                                 <th ng-show="visibles.iva" class="text-center">
-                                                    <label>DNI</label><br/>
+                                                    <label>IVA</label><br/>
                                                     <a ng-click="doorder('iva', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
                                                     <a ng-click="doorder('iva', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
                                                 </th>
                                                 <th ng-show="visibles.tiene_iva" class="text-center">
-                                                    <label>Nombre</label><br/>
+                                                    <label>Tiene IVA</label><br/>
                                                     <a ng-click="doorder('tiene_iva', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
                                                     <a ng-click="doorder('tiene_iva', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
                                                 </th>
                                                 <th ng-show="visibles.fecha" class="text-center">
-                                                    <label>Primer apellido</label><br/>
+                                                    <label>Fecha</label><br/>
                                                     <a ng-click="doorder('fecha', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
                                                     <a ng-click="doorder('fecha', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
                                                 </th>
                                                 <th ng-show="visibles.id_usuario" class="text-center">
-                                                    <label>Tipo</label><br/>
+                                                    <label>Usuario</label><br/>
                                                     <a ng-click="doorder('id_usuario', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
                                                     <a ng-click="doorder('id_usuario', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
                                                 </th>
@@ -233,10 +221,10 @@
                                                 <tr ng-repeat="obj in page| filter:searchText">
                                                     <td ng-show="visibles.id"><b>{{obj.id}}</b></td>
                                                     <td ng-show="visibles.iva"><b>{{obj.iva}}</b></td>
-                                                    <td ng-show="visibles.tiene_iva">{{obj.tiene_iva}}</td>
+                                                    <td ng-show="visibles.tiene_iva" ng-bind-html="obj.tiene_iva|booleanizate" class="text-center">{{obj.tiene_iva}}</td>
                                                     <td ng-show="visibles.fecha">{{obj.fecha}}</td>
                                                     <td ng-show="visibles.id_usuario" class="text-center">
-                                                        <a href="tipousuario/{{profile}}/view/{{obj.obj_usuario.id}}">{{obj.obj_usuario.nombre}}</a>
+                                                        <a href="usuario/{{profile}}/view/{{obj.obj_usuario.id}}">{{obj.obj_usuario.nombre}}</a>
                                                     </td>
                                                     <td>
                                                         <div class="btn-toolbar" role="toolbar">

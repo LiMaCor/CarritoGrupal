@@ -58,8 +58,9 @@
                                     </thead>
                                     <tbody>
                                         <tr class="text-left"><td>id</td><td>{{bean.id}}</td></tr>
-                                        <tr><td>Descripcion</td><td>{{bean.descripcion}}</td></tr>
-
+                                        <tr><td>Cantidad</td><td>{{bean.cantidad}}</td></tr>
+                                        <tr><td>Pedido</td><td><a href="pedido/{{profile}}/view/{{bean.obj_pedido.id}}">{{bean.obj_pedido.fecha}} {{bean.obj_pedido.iva}} {{bean.obj_usuario.nombre}}</td></tr>                 
+                                        <tr><td>Producto</td><td><a href="producto/{{profile}}/view/{{bean.obj_producto.id}}">{{bean.obj_producto.descripcion}} {{bean.obj_producto.existencias}} {{bean.obj_producto.precio}}</td></tr>                 
                                     </tbody>
                                 </table>
                                 <div class="control-group text-right">

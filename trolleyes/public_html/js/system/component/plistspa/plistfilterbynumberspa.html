@@ -1,0 +1,70 @@
+<form 
+    class="form-inline navbar-form navbar-right" 
+    role="form"     
+    id="filterForm" 
+    name="filterForm"> 
+    <div class="form-group" 
+         ng-class="{'has-error': (filterForm.filterField.$error.required ||
+                     filterForm.filterField.$error.valid)}">
+        <select
+            id="filterField"
+            ng-required="true"
+            class="form-control"
+            name="filterField"
+            style="width: 160px"
+            ng-model="filterbynumber.field">
+            <option style="display:none">selecciona un campo</option>
+            <option ng-repeat="field in filterbynumber.fields"  value="{{field.name}}">{{field.longname}}</option>
+        </select>
+        <span class="help-block" ng-if="!filterForm.filterField.$pristine && filterForm.filterField.$error.required">El campo es obligatorio</span>
+    </div>
+    <div class="form-group"
+         ng-class="{'has-error': (filterForm.filterOperator.$error.required ||
+                     filterForm.filterOperator.$error.valid)}">
+        <select 
+            id="filterOperator" 
+            ng-required="true"   
+            class="form-control" 
+            name="filterOperator" 
+            width="50" 
+            style="width: 200px" 
+            ng-model="filterbynumber.operator">
+            <option style="display:none">selecciona una operacion</option>
+            <option value="nequa"  ng-selected="true">es igual a</option>
+            <option value="nnequ">es distinto de</option>
+            <option value="nlowe">es menor que</option>
+            <option value="nlequ">es menor o igual que</option>
+            <option value="ngrea">es mayor que</option>
+            <option value="ngequ">es mayor o igual que</option>
+        </select>
+        <span class="help-block" ng-if="!filterForm.filterOperator.$pristine && filterForm.filterOperator.$error.valid">El campo es obligatorio</span>        
+    </div>
+    <div class="form-group"
+         ng-class="{'has-error': (filterForm.filterValue.$error.required ||
+                     filterForm.filterValue.$error.pattern)}">
+        <input 
+            id="filterValue" 
+            ng-required="true"              
+            ng-pattern="/^\d+(\.\d{1,2})?$/"
+            class="form-control" 
+            name="filterValue" 
+            type="text" 
+            size="20" 
+            maxlength="50" 
+            value="" 
+            width="100" 
+            style="width: 140px" 
+            placeholder="Valor" 
+            ng-model="filterbynumber.value">
+        <span class="help-block" ng-if="!filterForm.filterValue.$pristine && filterForm.filterValue.$error.required">El campo es obligatorio</span>        
+        <span class="help-block" ng-if="!filterForm.filterValue.$pristine && filterForm.filterValue.$error.pattern">El campo no tiene formato adecuado: debe ser un número entero o decimal (la coma es un punto).</span>
+    </div>
+    <input 
+        type="button" 
+        ng-disabled="!filterForm.$valid" 
+        class="btn" 
+        id="btnFiltrar" 
+        name="btnFiltrar" 
+        value="Filtrar" 
+        ng-click="filterbynumber.dofilter()" />
+</form>
