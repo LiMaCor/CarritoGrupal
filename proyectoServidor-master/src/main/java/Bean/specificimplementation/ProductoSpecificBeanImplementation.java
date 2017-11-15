@@ -82,9 +82,9 @@ public class ProductoSpecificBeanImplementation extends TableGenericBeanImplemen
         String strColumns = "";
         strColumns += "id,";
         strColumns += "codigo,";
-        strColumns += "descripcion";
+        strColumns += "descripcion,";
         strColumns += "existencias,";
-        strColumns += "precio,";
+        strColumns += "precio";
         return strColumns;
     }
 
