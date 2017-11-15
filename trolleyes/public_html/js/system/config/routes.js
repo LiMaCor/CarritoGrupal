@@ -67,7 +67,7 @@ trolleyes.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/producto/1/remove/:id', {templateUrl: 'js/app/producto/1/remove.html', controller: 'ProductoRemove1Controller', resolve: {auth: authenticationAdministratorPromise}});
         $routeProvider.when('/producto/1/plist/:page?/:rpp?', {templateUrl: 'js/app/producto/1/plist.html', controller: 'ProductoPList1Controller', resolve: {auth: authenticationAdministratorPromise}});
         //--
-        $routeProvider.when('/lineapedido/1/plist/:page?/:rpp?', {templateUrl: 'js/app/lineapedido/1/plist.html', controller: 'LineapedidoPList1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        $routeProvider.when('/linea_pedido/1/plist/:page?/:rpp?', {templateUrl: 'js/app/linea_pedido/1/plist.html', controller: 'LineapedidoPList1Controller', resolve: {auth: authenticationAdministratorPromise}});
         //--
         $routeProvider.otherwise({redirectTo: '/'});
     }]);

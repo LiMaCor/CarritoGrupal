@@ -34,7 +34,7 @@
             <div class="col-lg-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <header ob="ob" title="'Vista de ' + objectService.getName(ob)"></header>
+                        <header ob="ob" title="'Borrado de ' + objectService.getName(ob)"></header>
                     </div>
                     <div class="panel-body">
                         <div class="row-fluid" ng-if="status">
@@ -60,17 +60,14 @@
                                         <tr class="text-left"><td>id</td><td>{{bean.id}}</td></tr>
                                         <tr><td>Fecha</td><td>{{bean.fecha}}</td></tr>
                                         <tr><td>IVA</td><td>{{bean.iva}}</td></tr>
-                                        <tr><td>Tiene IVA</td><td>{{bean.tiene_iva}}</td></tr>
-                                        <tr><td>Usuario</td><td><a href="usuario/{{profile}}/view/{{bean.obj_usuario.id}}">{{bean.obj_usuario.nombre}} {{bean.obj_usuario.primer_apellido}} {{bean.obj_usuario.segundo_apellido}}</td></tr>                 
+                                        <tr><td>Tiene IVA</td><td>{{bean.tiene_iva}}</td></tr>                                                  
                                     </tbody>
                                 </table>
                                 <div class="control-group text-right">
                                     <div class="controls">
-                                        <a class="btn btn-primary" href="{{ob}}/{{profile}}/edit/{{bean.id}}">Editar</a>
-                                        <a class="btn btn-danger" href="{{ob}}/{{profile}}/remove/{{bean.id}}">Borrar</a>
-                                        <a class="btn btn-info" href="{{ob}}/{{profile}}/plist">Ir al listado de {{obtitle}}</a>
-                                        <a class="btn btn-default" ng-click="back()">Volver</a>
-                                        <a class="btn btn-default" href="home">Cerrar</a>
+                                        <div>¿Está seguro de que desea borrar el registro?</div>
+                                        <a class="btn btn-danger" ng-click="remove()">Si</a>
+                                        <a class="btn btn-default" ng-click="back()">No</a>
                                     </div>
                                 </div>
                             </div>

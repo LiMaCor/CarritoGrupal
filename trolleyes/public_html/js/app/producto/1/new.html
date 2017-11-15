@@ -63,9 +63,9 @@
                             <div class="form-group" id="codigo-group"
                                  ng-class="{'has-error':(outerForm.codigo.$error.pattern && !outerForm.codigo.$pristine) ||
                                                      (outerForm.codigo.$error.required && !outerForm.codigo.$pristine)}">
-                                <label class="control-label col-sm-2" for="dni">
+                                <label class="control-label col-sm-2" for="codigo">
                                     <span ng-show="true">*</span>
-                                    DNI
+                                    Código
                                 </label>
                                 <div class="control col-sm-2">
                                     <input ng-model="bean.codigo"
@@ -73,20 +73,20 @@
                                            class="form-control"
                                            id="codigo"
                                            name="codigo"
-                                           ng-pattern="/^[0-9][A-Za-z]{10,}$/"
+                                           ng-pattern="/^(([A-Za-z]?)([0-9]?))+$/"
                                            placeholder="Código"
                                            maxlength="10"
                                            ng-required="true"
                                            />
                                     <span class="help-block" ng-if="!outerForm.codigo.$pristine && outerForm.codigo.$error.required">El campo es obligatorio</span>
-                                    <span class="help-block" ng-if="!outerForm.codigo.$pristine && outerForm.codigo.$error.pattern">El campo no tiene formato adecuado: Introduzca un DNI de 8 digitos y una letra mayúscula.</span>
+                                    <span class="help-block" ng-if="!outerForm.codigo.$pristine && outerForm.codigo.$error.pattern">El campo no tiene formato adecuado: Introduzca un código de 10 carácteres.</span>
                                 </div>
                             </div>
                             <!------------------------------------------------->
                             <div class="form-group" id="descripcion-group"
                                  ng-class="{'has-error':(outerForm.descripcion.$error.pattern && !outerForm.descripcion.$pristine) ||
                                                      (outerForm.descripcion.$error.required && !outerForm.descripcion.$pristine)}">
-                                <label class="control-label col-sm-2" for="descripcion">
+                                <label class="control-label col-sm-2" for="nombre">
                                     <span ng-show="true">*</span>
                                     Nombre
                                 </label>
@@ -96,13 +96,13 @@
                                            class="form-control"
                                            id="descripcion"
                                            name="descripcion"
-                                           ng-pattern="/^([A-Z]{1}[a-zñáéíóúàèò][0-9]+[\s]*)+$/"
+                                           ng-pattern="/^([A-Za-z])(([A-Za-zñáéíóúàèò]?)+([0-9]?)+([\s]?))+$/"
                                            placeholder="Nombre"
                                            maxlength="100"
                                            ng-required="true"
                                            />
                                     <span class="help-block" ng-if="!outerForm.descripcion.$pristine && outerForm.descripcion.$error.required">El campo es obligatorio</span>
-                                    <span class="help-block" ng-if="!outerForm.descripcion.$pristine && outerForm.descripcion.$error.pattern">El campo no tiene formato adecuado: Los nombres deben comenzar con mayúsculas.</span>
+                                    <span class="help-block" ng-if="!outerForm.descripcion.$pristine && outerForm.descripcion.$error.pattern">El campo no tiene formato adecuado: La descripción deben comenzar con mayúsculas.</span>
                                 </div>
                             </div>
                             <!------------------------------------------------->
@@ -137,9 +137,9 @@
                                     <input ng-model="bean.precio"
                                            type="text"
                                            class="form-control"
-                                           id="segundo_apellido"
-                                           name="segundo_apellido"
-                                           ng-pattern="/^([0-9]{1}[0-9]+*)+$/"
+                                           id="precio"
+                                           name="precio"
+                                           ng-pattern="/^([0-9]{1})([0-9]+)((\.)?)(([0-9]+)?)$/"
                                            placeholder="Precio"
                                            maxlength="11"
                                            ng-required="true"
