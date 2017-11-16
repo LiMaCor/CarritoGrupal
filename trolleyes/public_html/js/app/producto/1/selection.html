@@ -22,7 +22,7 @@ THE SOFTWARE.
 -->
 
 <div class="modal-header" ng-cloak>
-    <header ob="ob" title="'Selección de'"></header>
+   <header ob="ob" title="'Borrado de ' + objectService.getName(ob)"></header>
 </div>
 <div class="modal-body">
 
@@ -124,7 +124,7 @@ THE SOFTWARE.
                                 <a ng-click="doorder('id', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
                             </th>
                             <th ng-show="visibles.codigo" class="text-center">
-                                <label>Código</label><br/>
+                                <label>Cod.</label><br/>
                                 <a ng-click="doorder('codigo', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
                                 <a ng-click="doorder('codigo', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
                             </th>                            
@@ -142,16 +142,16 @@ THE SOFTWARE.
                                 <label>Precio</label><br/>
                                 <a ng-click="doorder('precio', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
                                 <a ng-click="doorder('precio', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
-                            </th>
+                            </th> 
                             <th  class="text-center">Acciones</th>
                         </tr>
                         <tbody>
                             <tr ng-repeat="obj in page| filter:searchText">
                                 <td ng-show="visibles.id"><b>{{obj.id}}</b></td>
-                                <td ng-show="visibles.codigo"><b>{{obj.codigo}}</b></td>
-                                <td ng-show="visibles.descripcion"><b>{{obj.descripcion}}</b></td>
-                                <td ng-show="visibles.existencias"><b>{{obj.existencias}}</b></td>
-                                <td ng-show="visibles.precio"><b>{{obj.precio}}</b></td>
+                                <td ng-show="visibles.codigo"><b>{{obj.codigo}}</b></td>                                
+                                <td ng-show="visibles.descripcion"><b>{{obj.descripcion}}</b></td>                                                    
+                                <td ng-show="visibles.existencias"><b>{{obj.existencias}}</b></td>                                                    
+                                <td ng-show="visibles.precio"><b>{{obj.precio}}</b></td>                                                    
                                 <td plistoperationbarspa></td>
                             </tr>
                         </tbody>

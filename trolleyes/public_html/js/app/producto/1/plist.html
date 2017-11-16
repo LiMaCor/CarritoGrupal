@@ -202,7 +202,10 @@
                                                     <td>
                                                         <div class="btn-toolbar" role="toolbar">
                                                             <div class="btn-group">
-                                                                <actions id="obj.id" name="ob"></actions>                                                                
+                                                                <actions id="obj.id" name="ob"></actions>
+                                                                <a class="btn btn-default btn-xs" title="Productos" href="linea_pedido/{{profile}}/plistXproducto/{{obj.id}}/1/10">
+                                                                    <span ng-class="objectService.getIcon('producto')"></span>
+                                                                </a>
                                                             </div>
                                                         </div>
                                                     </td>
@@ -221,9 +224,3 @@
         </div>
     </div>
 </div>
-
-
-
-
-
-

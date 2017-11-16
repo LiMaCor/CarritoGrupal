@@ -49,6 +49,8 @@ trolleyes.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/usuario/1/edit/:id', {templateUrl: 'js/app/usuario/1/edit.html', controller: 'UsuarioEdit1Controller', resolve: {auth: authenticationAdministratorPromise}});
         $routeProvider.when('/usuario/1/remove/:id', {templateUrl: 'js/app/usuario/1/remove.html', controller: 'UsuarioRemove1Controller', resolve: {auth: authenticationAdministratorPromise}});
         $routeProvider.when('/usuario/1/plist/:page?/:rpp?', {templateUrl: 'js/app/usuario/1/plist.html', controller: 'UsuarioPList1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        $routeProvider.when('/usuario/1/plistXtipousuario/:id_tipousuario/:page?/:rpp?', {templateUrl: 'js/app/usuario/1/Xtipousuario/plist.html', controller: 'UsuarioXtipousuarioPList1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        $routeProvider.when('/usuario/1/newXtipousuario/:id_tipousuario', {templateUrl: 'js/app/usuario/1/Xtipousuario/new.html', controller: 'UsuarioXtipousuarioNew1Controller', resolve: {auth: authenticationAdministratorPromise}});
         //------------
         $routeProvider.when('/tipousuario/1/view/:id', {templateUrl: 'js/app/tipousuario/1/view.html', controller: 'TipousuarioView1Controller', resolve: {auth: authenticationAdministratorPromise}});
         $routeProvider.when('/tipousuario/1/new/:id?', {templateUrl: 'js/app/tipousuario/1/new.html', controller: 'TipousuarioNew1Controller', resolve: {auth: authenticationAdministratorPromise}});
@@ -75,6 +77,10 @@ trolleyes.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/linea_pedido/1/edit/:id', {templateUrl: 'js/app/linea_pedido/1/edit.html', controller: 'Linea_pedidoEdit1Controller', resolve: {auth: authenticationAdministratorPromise}});
         $routeProvider.when('/linea_pedido/1/remove/:id', {templateUrl: 'js/app/linea_pedido/1/remove.html', controller: 'Linea_pedidoRemove1Controller', resolve: {auth: authenticationAdministratorPromise}});
         $routeProvider.when('/linea_pedido/1/plist/:page?/:rpp?', {templateUrl: 'js/app/linea_pedido/1/plist.html', controller: 'Linea_pedidoPList1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        $routeProvider.when('/linea_pedido/1/plistXpedido/:id_pedido/:page?/:rpp?', {templateUrl: 'js/app/linea_pedido/1/Xpedido/plist.html', controller: 'Linea_pedidoXpedidoPList1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        $routeProvider.when('/linea_pedido/1/newXpedido/:id_pedido', {templateUrl: 'js/app/linea_pedido/1/Xpedido/new.html', controller: 'Linea_pedidoXpedidoNew1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        $routeProvider.when('/linea_pedido/1/plistXproducto/:id_producto/:page?/:rpp?', {templateUrl: 'js/app/linea_pedido/1/Xproducto/plist.html', controller: 'Linea_pedidoXproductoPList1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        $routeProvider.when('/linea_pedido/1/newXproducto/:id_producto', {templateUrl: 'js/app/linea_pedido/1/Xproducto/new.html', controller: 'Linea_pedidoXproductoNew1Controller', resolve: {auth: authenticationAdministratorPromise}});
         //--
         $routeProvider.otherwise({redirectTo: '/'});
     }]);

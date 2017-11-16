@@ -41,11 +41,11 @@ moduloTipousuario.controller('TipousuarioPList1Controller',
                 $scope.rpp = toolService.checkDefault(10, $routeParams.rpp);
                 $scope.neighbourhood = constantService.getGlobalNeighbourhood();
                 //---
+                $scope.objectService = objectService;
+                
                 $scope.orderParams = toolService.checkEmptyString($routeParams.order);
                 $scope.filterParams = toolService.checkEmptyString($routeParams.filter);
-                //---
-                $scope.objectService = objectService;
-                //---            
+                //---      
                 $scope.filter = {};
                 $scope.filter.text = {};
                 $scope.filter.number = {};

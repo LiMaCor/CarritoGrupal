@@ -29,17 +29,19 @@
 'use strict';
 
 moduloProducto.controller('ProductoSelection1Controller',
-        ['$scope', '$uibModalInstance', 'serverCallService', '$location', 'toolService',
-            function ($scope, $modalInstance, serverCallService, $location, toolService) {
+        ['$scope', '$uibModalInstance', 'serverCallService', '$location', 'toolService', 'objectService',
+            function ($scope, $modalInstance, serverCallService, $location, toolService, objectService) {
                 $scope.ob = 'producto';
                 $scope.op = "selection";
                 //---
-                 $scope.numpage = 1;
+                $scope.numpage = 1;
                 $scope.rpp = 10;
                 $scope.neighbourhood = 1;
                 //---
                 $scope.status = null;
                 $scope.debugging = true;
+                //---
+                $scope.objectService = objectService;
                 //---
                 $scope.orderParams = null;
                 $scope.filterParams = null;
@@ -113,7 +115,7 @@ moduloProducto.controller('ProductoSelection1Controller',
                 $scope.dofilter = function (filterType) {
                     if (filterType == 0) {
                         if ($scope.filter.text.field != "" && $scope.filter.text.operator != "" && $scope.filter.text.value != "") {
-                            $scope.filterParams = $scope.filterParams + "+and," + $scope.filter.text.field + "," + $scope.filter.text.operator + "," + $scope.filter.text.value;                            
+                            $scope.filterParams = $scope.filterParams + "+and," + $scope.filter.text.field + "," + $scope.filter.text.operator + "," + $scope.filter.text.value;
                         }
                     }
                     if (filterType == 1) {
@@ -124,11 +126,11 @@ moduloProducto.controller('ProductoSelection1Controller',
                     getData();
                     return false;
                 };
-                
-                
-                
+
+
+
                 $scope.doorder = function (orderField, ascDesc) {
-                    $scope.orderParams =  orderField + ',' + ascDesc;
+                    $scope.orderParams = orderField + ',' + ascDesc;
                     getData();
                     return false;
                 };

@@ -22,7 +22,7 @@ THE SOFTWARE.
 -->
 
 <div class="modal-header" ng-cloak>
-    <header ob="ob" title="'Selección de'"></header>
+    <header ob="ob" title="'Seleccion de ' + objectService.getName(ob)"></header>
 </div>
 <div class="modal-body">
 
@@ -58,7 +58,7 @@ THE SOFTWARE.
                         <p></p>
                     </div>
                     <div role="tabpanel" id="pane1" class="tab-pane fade">
-                        <div class="row">
+                         <div class="row">
                             <div class="col-md-5">
                                 <form class="navbar-form navbar-left" role="form" id="typeFilterForm">
                                     <label class="control-label col-sm-3" for="filterSelection">
@@ -89,7 +89,7 @@ THE SOFTWARE.
                                         orderparams="orderParams"
                                         filterparams="filterParams">
                                     </plistfilterbynumberspa>
-                                </div>
+                                </div>                         
                             </div>
                         </div>
                     </div>
