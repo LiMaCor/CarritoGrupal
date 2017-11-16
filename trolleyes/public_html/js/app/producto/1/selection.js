@@ -46,7 +46,10 @@ moduloProducto.controller('ProductoSelection1Controller',
 
                 $scope.visibles = {};
                 $scope.visibles.id = true;
+                $scope.visibles.codigo = true;
                 $scope.visibles.descripcion = true;
+                $scope.visibles.existencias = true;
+                $scope.visibles.precio = true;
 
                 $scope.closeForm = function (id) {
                     $modalInstance.close(id);

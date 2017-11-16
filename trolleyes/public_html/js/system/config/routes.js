@@ -70,11 +70,11 @@ trolleyes.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/producto/1/remove/:id', {templateUrl: 'js/app/producto/1/remove.html', controller: 'ProductoRemove1Controller', resolve: {auth: authenticationAdministratorPromise}});
         $routeProvider.when('/producto/1/plist/:page?/:rpp?', {templateUrl: 'js/app/producto/1/plist.html', controller: 'ProductoPList1Controller', resolve: {auth: authenticationAdministratorPromise}});
         //--
-        $routeProvider.when('/linea_pedido/1/view/:id', {templateUrl: 'js/app/linea_pedido/1/view.html', controller: 'LineapedidoView1Controller', resolve: {auth: authenticationAdministratorPromise}});
-        $routeProvider.when('/linea_pedido/1/new/:id?', {templateUrl: 'js/app/linea_pedido/1/new.html', controller: 'LineapedidoNew1Controller', resolve: {auth: authenticationAdministratorPromise}});
-        $routeProvider.when('/linea_pedido/1/edit/:id', {templateUrl: 'js/app/linea_pedido/1/edit.html', controller: 'LineapedidoEdit1Controller', resolve: {auth: authenticationAdministratorPromise}});
-        $routeProvider.when('/linea_pedido/1/remove/:id', {templateUrl: 'js/app/linea_pedido/1/remove.html', controller: 'LineapedidoRemove1Controller', resolve: {auth: authenticationAdministratorPromise}});
-        $routeProvider.when('/linea_pedido/1/plist/:page?/:rpp?', {templateUrl: 'js/app/linea_pedido/1/plist.html', controller: 'LineapedidoPList1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        $routeProvider.when('/linea_pedido/1/view/:id', {templateUrl: 'js/app/linea_pedido/1/view.html', controller: 'Linea_pedidoView1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        $routeProvider.when('/linea_pedido/1/new/:id?', {templateUrl: 'js/app/linea_pedido/1/new.html', controller: 'Linea_pedidoNew1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        $routeProvider.when('/linea_pedido/1/edit/:id', {templateUrl: 'js/app/linea_pedido/1/edit.html', controller: 'Linea_pedidoEdit1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        $routeProvider.when('/linea_pedido/1/remove/:id', {templateUrl: 'js/app/linea_pedido/1/remove.html', controller: 'Linea_pedidoRemove1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        $routeProvider.when('/linea_pedido/1/plist/:page?/:rpp?', {templateUrl: 'js/app/linea_pedido/1/plist.html', controller: 'Linea_pedidoPList1Controller', resolve: {auth: authenticationAdministratorPromise}});
         //--
         $routeProvider.otherwise({redirectTo: '/'});
     }]);

@@ -26,7 +26,7 @@
  * THE SOFTWARE.
  */
 'use strict';
-moduloLineapedido.controller('LineapedidoPList1Controller',
+moduloLinea_pedido.controller('Linea_pedidoPList1Controller',
         ['$scope', '$routeParams', '$location', 'serverCallService', 'toolService', 'constantService', 'objectService',
             function ($scope, $routeParams, $location, serverCallService, toolService, constantService, objectService) {
                 $scope.ob = "linea_pedido";

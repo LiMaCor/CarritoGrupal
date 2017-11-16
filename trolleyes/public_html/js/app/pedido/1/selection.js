@@ -46,7 +46,7 @@ moduloPedido.controller('PedidoSelection1Controller',
 
                 $scope.visibles = {};
                 $scope.visibles.id = true;
-                $scope.visibles.descripcion = true;
+                $scope.visibles.fecha = true;
 
                 $scope.filterDate = [{'name': 'fecha', 'longname': 'Fecha'}];
                 $scope.filterNumber = [{'name': 'id', 'longname': 'Identificador'}];

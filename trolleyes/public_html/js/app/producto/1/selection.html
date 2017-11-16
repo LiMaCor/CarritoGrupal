@@ -124,7 +124,7 @@ THE SOFTWARE.
                                 <a ng-click="doorder('id', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
                             </th>
                             <th ng-show="visibles.codigo" class="text-center">
-                                <label>ID.</label><br/>
+                                <label>Código</label><br/>
                                 <a ng-click="doorder('codigo', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
                                 <a ng-click="doorder('codigo', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
                             </th>                            
@@ -134,16 +134,24 @@ THE SOFTWARE.
                                 <a ng-click="doorder('descripcion', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
                             </th>
                             <th ng-show="visibles.existencias" class="text-center">
-                                <label>Descripción</label><br/>
+                                <label>Existencias</label><br/>
                                 <a ng-click="doorder('existencias', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
                                 <a ng-click="doorder('existencias', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
-                            </th>                                              
+                            </th>
+                            <th ng-show="visibles.precio" class="text-center">
+                                <label>Precio</label><br/>
+                                <a ng-click="doorder('precio', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
+                                <a ng-click="doorder('precio', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
+                            </th>
                             <th  class="text-center">Acciones</th>
                         </tr>
                         <tbody>
                             <tr ng-repeat="obj in page| filter:searchText">
                                 <td ng-show="visibles.id"><b>{{obj.id}}</b></td>
-                                <td ng-show="visibles.descripcion"><b>{{obj.descripcion}}</b></td>                                                    
+                                <td ng-show="visibles.codigo"><b>{{obj.codigo}}</b></td>
+                                <td ng-show="visibles.descripcion"><b>{{obj.descripcion}}</b></td>
+                                <td ng-show="visibles.existencias"><b>{{obj.existencias}}</b></td>
+                                <td ng-show="visibles.precio"><b>{{obj.precio}}</b></td>
                                 <td plistoperationbarspa></td>
                             </tr>
                         </tbody>
