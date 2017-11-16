@@ -149,7 +149,7 @@ public class UsuarioSpecificBeanImplementation extends TableGenericBeanImplement
         strColumns += "segundo_apellido,";
         strColumns += "login,";
         strColumns += "pass,";
-        strColumns += "fecha_nacimiento";
+        strColumns += "fecha_nacimiento,";
         strColumns += "email,";
         strColumns += "id_tipousuario";
 
