@@ -38,6 +38,9 @@ moduloServicios.factory('serverCallService',
                             return $http.get(constantService.getAppUrl() + '?ob=' + strObject + '&op=getcount', 'GET', '');
                         }
                     },
+                    list: function (strObject) {
+                        return $http.get(constantService.getAppUrl() + '?ob='+strObject + '&op=list', 'GET', '');
+                    },
                     getPage: function (strObject, rpp, page, filter, order) {
                         if (filter) {
                             if (order) {

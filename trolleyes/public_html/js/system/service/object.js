@@ -45,6 +45,9 @@ moduloServicios.factory('objectService', function () {
                 case "linea_pedido":
                     return 'fa fa-bookmark ';
                     break;
+                case "carrito":
+                    return 'fa fa-cart-plus';
+                    break;
                 default:
                     return null;
             }
@@ -65,6 +68,9 @@ moduloServicios.factory('objectService', function () {
                     break;
                 case "linea_pedido":
                     return 'Linea de pedido ';
+                    break;
+                case "carrito":
+                    return 'Carrito';
                     break;
                 default:
                     return null;

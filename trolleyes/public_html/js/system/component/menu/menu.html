@@ -57,28 +57,16 @@
                         <li ng-class="{ 'active': mn.isActive('/linea_pedido/1/plist')}"><a href="linea_pedido/1/plist"> <i ng-class="mn.object_info.getIcon('linea_pedido')"></i> {{mn.object_info.getName("linea_pedido")}}</a></li>
                     </ul>
                 </li>
-                <!-- Coordinación ------------------------------------------- -->
-                <li class="dropdown" ng-if="mn.session_info.obj_tipousuario.id == 2">
-                    <a class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="fa fa-icon-list-alt"></i>Coordinador<span class="caret"></span></a>
+                <!-- Cliente ------------------------------------------- -->
+                <li class="dropdown" ng-if="mn.session_info.obj_tipousuario.id == 2" ng-class="{ 'active': mn.isActive('/usuario') || mn.isActive('/pedido') || mn.isActive('/tipousuario') }" >
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="fa fa-icon-list-alt"></i>Administrador<span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
-                        <li class="dropdown-header">Medico</li>
-                        <li ng-class="{ active: isActive('/generic/especialidad/plist')}"><a href="generic/especialidad/plist"> <i class="fa fa-address-book-o"></i> Especialidad</a></li>
-                        <li ng-class="{ active: isActive('/generic/categoriaprofesional/plist')}"><a href="generic/categoriaprofesional/plist"> <i class="fa fa-address-book-o"></i> Categoria Profesional</a></li>                   
-                        <li class="dropdown-header">Centro sanitario</li>
-                        <li ng-class="{ active: isActive('/generic/servicio/plist')}"><a href="generic/servicio/plist"> <i class="fa fa-address-book-o"></i> Servicio</a></li>
-                        <li ng-class="{ active: isActive('/generic/tiposervicio/plist')}"><a href="generic/tiposervicio/plist"> <i class="fa fa-address-book-o"></i> Tipo de servicio</a></li>
-                        <li ng-class="{ active: isActive('/generic/tipodependencia/plist')}"><a href="generic/tipodependencia/plist"> <i class="fa fa-address-book-o"></i> Tipo de dependencia</a></li>
-                        <li class="dropdown-header">Episodio</li>
-                        <li ng-class="{ active: isActive('/generic/tipoepisodio/plist')}"><a href="generic/tipoepisodio/plist"> <i class="fa fa-address-book-o"></i> Tipo de episodio</a></li>
-                        <li ng-class="{ active: isActive('/generic/modalidadepisodio/plist')}"><a href="generic/modalidadepisodio/plist"> <i class="fa fa-address-book-o"></i> Modalidad del episodio</a></li>
-                        <li ng-class="{ active: isActive('/generic/circunstanciasalta/plist')}"><a href="generic/circunstanciasalta/plist"> <i class="fa fa-address-book-o"></i> Circunstancias de alta</a></li>
-                        <li ng-class="{ active: isActive('/generic/destinoalta/plist')}"><a href="generic/destinoalta/plist"> <i class="fa fa-address-book-o"></i> Destino de alta</a></li>
-
+                        <li class="dropdown-header">Usuarios</li>
+                        <li ng-class="{ 'active': mn.isActive('/pedido/2/plist/')}"><a href="pedido/2/plist/1"> <i ng-class="mn.object_info.getIcon('pedido')"></i> {{mn.object_info.getName("pedido")}}</a></li>
+                        <li ng-class="{ 'active': mn.isActive('/producto/2/plist')}"><a href="producto/2/plist"> <i ng-class="mn.object_info.getIcon('producto')"></i> {{mn.object_info.getName("producto")}}</a></li>
+                        <li ng-class="{ 'active': mn.isActive('/linea_pedido/2/plist')}"><a href="linea_pedido/2/plist"> <i ng-class="mn.object_info.getIcon('linea_pedido')"></i> {{mn.object_info.getName("linea_pedido")}}</a></li>
                     </ul>
                 </li>
-
-
-
                 <!-- Profesor ------------------------------------------- -->
                 <li class="dropdown" ng-if="mn.session_info.obj_tipousuario.id == 3">
                     <a class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="fa fa-icon-list-alt"></i>Profesor<span class="caret"></span></a>
@@ -91,9 +79,6 @@
                         <li ng-class="{ active: isActive('/medico/3/plist')}"><a href="medico/3/plist"> <i class="fa fa-address-book-o"></i> Mis Médicos</a></li>                                    
                     </ul>
                 </li>
-
-
-
                 <!-- Alumno ------------------------------------------- -->
                 <li class="dropdown" ng-if="mn.session_info.obj_tipousuario.id == 4">
                     <a class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="fa fa-icon-list-alt"></i>Alumno<span class="caret"></span></a>
@@ -102,9 +87,6 @@
                         <li ng-class="{ active: isActive('/paciente/4/plist')}"><a href="paciente/4/plist"> <i class="fa fa-address-book-o"></i> Paciente</a></li>
                     </ul>
                 </li>
-
-
-
                 <!-- Invitado ------------------------------------------- -->
                 <li class="dropdown"  ng-if="mn.session_info.obj_tipousuario.id == 5">
                     <a class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="fa fa-icon-list-alt"></i>Visitante<span class="caret"></span></a>
@@ -123,6 +105,7 @@
 
             <ul class="nav navbar-nav navbar-right">
                 <!-- <li class="active"><a href="./">Fixed top <span class="sr-only">(current)</span></a></li> -->
+                <li ng-class="{ 'active': mn.isActive('/carrito/2/plist')}"><a href="carrito/2/plist"> <i ng-class="mn.object_info.getIcon('carrito')"></i> {{mn.object_info.getName("carrito")}}</a></li>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown">
                         <i class="fa fa-user"></i>

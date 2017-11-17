@@ -1,0 +1,242 @@
+<!--
+/*
+ * Copyright (c) 2017 by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com)
+ *
+ * TROLLEYES helps you to learn how to develop easily AJAX web applications
+ *
+ * Sources at https://github.com/rafaelaznar/trolleyes
+ *
+ * TROLLEYES is distributed under the MIT License (MIT)
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+-->
+<menu></menu>
+<div id="wrapper" ng-cloak>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <header ob="ob" title="'Listado de ' + objectService.getName(ob)"></header>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-xs-12" ng-if="status">
+                                <div class="alert alert-danger" role="alert">
+                                    <h3 class="bg-danger">{{status}}</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12" ng-if="!status">
+                                <div role="tabpanel">
+                                    <ul class="nav nav-tabs" role="tablist">
+                                        <li role="presentation" class="active"><a data-target="#pane0" aria-controls="pane0" role="tab" data-toggle="tab" aria-expanded="false">Consulta</a></li>
+                                        <li role="presentation"><a data-target="#pane1" aria-controls="pane1" role="tab" data-toggle="tab">Filtro de servidor</a></li>
+                                        <li role="presentation"><a data-target="#pane2" aria-controls="pane2" role="tab" data-toggle="tab">Filtro de cliente</a></li>
+                                        <li role="presentation"><a data-target="#pane3" aria-controls="pane3" role="tab" data-toggle="tab">Nuevo {{obtitle}}</a></li>
+                                    </ul>
+                                    <div class="tab-content">
+                                        <div role="tabpanel" id="pane0" class="tab-pane fade active in">
+                                            <p></p>
+                                            <div class="row">
+                                                <div class="col-lg-3 col-md-3 col-sm-12">
+                                                    <cplistinfo url="url"
+                                                                numpage="numpage"
+                                                                rpp="rpp"
+                                                                registers="registers"
+                                                                orderparams="orderParams"
+                                                                filterparams="filterParams"
+                                                                searchtext="searchText">
+                                                    </cplistinfo>
+                                                </div>
+                                                <div class="col-lg-6  col-md-6 col-sm-8 text-center">
+                                                    <cplistpagination url="url"
+                                                                      numpage="numpage"
+                                                                      rpp="rpp"
+                                                                      pages="pages"
+                                                                      neighbourhood="neighbourhood"
+                                                                      filterParams="filterParams"
+                                                                      orderParams="orderParams"
+                                                                      sfilterParams="sfilterParams">
+                                                    </cplistpagination>
+                                                </div>
+                                                <div class="col-lg-3  col-md-3 col-sm-4 text-center">
+                                                    <cplistrpp url="url"
+                                                               numpage="numpage"
+                                                               rpp="rpp"
+                                                               filterParams="filterParams"
+                                                               orderParams="orderParams">
+                                                    </cplistrpp>
+                                                </div>
+                                            </div>
+                                            <p></p>
+                                        </div>
+                                        <div role="tabpanel" id="pane1" class="tab-pane fade">
+                                            <div class="row">
+                                                <div class="col-md-5">
+                                                    <form class="navbar-form navbar-left" role="form" id="typeFilterForm">
+                                                        <label class="control-label col-sm-3" for="filterSelection">
+                                                            Selecciona filtro:
+                                                        </label>
+                                                        <select class="navbar-form navbar-left" ng-model="filterType" convert-to-number id="filterSelection">
+                                                            
+                                                            <option value="1">Filtrar por valor</option>
+                                                            <option value="2">Filtrar por pedido</option>
+                                                           <option value="3">Filtrar por producto</option>
+                                                                                                                  
+                                                        </select>
+                                                    </form>
+                                                </div>
+                                                <div class="col-md-7">
+                                                   
+                                                    <div ng-show="filterType == 1">
+                                                        <cplistfilterbynumber
+                                                            url="url"
+                                                            fields="filterNumber"
+                                                            rpp="rpp"
+                                                            numpage="numpage"
+                                                            orderparams="orderParams"
+                                                            filterparams="filterParams">
+                                                        </cplistfilterbynumber>
+                                                    </div>
+                                                    <p></p>
+                                                   
+                                                    <div ng-show="filterType == 2">
+                                                        <cplistfilterbyforeign
+                                                            url="url"
+                                                            field="filterPedido"
+                                                            rpp="rpp"
+                                                            numpage="numpage"
+                                                            orderparams="orderParams"
+                                                            filterparams="filterParams"
+                                                            profile="profile">
+                                                        </cplistfilterbyforeign>
+                                                    </div>
+                                                    <p></p>
+                                                   
+                                                    <div ng-show="filterType == 3">
+                                                        <cplistfilterbyforeign
+                                                            url="url"
+                                                            field="filterProducto"
+                                                            rpp="rpp"
+                                                            numpage="numpage"
+                                                            orderparams="orderParams"
+                                                            filterparams="filterParams"
+                                                            profile="profile">
+                                                        </cplistfilterbyforeign>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div role="tabpanel" id="pane2" class="tab-pane fade">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <p></p>
+                                                    <form class="navbar-form navbar-right" role="form" action="Controller" method="post" id="empresaForm">
+                                                        <input id="inputFiltervalueClient" class="form-control" name="filtervalue" type="text" size="20" maxlength="50" value="" width="100" style="width: 140px" placeholder="Valor" ng-model="searchText">
+                                                    </form>
+                                                    <p></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div role="tabpanel" id="pane3" class="tab-pane fade">
+                                            <div class="row">
+                                                <div class="col-md-12 text-center">
+                                                    <p><br>
+                                                        <a class="btn btn-primary" href="{{ob}}/{{profile}}/new">Crear un nuevo {{ob}}</a>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="datos" ng-if="!status">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <div class="text-center">
+                                                <ul class="list-inline">
+                                                    <li><input type="checkbox" ng-model="visibles.id" ng-checked="visibles.id">Ident.</li>
+                                                    <li><input type="checkbox" ng-model="visibles.cantidad" ng-checked="visibles.cantidad">Cantidad</li>
+                                                    <li><input type="checkbox" ng-model="visibles.id_pedido" ng-checked="visibles.id_pedido" >Pedido</li>
+                                                    <li><input type="checkbox" ng-model="visibles.id_producto" ng-checked="visibles.id_producto" >Producto</li>
+                                                    
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <table class="table table-responsive table-bordered table-hover table-striped table-condensed dataTable no-footer">
+                                            <tr>
+                                                <th ng-show="visibles.id" class="text-center">
+                                                    <label>ID.</label><br/>
+                                                    <a ng-click="doorder('id', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
+                                                    <a ng-click="doorder('id', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
+                                                </th>
+                                                <th ng-show="visibles.cantidad" class="text-center">
+                                                    <label>Cantidad</label><br/>
+                                                    <a ng-click="doorder('cantidad', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
+                                                    <a ng-click="doorder('cantidad', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
+                                                </th>
+                                                <th ng-show="visibles.id_pedido" class="text-center">
+                                                    <label>Pedido</label><br/>
+                                                    <a ng-click="doorder('id_pedido', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
+                                                    <a ng-click="doorder('id_pedido', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
+                                                </th>
+                                                <th ng-show="visibles.id_producto" class="text-center">
+                                                    <label>Producto</label><br/>
+                                                    <a ng-click="doorder('id_producto', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
+                                                    <a ng-click="doorder('id_producto', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
+                                                </th>
+                                                
+                                                <th  class="text-center">Acciones</th>
+                                            </tr>
+                                            <tbody>
+                                                <tr ng-repeat="obj in page| filter:searchText">
+                                                    <td ng-show="visibles.id"><b>{{obj.id}}</b></td>
+                                                    <td ng-show="visibles.cantidad"><b>{{obj.cantidad}}</b></td>
+                                    
+                                                    <td ng-show="visibles.id_pedido" class="text-center">
+                                                        <a href="pedido/{{profile}}/view/{{obj.obj_pedido.id}}">{{obj.obj_pedido.fecha}}</a>
+                                                    </td>
+                                                    <td ng-show="visibles.id_producto" class="text-center">
+                                                        <a href="producto/{{profile}}/view/{{obj.obj_producto.id}}">{{obj.obj_producto.descripcion}}</a>
+                                                    </td>
+                                                    <td>
+                                                        <div class="btn-toolbar" role="toolbar">
+                                                            <div class="btn-group">
+                                                                <actions id="obj.id" name="ob"></actions>
+                                                             
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <a class="btn btn-default" href="home">Cerrar</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer" style="font-family: Questrial, serif;" ng-include="'js/system/include/footer.html'"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

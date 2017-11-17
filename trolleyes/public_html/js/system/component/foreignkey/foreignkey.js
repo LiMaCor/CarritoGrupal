@@ -9,7 +9,8 @@ moduloDirectivas.component('foreignKey', {
         reference: '<',
         description: '<',
         profile: '<',
-        required: '<'
+        required: '<',
+        disabled: '<'
     }
 });
 // $postLink $onInit  $onChanges  $onDestroy

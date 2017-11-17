@@ -222,7 +222,8 @@
                                         reference="'tipousuario'"
                                         profile="profile"
                                         description="['descripcion']"
-                                        required="true">
+                                        required="true"
+                                        disabled="false">
                                     </foreign-key>
                                     <span class="help-block" ng-if="!outerForm.obj_tipousuario.$pristine && outerForm.obj_tipousuario.$error.required">El campo es obligatorio</span>
                                     <span class="help-block" ng-if="!outerForm.obj_tipousuario.$pristine && outerForm.obj_tipousuario.$error.exists">El tipo de usuario no existe</span>
