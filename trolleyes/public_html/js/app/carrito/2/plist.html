@@ -51,7 +51,6 @@
                                         <li role="presentation" class="active"><a data-target="#pane0" aria-controls="pane0" role="tab" data-toggle="tab" aria-expanded="false">Consulta</a></li>
                                         <li role="presentation"><a data-target="#pane1" aria-controls="pane1" role="tab" data-toggle="tab">Filtro de servidor</a></li>
                                         <li role="presentation"><a data-target="#pane2" aria-controls="pane2" role="tab" data-toggle="tab">Filtro de cliente</a></li>
-                                        <li role="presentation"><a data-target="#pane3" aria-controls="pane3" role="tab" data-toggle="tab">Nuevo {{obtitle}}</a></li>
                                     </ul>
                                     <div class="tab-content">
                                         <div role="tabpanel" id="pane0" class="tab-pane fade active in">
@@ -98,7 +97,7 @@
                                                         </label>
                                                         <select class="navbar-form navbar-left" ng-model="filterType" convert-to-number id="filterSelection">
                                                             <option value="0">Filtrar por código o nombre</option>
-                                                            <option value="1">Filtrar por id, existencias o precio</option>                                                                                        
+                                                            <option value="1">Filtrar por id, cantidad o precio</option>                                                                                        
                                                         </select>
                                                     </form>
                                                 </div>
@@ -135,15 +134,6 @@
                                                         <input id="inputFiltervalueClient" class="form-control" name="filtervalue" type="text" size="20" maxlength="50" value="" width="100" style="width: 140px" placeholder="Valor" ng-model="searchText">
                                                     </form>
                                                     <p></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div role="tabpanel" id="pane3" class="tab-pane fade">
-                                            <div class="row">
-                                                <div class="col-md-12 text-center">
-                                                    <p><br>
-                                                        <a class="btn btn-primary" href="{{ob}}/{{profile}}/new">Crear un nuevo {{ob}}</a>
-                                                    </p>
                                                 </div>
                                             </div>
                                         </div>
