@@ -57,18 +57,19 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr class="text-left"><td>id</td><td>{{bean.id}}</td></tr>
-                                        <tr><td>Cod.</td><td>{{bean.codigo}}</td></tr>
-                                        <tr><td>Descripcion</td><td>{{bean.descripcion}}</td></tr>
-                                        <tr><td>Existencias</td><td>{{bean.existencias}}</td></tr>
-                                        <tr><td>Precio</td><td>{{bean.precio}}</td></tr>                 
+                                        <tr class="text-left"><td>Id</td><td>{{bean.id}}</td></tr>
+                                        <tr><td>Imágen</td><td><img src="{{bean.imagen}}" alt="" width="250" height="150"></td></tr>
+                                        <tr><td>Codigo</td><td>{{bean.codigo}}</td></tr>
+                                        <tr><td>Existencias</td><td>{{bean.existencias}}</td></tr> 
+                                        <tr><td>Precio</td><td>{{bean.precio | currency : "€" : 2}}</td></tr> 
+                                        <tr><td>Descripción</td><td>{{bean.descripcion}}</td></tr>                 
                                     </tbody>
                                 </table>
                                 <div class="control-group text-right">
                                     <div class="controls">
                                         <a class="btn btn-primary" href="{{ob}}/{{profile}}/edit/{{bean.id}}">Editar</a>
                                         <a class="btn btn-danger" href="{{ob}}/{{profile}}/remove/{{bean.id}}">Borrar</a>
-                                        <a class="btn btn-info" href="{{ob}}/{{profile}}/plist">Ir al listado de {{objectService.getName(ob)}}</a>
+                                        <a class="btn btn-info" href="{{ob}}/{{profile}}/plist">Ir al listado de {{obtitle}}</a>
                                         <a class="btn btn-default" ng-click="back()">Volver</a>
                                         <a class="btn btn-default" href="home">Cerrar</a>
                                     </div>

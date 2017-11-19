@@ -38,8 +38,17 @@ moduloServicios.factory('serverCallService',
                             return $http.get(constantService.getAppUrl() + '?ob=' + strObject + '&op=getcount', 'GET', '');
                         }
                     },
+
                     list: function (strObject) {
-                        return $http.get(constantService.getAppUrl() + '?ob='+strObject + '&op=list', 'GET', '');
+                        return $http.get(constantService.getAppUrl() + '?ob=' + strObject + '&op=list', 'GET', '');
+                    },
+
+                    empty: function (strObject) {
+                        return $http.get(constantService.getAppUrl() + '?ob=' + strObject + '&op=empty', 'GET', '');
+                    },
+
+                    buy: function (strObject) {
+                        return $http.get(constantService.getAppUrl() + '?ob=' + strObject + '&op=buy', 'GET', '');
                     },
                     getPage: function (strObject, rpp, page, filter, order) {
                         if (filter) {
@@ -62,6 +71,7 @@ moduloServicios.factory('serverCallService',
                     remove: function (strClass, id) {
                         return $http.get(constantService.getAppUrl() + '?ob=' + strClass + '&op=remove&id=' + id, 'GET', '');
                     },
+
                     set: function (strClass, jsonfile) {
                         $http.defaults.headers.put['Content-Type'] = 'application/json;charset=utf-8';
                         return $http.get(constantService.getAppUrl() + '?ob=' + strClass + '&op=set', {params: jsonfile});

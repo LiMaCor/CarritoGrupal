@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<menu></menu>
+<div id="wrapper" ng-cloak>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <header ob="ob" title="'Alta de ' + objectService.getName(ob) + ' para el producto ' + productobean.descripcion"></header>                       
+                    </div>
+                    <div class="panel-body">
+                        <div class="alert alert-success" role="alert" ng-if="debugging">
+                            <h4>Debug:</h4>
+                            {{bean|json}}
+                        </div>
+                        <form name="outerForm" class="form-horizontal text-left"  ng-if="!status">
+                            <!------------------------------------------------->
+                            <div class="form-group" id="id-group">
+                                <label class="control-label col-sm-2" for="identificador">
+                                    <span ng-show="true">*</span>
+                                    Identificador
+                                </label>
+                                <div class="control col-sm-2">
+                                    <input type="text"
+                                           ng-model="bean.id"
+                                           id="id"
+                                           class="form-control"
+                                           name="id"
+                                           placeholder="id"
+                                           size="15"
+                                           disabled />
+                                </div>
+                            </div>
+                            <!------------------------------------------------->
+                             <div class="form-group" id="cantidad-group"
+                                 ng-class="{'has-error':(outerForm.cantidad.$error.pattern && !outerForm.cantidad.$pristine) ||
+                                                     (outerForm.cantidad.$error.required && !outerForm.cantidad.$pristine)}">
+                                <label class="control-label col-sm-2" for="iva">
+                                    <span ng-show="true">*</span>
+                                    Cantidad
+                                </label>
+                                <div class="control col-sm-3">
+                                    <input ng-model="bean.cantidad"
+                                           type="text"
+                                           class="form-control"
+                                           id="cantidad"
+                                           name="cantidad"
+                                           ng-pattern="/^[0-9]+$/"
+                                           placeholder="Cantidad"
+                                           maxlength="100"
+                                           ng-required="true"
+                                           />
+                                    <span class="help-block" ng-if="!outerForm.cantidad.$pristine && outerForm.cantidad.$error.required">El campo es obligatorio</span>
+                                    <span class="help-block" ng-if="!outerForm.cantidad.$pristine && outerForm.cantidad.$error.pattern">El campo no tiene formato adecuado: Los nombres deben comenzar con mayúsculas.</span>
+                                </div>
+                            </div>
+                            
+                            <!------------------------------------------------->
+                            <div class="form-group" id="obj_pedido-group"
+                                 ng-class="{'has-error': outerForm.obj_pedido.$error.exists}">
+                                <label class="control-label col-sm-2" for="obj_pedido">
+                                    * Pedido
+                                </label>
+                                <div class="col-md-4">
+                                    <foreign-key
+                                        bean="bean.obj_pedido"
+                                        form="outerForm"
+                                        name="'obj_pedido'"
+                                        reference="'pedido'"
+                                        profile="profile"
+                                        description="['id']"
+                                        required="true">
+                                    </foreign-key>
+                                    <span class="help-block" ng-if="!outerForm.obj_pedido.$pristine && outerForm.obj_pedido.$error.required">El campo es obligatorio</span>
+                                    <span class="help-block" ng-if="!outerForm.obj_pedido.$pristine && outerForm.obj_pedido.$error.exists">El tipo de usuario no existe</span>
+                                </div>
+                            </div>
+                             <!------------------------------------------------->
+                            <div class="form-group" id="obj_producto-group"
+                                 ng-class="{'has-error': outerForm.obj_producto.$error.exists}">
+                                <label class="control-label col-sm-2" for="obj_producto">
+                                    * Producto
+                                </label>
+                                <div class="col-md-4">
+                                    <foreign-key
+                                        bean="bean.obj_producto"
+                                        form="outerForm"
+                                        name="'obj_producto'"
+                                        reference="'producto'"
+                                        profile="profile"
+                                        description="['descripcion']"
+                                        required="true"
+                                         disabled="true">
+                                    </foreign-key>
+                                    <span class="help-block" ng-if="!outerForm.obj_producto.$pristine && outerForm.obj_producto.$error.required">El campo es obligatorio</span>
+                                    <span class="help-block" ng-if="!outerForm.obj_producto.$pristine && outerForm.obj_producto.$error.exists">El tipo de usuario no existe</span>
+                                </div>
+                            </div>
+                            <!------------------------------------------------->
+                            <div class="control-group text-right">                               
+                                <div class="controls">
+                                    <a class="btn btn-primary" ng-click="save()" ng-disabled="!outerForm.$valid">Guardar</a>
+                                    <a class="btn btn-info" ng-href="{{ob}}/{{profile}}/plist">Ir al listado de {{ob}}</a>
+                                    <a class="btn btn-default" ng-click="back()">Volver</a>
+                                    <a class="btn btn-default" ng-click="close()">Cerrar</a>
+                                </div>
+                            </div>
+                            <!------------------------------------------------->
+                        </form>
+                        <div ng-if="status">
+                            <div class="alert alert-success" ng-if="response.status == 200">
+                                <h2>{{status}}</h2>
+                                <div class="control-group text-right">
+                                    <div class="controls">
+                                        <a class="btn btn-success" ng-href="{{ob}}/{{profile}}/view/{{bean.id}}">Ver registro</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="alert alert-danger" ng-if="response.status != 200">
+                                <div class="control-group text-right">
+                                    <div class="controls">
+                                        <h2>{{status}}</h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="control-group text-right">
+                                <div class="controls">
+                                    <a class="btn btn-info" ng-href="{{ob}}/{{profile}}/plist">Ir al listado</a>
+                                    <a class="btn btn-default" ng-click="back()">Volver</a>
+                                    <a class="btn btn-default" href="home">Cerrar</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer" style="font-family: Questrial, serif;" ng-include="'js/system/include/footer.html'"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

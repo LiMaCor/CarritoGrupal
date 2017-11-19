@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<menu></menu>
+<div id="wrapper" ng-cloak>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <header ob="ob" title="'Borrado de ' + objectService.getName(ob)"></header>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row-fluid" ng-if="status">
+                            <div class="col-xs-12">
+                                <div class="alert alert-danger" role="alert">
+                                    <br>
+                                    <h3 class="bg-danger">{{status}}</h3>
+                                    <br>
+                                    <a class="btn btn-default" ng-click="back()">Volver</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row-fluid" ng-if="!status">
+                            <div class="span6 offset3">
+                             
+                                <div class="control-group text-right">
+                                    <div class="controls">
+                                        <div>¿Está seguro de que desea vaciar el carro?</div>
+                                        <a class="btn btn-danger" ng-click="empty()">Si</a>
+                                        <a class="btn btn-default" ng-click="back()">No</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer" style="font-family: Questrial, serif;" ng-include="'js/system/include/footer.html'"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

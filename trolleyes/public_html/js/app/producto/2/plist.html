@@ -51,7 +51,6 @@
                                         <li role="presentation" class="active"><a data-target="#pane0" aria-controls="pane0" role="tab" data-toggle="tab" aria-expanded="false">Consulta</a></li>
                                         <li role="presentation"><a data-target="#pane1" aria-controls="pane1" role="tab" data-toggle="tab">Filtro de servidor</a></li>
                                         <li role="presentation"><a data-target="#pane2" aria-controls="pane2" role="tab" data-toggle="tab">Filtro de cliente</a></li>
-                                        <li role="presentation"><a data-target="#pane3" aria-controls="pane3" role="tab" data-toggle="tab">Nuevo {{obtitle}}</a></li>
                                     </ul>
                                     <div class="tab-content">
                                         <div role="tabpanel" id="pane0" class="tab-pane fade active in">
@@ -138,37 +137,12 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div role="tabpanel" id="pane3" class="tab-pane fade">
-                                            <div class="row">
-                                                <div class="col-md-12 text-center">
-                                                    <p><br>
-                                                        <a class="btn btn-primary" href="{{ob}}/{{profile}}/new">Crear un nuevo {{ob}}</a>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
                                 <div id="datos" ng-if="!status">
                                     <div class="panel panel-default">
-                                        <div class="panel-heading">
-                                            <div class="text-center">
-                                                <ul class="list-inline">
-                                                    <li><input type="checkbox" ng-model="visibles.id" ng-checked="visibles.id">Ident.</li>
-                                                    <li><input type="checkbox" ng-model="visibles.codigo" ng-checked="visibles.codigo">Cod.</li>
-                                                    <li><input type="checkbox" ng-model="visibles.descripcion" ng-checked="visibles.descripcion" >Nombre</li>
-                                                    <li><input type="checkbox" ng-model="visibles.existencias" ng-checked="visibles.existencias" >Existencias</li>
-                                                    <li><input type="checkbox" ng-model="visibles.precio" ng-checked="visibles.precio" >Precio</li>                                            
-                                                </ul>
-                                            </div>
-                                        </div>
                                         <table class="table table-responsive table-bordered table-hover table-striped table-condensed dataTable no-footer">
                                             <tr>
-                                                <th ng-show="visibles.id" class="text-center">
-                                                    <label>ID.</label><br/>
-                                                    <a ng-click="doorder('id', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
-                                                    <a ng-click="doorder('id', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
-                                                </th>
                                                 <th ng-show="visibles.codigo" class="text-center">
                                                     <label>Cod.</label><br/>
                                                     <a ng-click="doorder('codigo', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
@@ -188,37 +162,27 @@
                                                     <label>Precio</label><br/>
                                                     <a ng-click="doorder('precio', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
                                                     <a ng-click="doorder('precio', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
-                                                </th>                                             
-                                                <th  class="text-center">Acciones</th>
+                                                </th>
                                             </tr>
-                                            <tbody>
-                                                <tr ng-repeat="obj in page| filter:searchText">
-                                                    <td ng-show="visibles.id"><b>{{obj.id}}</b></td>
-                                                    <td ng-show="visibles.codigo"><b>{{obj.codigo}}</b></td>
-                                                    <td ng-show="visibles.descripcion">{{obj.descripcion}}</td>
-                                                    <td ng-show="visibles.existencias">{{obj.existencias}}</td>
-                                                    <td ng-show="visibles.precio">{{obj.precio | currency : "€":2}}</td>                                               
-                                                    </td>
-                                                    <td>
-                                                        <div class="btn-toolbar" role="toolbar">
-                                                            <div class="btn-group">
-                                                                <actions id="obj.id" name="ob"></actions>
-                                                                <a class="btn btn-default btn-xs" title="Productos" href="linea_pedido/{{profile}}/plistXproducto/{{obj.id}}/1/10">
-                                                                    <span ng-class="objectService.getIcon('producto')"></span>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
                                         </table>
                                     </div>
+                                    <div class="prod-panel" ng-repeat="obj in page| filter:searchText">
+                                         <div class="thumb"><img src="images/thumb.png" alt="" /></div>
+                                         <div class="ref">ref: {{obj.codigo}}</div>
+                                         <div class="prod_name"><b>{{obj.descripcion}}</b></div>
+                                         <div class="existencias">{{obj.existencias}}</div>
+                                         <div class="precio">{{obj.precio| currency : "€":2}}</div> 
+                                         <div class="input-group spinner">
+                                             <input type="number" value="1" step="1" min="0" max="9999" name="cantidad" class="form-control" >
+                                             <a class="btn btn-default" href="">Añadir</a>
+                                         </div>
+                                     </div>
+                                     <a class="btn btn-default" href="home">Cerrar</a>
                                 </div>
-                                <a class="btn btn-default" href="home">Cerrar</a>
                             </div>
                         </div>
+                        <div class="panel-footer" style="font-family: Questrial, serif;" ng-include="'js/system/include/footer.html'"></div>
                     </div>
-                    <div class="panel-footer" style="font-family: Questrial, serif;" ng-include="'js/system/include/footer.html'"></div>
                 </div>
             </div>
         </div>

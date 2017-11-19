@@ -52,6 +52,8 @@ trolleyes.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/usuario/1/plistXtipousuario/:id_tipousuario/:page?/:rpp?', {templateUrl: 'js/app/usuario/1/Xtipousuario/plist.html', controller: 'UsuarioXtipousuarioPList1Controller', resolve: {auth: authenticationAdministratorPromise}});
         $routeProvider.when('/usuario/1/newXtipousuario/:id_tipousuario', {templateUrl: 'js/app/usuario/1/Xtipousuario/new.html', controller: 'UsuarioXtipousuarioNew1Controller', resolve: {auth: authenticationAdministratorPromise}});
         //------------
+        $routeProvider.when('/usuario/2/edit/:id', {templateUrl: 'js/app/usuario/2/edit.html', controller: 'UsuarioEdit2Controller', resolve: {auth: authenticationClientPromise}});
+        //------------
         $routeProvider.when('/tipousuario/1/view/:id', {templateUrl: 'js/app/tipousuario/1/view.html', controller: 'TipousuarioView1Controller', resolve: {auth: authenticationAdministratorPromise}});
         $routeProvider.when('/tipousuario/1/new/:id?', {templateUrl: 'js/app/tipousuario/1/new.html', controller: 'TipousuarioNew1Controller', resolve: {auth: authenticationAdministratorPromise}});
         $routeProvider.when('/tipousuario/1/edit/:id', {templateUrl: 'js/app/tipousuario/1/edit.html', controller: 'TipousuarioEdit1Controller', resolve: {auth: authenticationAdministratorPromise}});
@@ -90,8 +92,15 @@ trolleyes.config(['$routeProvider', function ($routeProvider) {
         //--
         $routeProvider.when('/linea_pedido/2/view/:id', {templateUrl: 'js/app/linea_pedido/2/view.html', controller: 'Linea_pedidoView2Controller', resolve: {auth: authenticationClientPromise}});
         $routeProvider.when('/linea_pedido/2/plist/:page?/:rpp?', {templateUrl: 'js/app/linea_pedido/2/plist.html', controller: 'Linea_pedidoPList2Controller', resolve: {auth: authenticationClientPromise}});
+        $routeProvider.when('/linea_pedido/2/newXproducto/:id_producto', {templateUrl: 'js/app/linea_pedido/2/Xproducto/new.html', controller: 'Linea_pedidoXproductoNew2Controller', resolve: {auth: authenticationClientPromise}});
+        $routeProvider.when('/linea_pedido/2/plistXproducto/:id_producto/:page?/:rpp?', {templateUrl: 'js/app/linea_pedido/2/Xproducto/plist.html', controller: 'Linea_pedidoXproductoPList2Controller', resolve: {auth: authenticationClientPromise}});
+        $routeProvider.when('/linea_pedido/2/newXpedido/:id_pedido', {templateUrl: 'js/app/linea_pedido/2/Xpedido/new.html', controller: 'Linea_pedidoXpedidoNew2Controller', resolve: {auth: authenticationClientPromise}});
+        $routeProvider.when('/linea_pedido/2/plistXpedido/:id_pedido/:page?/:rpp?', {templateUrl: 'js/app/linea_pedido/2/Xpedido/plist.html', controller: 'Linea_pedidoXpedidoPList2Controller', resolve: {auth: authenticationClientPromise}});
         //--
         $routeProvider.when('/carrito/2/plist/:page?/:rpp?', {templateUrl: 'js/app/carrito/2/plist.html', controller: 'CarritoPList2Controller', resolve: {auth: authenticationClientPromise}});
+        $routeProvider.when('/carrito/2/remove/:id', {templateUrl: 'js/app/carrito/2/remove.html', controller: 'CarritoRemove2Controller', resolve: {auth: authenticationClientPromise}});
+        $routeProvider.when('/carrito/2/empty/', {templateUrl: 'js/app/carrito/2/empty.html', controller: 'CarritoEmpty2Controller', resolve: {auth: authenticationClientPromise}});
+        $routeProvider.when('/carrito/2/buy/:page?/:rpp?', {templateUrl: 'js/app/carrito/2/buy.html', controller: 'CarritoBuy2Controller', resolve: {auth: authenticationClientPromise}});
         //--
         $routeProvider.otherwise({redirectTo: '/'});
     }]);

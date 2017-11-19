@@ -27,8 +27,8 @@
  */
 'use strict';
 moduloProducto.controller('ProductoView2Controller',
-        ['$scope', '$routeParams', 'serverCallService', '$location', 'sessionService', 'constantService','objectService',
-            function ($scope, $routeParams, serverCallService, $location, sessionService, constantService,objectService) {
+        ['$scope', '$routeParams', 'serverCallService', '$location', 'sessionService', 'constantService', 'objectService',
+            function ($scope, $routeParams, serverCallService, $location, sessionService, constantService, objectService) {
                 $scope.ob = "producto";
                 $scope.op = "view";
                 $scope.profile = 2;
@@ -38,7 +38,6 @@ moduloProducto.controller('ProductoView2Controller',
                 $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op;
                 //---
                 $scope.id = $routeParams.id;
-                //---
                 $scope.objectService = objectService;
                 //---
                 serverCallService.getOne($scope.ob, $scope.id).then(function (response) {
