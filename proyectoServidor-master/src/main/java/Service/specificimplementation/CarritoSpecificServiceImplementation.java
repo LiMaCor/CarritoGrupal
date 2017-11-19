@@ -26,7 +26,6 @@ import javax.servlet.http.HttpServletRequest;
  *
  * @author Julian
  */
-
 public class CarritoSpecificServiceImplementation implements TableServiceCarritoInterface, ViewServiceCarritoInterface {
 
     HttpServletRequest oRequest = null;
@@ -67,41 +66,43 @@ public class CarritoSpecificServiceImplementation implements TableServiceCarrito
         if (this.checkPermission("add")) {
             ArrayList<CarritoBean> alCarrito = (ArrayList) oRequest.getSession().getAttribute("carrito");
             ReplyBean oReplyBean = null;
-            CarritoBean oCarritoBean = null;
+            CarritoBean oCarritoBeanEnCarrito = null;
             int id = Integer.parseInt(oRequest.getParameter("id"));
             int cantidad = Integer.parseInt(oRequest.getParameter("cantidad"));
             Connection oConnection = null;
             ConnectionInterface oPooledConnection = null;
-            try {
-                oPooledConnection = AppConfigurationHelper.getSourceConnection();
-                oConnection = oPooledConnection.newConnection();
-                ProductoSpecificBeanImplementation oBean = new ProductoSpecificBeanImplementation(id);
-                ProductoSpecificDaoImplementation oDao = new ProductoSpecificDaoImplementation(oConnection, (UsuarioSpecificBeanImplementation) oRequest.getSession().getAttribute("user"), null);
-                oBean = (ProductoSpecificBeanImplementation) oDao.get(id, AppConfigurationHelper.getJsonMsgDepth());
-                oCarritoBean = new CarritoBean(cantidad, oBean);
-                CarritoBean oCarrito = find(alCarrito, oCarritoBean.getoProducto().getId());
-                if (oCarrito == null) {
-                    CarritoBean oCarroBean = new CarritoBean(cantidad, oBean);
-                    alCarrito.add(oCarroBean);
-                } else {
-                    Integer oldCantidad = oCarrito.getCantidad();
-                    oCarrito.setCantidad(oldCantidad + cantidad);
-                }
-                Gson oGson = AppConfigurationHelper.getGson();
-                String strJson = oGson.toJson(alCarrito);
-                oReplyBean = new ReplyBean(200, strJson);
-            } catch (Exception ex) {
-                String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName();
-                Log4jConfigurationHelper.errorLog(msg, ex);
-                throw new Exception(msg, ex);
-            } finally {
-                if (oConnection != null) {
-                    oConnection.close();
-                }
-                if (AppConfigurationHelper.getSourceConnection() != null) {
-                    AppConfigurationHelper.getSourceConnection().disposeConnection();
+            if (alCarrito == null) {
+                alCarrito = new ArrayList<CarritoBean>();
+            }
+            oCarritoBeanEnCarrito = find(alCarrito, id);
+            if (oCarritoBeanEnCarrito != null) {
+                oCarritoBeanEnCarrito.setCantidad(oCarritoBeanEnCarrito.getCantidad() + cantidad);
+            } else {
+                try {
+                    oPooledConnection = AppConfigurationHelper.getSourceConnection();
+                    oConnection = oPooledConnection.newConnection();
+                    CarritoBean oCarritoBean = new CarritoBean();
+                    oCarritoBean.setCantidad(cantidad);
+                    ProductoSpecificDaoImplementation oProductoDao = new ProductoSpecificDaoImplementation(oConnection, (UsuarioSpecificBeanImplementation) oRequest.getSession().getAttribute("user"), null);
+                    ProductoSpecificBeanImplementation oProductoBeanAdd = (ProductoSpecificBeanImplementation) oProductoDao.get(id, AppConfigurationHelper.getJsonMsgDepth());
+                    oCarritoBean.setoProducto(oProductoBeanAdd);
+                    alCarrito.add(oCarritoBean);
+                } catch (Exception ex) {
+                    String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName();
+                    Log4jConfigurationHelper.errorLog(msg, ex);
+                    throw new Exception(msg, ex);
+                } finally {
+                    if (oConnection != null) {
+                        oConnection.close();
+                    }
+                    if (AppConfigurationHelper.getSourceConnection() != null) {
+                        AppConfigurationHelper.getSourceConnection().disposeConnection();
+                    }
                 }
             }
+            Gson oGson = AppConfigurationHelper.getGson();
+            String strJson = oGson.toJson(alCarrito);
+            oReplyBean = new ReplyBean(200, strJson);
             return oReplyBean;
         } else {
             return new ReplyBean(401, "Unauthorized operation");
@@ -136,15 +137,9 @@ public class CarritoSpecificServiceImplementation implements TableServiceCarrito
         if (this.checkPermission("list")) {
             ArrayList<CarritoBean> alCarrito = (ArrayList) oRequest.getSession().getAttribute("carrito");
             ReplyBean oReplyBean = null;
-            try {
-                Gson oGson = AppConfigurationHelper.getGson();
-                String strJson = oGson.toJson(alCarrito);
-                oReplyBean = new ReplyBean(200, strJson);
-            } catch (Exception ex) {
-                String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName();
-                Log4jConfigurationHelper.errorLog(msg, ex);
-                throw new Exception(msg, ex);
-            }
+            Gson oGson = AppConfigurationHelper.getGson();
+            String strJson = oGson.toJson(alCarrito);
+            oReplyBean = new ReplyBean(200, strJson);
             return oReplyBean;
         } else {
             return new ReplyBean(401, "Unauthorized operation");
@@ -155,35 +150,41 @@ public class CarritoSpecificServiceImplementation implements TableServiceCarrito
     public ReplyBean buy() throws Exception {
         if (this.checkPermission("buy")) {
             ArrayList<CarritoBean> alCarrito = (ArrayList) oRequest.getSession().getAttribute("carrito");
+            UsuarioSpecificBeanImplementation oUsuarioBean = (UsuarioSpecificBeanImplementation) oRequest.getSession().getAttribute("user");
             ReplyBean oReplyBean = null;
             Connection oConnection = null;
             ConnectionInterface oPooledConnection = null;
-            Date fecha = (Date) Calendar.getInstance().getTime(); //Date.valueOf(oRequest.getParameter("fecha"));
+            //Date fecha = (Date) Calendar.getInstance().getTime(); //Date.valueOf(oRequest.getParameter("fecha"));
             try {
                 oPooledConnection = AppConfigurationHelper.getSourceConnection();
                 oConnection = oPooledConnection.newConnection();
-                oConnection.setAutoCommit(false);
-                UsuarioSpecificBeanImplementation oUsuarioBean = (UsuarioSpecificBeanImplementation) oRequest.getSession().getAttribute("user");
-                Integer alCarritoSize = alCarrito.size();
-                PedidoSpecificBeanImplementation oPedidoBean = new PedidoSpecificBeanImplementation(oUsuarioBean.getId(), fecha);
-                PedidoSpecificDaoImplementation oPedidoDao = new PedidoSpecificDaoImplementation(oConnection, (UsuarioSpecificBeanImplementation) oRequest.getSession().getAttribute("user"), null);
-                oPedidoBean.setId(oPedidoDao.set(oPedidoBean));
-                ProductoSpecificBeanImplementation oProductoBean = null;
-                ProductoSpecificDaoImplementation oProductoDao = new ProductoSpecificDaoImplementation(oConnection, (UsuarioSpecificBeanImplementation) oRequest.getSession().getAttribute("user"), null);
-                LineapedidoSpecificDaoImplementation oLineadepedidoDao = new LineapedidoSpecificDaoImplementation(oConnection, (UsuarioSpecificBeanImplementation) oRequest.getSession().getAttribute("user"), null);
-                for (int i = 0; i < alCarritoSize; i++) {
-                    oProductoBean = alCarrito.get(i).getoProducto();
-                    Integer newCantidad = alCarrito.get(i).getCantidad();
-                    LineapedidoSpecificBeanImplementation oLineadepedidoBean = new LineapedidoSpecificBeanImplementation();
-                    oLineadepedidoBean.setCantidad(newCantidad);
-                    oLineadepedidoBean.setId_pedido(oPedidoBean.getId());
-                    oLineadepedidoBean.setId_producto(oProductoBean.getId());
-                    oLineadepedidoBean.setId(oLineadepedidoDao.set(oLineadepedidoBean));
-                    oProductoBean.setExistencias(oProductoBean.getExistencias() - newCantidad);
-                    oProductoDao.set(oProductoBean);
+                if (alCarrito != null && alCarrito.size() > 0) {
+                    oConnection.setAutoCommit(false);
+                    PedidoSpecificBeanImplementation oPedidoBean = new PedidoSpecificBeanImplementation();
+                    oPedidoBean.setId_usuario(oUsuarioBean.getId());
+                    oPedidoBean.setFecha(Calendar.getInstance().getTime());
+                    PedidoSpecificDaoImplementation oPedidoDao = new PedidoSpecificDaoImplementation(oConnection, (UsuarioSpecificBeanImplementation) oRequest.getSession().getAttribute("user"), null);
+                    oPedidoBean.setId(oPedidoDao.set(oPedidoBean));
+                    Iterator<CarritoBean> iterator = alCarrito.iterator();
+                    while (iterator.hasNext()) {
+                        CarritoBean oCarritoBean = iterator.next();
+                        ProductoSpecificBeanImplementation oProductoBeanDeCarrito = oCarritoBean.getoProducto();
+                        ProductoSpecificDaoImplementation oProductoDao = new ProductoSpecificDaoImplementation(oConnection, (UsuarioSpecificBeanImplementation) oRequest.getSession().getAttribute("user"), null);
+                        ProductoSpecificBeanImplementation oProductoBeanDeDB = (ProductoSpecificBeanImplementation) oProductoDao.get(oProductoBeanDeCarrito.getId(), AppConfigurationHelper.getJsonMsgDepth());
+                        if (oProductoBeanDeDB.getExistencias() > oCarritoBean.getCantidad()) {
+                            LineapedidoSpecificBeanImplementation oLineadepedidoBean = new LineapedidoSpecificBeanImplementation();
+                            oLineadepedidoBean.setCantidad(oCarritoBean.getCantidad());
+                            oLineadepedidoBean.setId_pedido(oPedidoBean.getId());
+                            oLineadepedidoBean.setId_producto(oProductoBeanDeCarrito.getId());
+                            LineapedidoSpecificDaoImplementation oLineadepedidoDao = new LineapedidoSpecificDaoImplementation(oConnection, oUsuarioBean, null);
+                            oLineadepedidoBean.setId(oLineadepedidoDao.set(oLineadepedidoBean));
+                            oProductoBeanDeCarrito.setExistencias(oProductoBeanDeCarrito.getExistencias() - oCarritoBean.getCantidad());
+                            oProductoDao.set(oProductoBeanDeCarrito);
+                        }
+                    }
+                    alCarrito.clear();
+                    oConnection.commit();
                 }
-                alCarrito.clear();
-                oConnection.commit();
             } catch (Exception ex) {
                 oConnection.rollback();
                 String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName();
@@ -209,13 +210,10 @@ public class CarritoSpecificServiceImplementation implements TableServiceCarrito
             ArrayList<CarritoBean> alCarrito = (ArrayList) oRequest.getSession().getAttribute("carrito");
             ReplyBean oReplyBean = null;
             try {
-
                 alCarrito.clear();
-
                 Gson oGson = AppConfigurationHelper.getGson();
                 String strJson = oGson.toJson(alCarrito);
                 oReplyBean = new ReplyBean(200, strJson);
-
             } catch (Exception ex) {
                 String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName();
                 Log4jConfigurationHelper.errorLog(msg, ex);
