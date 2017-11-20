@@ -27,7 +27,14 @@
  * THE SOFTWARE.
  */
 -->
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
 <menu></menu>
+
 <div id="wrapper" ng-cloak>
     <div class="container-fluid">
         <div class="row">
@@ -141,6 +148,7 @@
                                 </div>
                                 <div id="datos" ng-if="!status">
                                     <div class="panel panel-default">
+
                                         <table class="table table-responsive table-bordered table-hover table-striped table-condensed dataTable no-footer">
                                             <tr>
                                                 <th ng-show="visibles.codigo" class="text-center">
@@ -165,19 +173,21 @@
                                                 </th>
                                             </tr>
                                         </table>
+                                        
                                     </div>
                                     <div class="prod-panel" ng-repeat="obj in page| filter:searchText">
-                                         <div class="thumb"><img src="images/thumb.png" alt="" /></div>
-                                         <div class="ref">ref: {{obj.codigo}}</div>
-                                         <div class="prod_name"><b>{{obj.descripcion}}</b></div>
-                                         <div class="existencias">{{obj.existencias}}</div>
-                                         <div class="precio">{{obj.precio| currency : "€":2}}</div> 
-                                         <div class="input-group spinner">
-                                             <input type="number" value="1" step="1" min="0" max="9999" name="cantidad" class="form-control" >
-                                             <a class="btn btn-default" href="">Añadir</a>
-                                         </div>
-                                     </div>
-                                     <a class="btn btn-default" href="home">Cerrar</a>
+                                        <div class="thumb"><img src="images/thumb.png" alt="" /></div>
+                                        <div class="ref">ref: {{obj.codigo}}</div>
+                                        <div class="prod_name"><b>{{obj.descripcion}}</b></div>
+                                        <div class="existencias">{{obj.existencias}}</div>
+                                        <div class="precio">{{obj.precio| currency : "€":2}}</div>
+
+                                        <div class="input-group spinner">
+                                            <input type="number" value="1" step="1" min="0" max="9999" name="cantidad" class="form-control" >
+                                            <a class="btn btn-primary" ng-click="add()" ng-disabled="outerForm.$valid">Añadir</a>                                        
+                                        </div>
+                                    </div>
+                                    <a class="btn btn-default" href="home">Cerrar</a>
                                 </div>
                             </div>
                         </div>
@@ -187,4 +197,3 @@
             </div>
         </div>
     </div>
-</div>
