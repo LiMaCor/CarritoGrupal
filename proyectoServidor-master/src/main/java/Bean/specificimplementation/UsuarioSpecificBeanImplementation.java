@@ -135,47 +135,25 @@ public class UsuarioSpecificBeanImplementation extends TableGenericBeanImplement
     }
 
     /**
-     * Método getColumns(): Obtiene las columnas de la tabla correspondiente al
-     * propio Bean.
-     * @return String
-     */
-    
-    @Override
-    public String getColumns() {
-        String strColumns = "";
-        strColumns += "dni,";
-        strColumns += "nombre,";
-        strColumns += "primer_apellido,";
-        strColumns += "segundo_apellido,";
-        strColumns += "login,";
-        strColumns += "pass,";
-        strColumns += "fecha_nacimiento,";
-        strColumns += "email,";
-        strColumns += "id_tipousuario";
-
-        return strColumns;
-    }
-
-    /**
      * Método getValues(): Obtiene los valores de los registros correspondientes
      * al propio Bean.
      * @return String
      */
     
-    @Override
-    public String getValues() {
-        String strColumns = "";
-        strColumns += EncodingUtilHelper.quotate(dni) + ",";
-        strColumns += EncodingUtilHelper.quotate(nombre) + ",";
-        strColumns += EncodingUtilHelper.quotate(primer_apellido) + ",";
-        strColumns += EncodingUtilHelper.quotate(segundo_apellido) + ",";
-        strColumns += EncodingUtilHelper.quotate(login) + ",";
-        strColumns += EncodingUtilHelper.quotate("da8ab09ab4889c6208116a675cad0b13e335943bd7fc418782d054b32fdfba04") + ",";
-        strColumns += EncodingUtilHelper.stringifyAndQuotate(fecha_nacimiento) + ",";
-        strColumns += EncodingUtilHelper.quotate(email) + ",";
-        strColumns += id_tipousuario;
-        return strColumns;
-    }
+//    @Override
+//    public String getValues() {
+//        String strColumns = "";
+//        strColumns += EncodingUtilHelper.quotate(dni) + ",";
+//        strColumns += EncodingUtilHelper.quotate(nombre) + ",";
+//        strColumns += EncodingUtilHelper.quotate(primer_apellido) + ",";
+//        strColumns += EncodingUtilHelper.quotate(segundo_apellido) + ",";
+//        strColumns += EncodingUtilHelper.quotate(login) + ",";
+//        strColumns += EncodingUtilHelper.quotate("da8ab09ab4889c6208116a675cad0b13e335943bd7fc418782d054b32fdfba04") + ",";
+//        strColumns += EncodingUtilHelper.stringifyAndQuotate(fecha_nacimiento) + ",";
+//        strColumns += EncodingUtilHelper.quotate(email) + ",";
+//        strColumns += id_tipousuario;
+//        return strColumns;
+//    }
 
     /**
      * Método toPairs(): Relaciona los valores declarados en las propiedades del
